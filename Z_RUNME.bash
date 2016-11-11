@@ -1,7 +1,6 @@
 function init(){
     run_cloud9_setup_scripts
     switch_repo_to_dev_branch
-    init_repo_for_gitflow
 }
 
 function run_cloud9_setup_scripts(){

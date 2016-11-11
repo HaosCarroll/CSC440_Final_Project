@@ -16,12 +16,15 @@ public class ServiceModel {
         this.service = new HashMap<>();
     }
     
-    public int createService(String providableServiceIdNum, String providableServiceDescription){
+    public int createService(String providableServiceIdNum, String providableServiceDescription, boolean isProvidableByDietitian, boolean isProvidableByExerciseExpert, boolean isProvidableByInternist){
         
         ServiceTable usr = new ServiceTable();
 
         usr.setProvidableServiceIdNum(providableServiceIdNum);
         usr.setProvidableServiceDescription(providableServiceDescription);
+        usr.setIsProvidableByDietitian(isProvidableByDietitian);
+        usr.setIsProvidableByExerciseExpert(isProvidableByExerciseExpert);
+        usr.setIsProvidableByInternist(isProvidableByInternist);
         service.put(providableServiceIdNum, usr);
     
         return 1;
@@ -43,11 +46,14 @@ public class ServiceModel {
         return true;
     }
     
-    public int updateService(String providableServiceIdNum, String providableServiceDescription){
+    public int updateService(String providableServiceIdNum, String providableServiceDescription, boolean isProvidableByDietitian, boolean isProvidableByExerciseExpert, boolean isProvidableByInternist){
 
         ServiceTable usr = (ServiceTable)service.get(providableServiceIdNum);
 
         usr.setProvidableServiceDescription(providableServiceDescription);
+        usr.setIsProvidableByDietitian(isProvidableByDietitian);
+        usr.setIsProvidableByExerciseExpert(isProvidableByExerciseExpert);
+        usr.setIsProvidableByInternist(isProvidableByInternist);
         service.put(providableServiceIdNum, usr);
     
         return 1;

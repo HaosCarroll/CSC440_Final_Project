@@ -16,7 +16,7 @@ public class ProviderModel {
         this.provider = new HashMap<>();
     }
     
-    public int createProvider(String providerNumber, String providerName, String providerStreetAddress, String providerCity, String providerState, long providerZip){
+    public int createProvider(String providerNumber, String providerName, String providerStreetAddress, String providerCity, String providerState, long providerZip, boolean isDietitian, boolean isExerciseExpert, boolean isInternist){
         
         ProviderTable usr = new ProviderTable();
 
@@ -26,6 +26,9 @@ public class ProviderModel {
         usr.setProviderCity(providerCity);
         usr.setProviderState(providerState);
         usr.setProviderZip(providerZip);
+        usr.setIsDietitian(isDietitian);
+        usr.setIsExerciseExpert(isExerciseExpert);
+        usr.setIsInternist(isInternist);
         provider.put(providerNumber, usr);
     
         return 1;
@@ -47,7 +50,7 @@ public class ProviderModel {
         return true;
     }
     
-    public int updateProvider(String providerNumber, String providerName, String providerStreetAddress, String providerCity, String providerState, long providerZip){
+    public int updateProvider(String providerNumber, String providerName, String providerStreetAddress, String providerCity, String providerState, long providerZip, boolean isDietitian, boolean isExerciseExpert, boolean isInternist){
 
         ProviderTable usr = (ProviderTable)provider.get(providerNumber);
 
@@ -56,6 +59,9 @@ public class ProviderModel {
         usr.setProviderCity(providerCity);
         usr.setProviderState(providerState);
         usr.setProviderZip(providerZip);
+        usr.setIsDietitian(isDietitian);
+        usr.setIsExerciseExpert(isExerciseExpert);
+        usr.setIsInternist(isInternist);
         provider.put(providerNumber, usr);
     
         return 1;

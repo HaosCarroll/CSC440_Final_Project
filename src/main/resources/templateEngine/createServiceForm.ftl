@@ -12,6 +12,24 @@
       <input type="text" class="form-control" id="providableServiceDescription" name="providableServiceDescription" placeholder="Enter description for providable service.">
     </div>
 
+    <div class="form-group">
+		<label for="isProvidableByDietitian">Providable by Dietitian</label><br>
+		<input type="radio" name="isProvidableByDietitian" value="True"> True
+		<input type="radio" name="isProvidableByDietitian" value="False" checked> False
+    </div>
+
+    <div class="form-group">
+		<label for="isProvidableByExerciseExpert">Providable by Exercise Expert</label><br>
+		<input type="radio" name="isProvidableByExerciseExpert" value="True"> True
+		<input type="radio" name="isProvidableByExerciseExpert" value="False" checked> False
+    </div>
+
+    <div class="form-group">
+		<label for="isProvidableByInternist">Providable by Internist</label><br>
+		<input type="radio" name="isProvidableByInternist" value="True"> True
+		<input type="radio" name="isProvidableByInternist" value="False" checked> False
+    </div>
+
     <button type="submit" class="btn btn-default">Submit</button>
   </form>
 

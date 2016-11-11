@@ -8,6 +8,9 @@ public class Provider implements Validable{
     private String providerCity;
     private String providerState;
     private long providerZip;
+    private boolean isDietitian;
+    private boolean isExerciseExpert;
+    private boolean isInternist;
     
     public String getProviderNumber() {
         return providerNumber;
@@ -55,6 +58,30 @@ public class Provider implements Validable{
     
     public void setProviderZip(long providerZip) {
         this.providerZip = providerZip;
+    }
+    
+    public boolean getIsDietitian() {
+        return isDietitian;
+    }
+    
+    public void setIsDietitian(boolean isDietitian) {
+        this.isDietitian = isDietitian;
+    }
+    
+    public boolean getIsExerciseExpert() {
+        return isExerciseExpert;
+    }
+    
+    public void setIsExerciseExpert(boolean isExerciseExpert) {
+        this.isExerciseExpert = isExerciseExpert;
+    }
+    
+    public boolean getIsInternist() {
+        return isInternist;
+    }
+    
+    public void setIsInternist(boolean isInternist) {
+        this.isInternist = isInternist;
     }
     
     @Override

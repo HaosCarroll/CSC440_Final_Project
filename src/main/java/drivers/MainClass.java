@@ -145,7 +145,7 @@ public class MainClass {
                     return "Correct the fields";
                 }
                     if(providerMod.checkProvider(u.getProviderNumber())) {
-                    int id = providerMod.createProvider(u.getProviderNumber(), u.getProviderName(), u.getProviderStreetAddress(), u.getProviderCity(), u.getProviderState(), u.getProviderZip());
+                    int id = providerMod.createProvider(u.getProviderNumber(), u.getProviderName(), u.getProviderStreetAddress(), u.getProviderCity(), u.getProviderState(), u.getProviderZip(), u.getIsDietitian(), u.getIsExerciseExpert(), u.getIsInternist());
                     response.status(200);
                     response.type("application/json");
                     return id;
@@ -203,7 +203,7 @@ public class MainClass {
                     return "Correct the fields";
                 }
                 if(!providerMod.checkProvider(u.getProviderNumber())) {
-                    int id = providerMod.updateProvider(u.getProviderNumber(), u.getProviderName(), u.getProviderStreetAddress(), u.getProviderCity(), u.getProviderState(), u.getProviderZip());
+                    int id = providerMod.updateProvider(u.getProviderNumber(), u.getProviderName(), u.getProviderStreetAddress(), u.getProviderCity(), u.getProviderState(), u.getProviderZip(), u.getIsDietitian(), u.getIsExerciseExpert(), u.getIsInternist());
                     response.status(200);
                     response.type("application/json");
                     return id;
@@ -233,7 +233,7 @@ public class MainClass {
                     return "Correct the fields";
                 }
                     if(serviceMod.checkService(u.getProvidableServiceIdNum())) {
-                    int id = serviceMod.createService(u.getProvidableServiceIdNum(), u.getProvidableServiceDescription());
+                    int id = serviceMod.createService(u.getProvidableServiceIdNum(), u.getProvidableServiceDescription(), u.getIsProvidableByDietitian(), u.getIsProvidableByExerciseExpert(), u.getIsProvidableByInternist());
                     response.status(200);
                     response.type("application/json");
                     return id;
@@ -291,7 +291,7 @@ public class MainClass {
                     return "Correct the fields";
                 }
                 if(!serviceMod.checkService(u.getProvidableServiceIdNum())) {
-                    int id = serviceMod.updateService(u.getProvidableServiceIdNum(), u.getProvidableServiceDescription());
+                    int id = serviceMod.updateService(u.getProvidableServiceIdNum(), u.getProvidableServiceDescription(), u.getIsProvidableByDietitian(), u.getIsProvidableByExerciseExpert(), u.getIsProvidableByInternist());
                     response.status(200);
                     response.type("application/json");
                     return id;

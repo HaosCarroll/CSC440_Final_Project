@@ -17,7 +17,7 @@ function switch_repo_to_dev_branch(){
     cd $GOPATH    
 }
 
-function switch_repo_to_dev_branch(){
+function init_git_flow_on_repo(){
     local called_from_directory="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
     cd $called_from_directory
     git flow init -d

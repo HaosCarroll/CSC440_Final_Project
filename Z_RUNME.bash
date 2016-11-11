@@ -1,6 +1,7 @@
 function init(){
+    run_cloud9_setup_scripts
     switch_repo_to_dev_branch
-    switch_repo_to_dev_branch_and_init_repo_as_git_flow_repo
+    init_repo_for_gitflow
 }
 
 function run_cloud9_setup_scripts(){
@@ -9,7 +10,7 @@ function run_cloud9_setup_scripts(){
     bash $setup_script_name_and_path
 }
 
-function switch_repo_to_dev_branch_and_init_repo_as_git_flow_repo(){
+function switch_repo_to_dev_branch(){
     local called_from_directory="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
     cd $called_from_directory
     git checkout develop

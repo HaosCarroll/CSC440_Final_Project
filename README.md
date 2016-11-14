@@ -103,6 +103,9 @@
 * Must be done anytime changes are made to the master or dev branch excepting for testing.
 * Must be done if you intend to merge in a feature that causes changes to the code base.
 * Must contain working master and dev branches.
+* Must contain only "clean" src in master branch.
+    * Run ```mvn clean``` before pushing.
+* Must contain only "clean" src in develop branch.
+    * Run ```mvn clean``` before pushing.
 * Should be done anytime there are features the group should be aware of.
  
-

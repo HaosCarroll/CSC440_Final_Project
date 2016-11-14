@@ -37,7 +37,7 @@ public class MainClass {
 
         get("/", (request, response) -> {
            Map<String, Object> viewObjects = new HashMap<String, Object>();
-           viewObjects.put("title", "Welcome to Spark Project");
+           viewObjects.put("title", "Welcome to Team Five's Final Project!");
            viewObjects.put("templateName", "home.ftl");
            return new ModelAndView(viewObjects, "main.ftl");
         }, new FreeMarkerEngine());

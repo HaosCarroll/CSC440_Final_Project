@@ -18,7 +18,7 @@ EOT
 function setup_mongo_db_for_c9(){
     cd $called_from_directory
     cd ..
-    local working_directory=${PWD##*/}
+    local working_directory=$GOPATH/${PWD##*/}
     sudo apt-get update
     sudo apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv EA312927
     

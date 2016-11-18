@@ -1,0 +1,5 @@
+entities/Provider.class
+entities/Validable.class
+templateEngine/FreeMarkerEngine.class
+drivers/Application.class
+drivers/ProviderRepository.class

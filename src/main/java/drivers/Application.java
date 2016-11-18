@@ -73,7 +73,7 @@ public class Application implements CommandLineRunner{
             ObjectMapper mapper = new ObjectMapper();
             try {
                 Provider u = mapper.readValue(request.body(), Provider.class);
-                if (!u.isValid()) {
+                if (!u.isValid(u)) {
                     response.status(400);
                     return "Correct the fields";
                 }

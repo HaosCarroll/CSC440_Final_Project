@@ -6,7 +6,13 @@ public class Validable {
      * Just to check if inputs are valid
      * @return
      */
+    
+    private boolean validationIsDisable = false;
+    
     public boolean isValid(User user){
+        
+        if (validationIsDisable) return true;
+        
         if(user.getMemberNumber() == null || user.getMemberNumber().length() != 9) return false;
         for(int i = 0; i < user.getMemberNumber().length(); i++){
             if(!Character.isDigit(user.getMemberNumber().charAt(i)))
@@ -28,7 +34,11 @@ public class Validable {
         }
         return true;
     }
+
     public boolean isValid(Service service){
+
+        if (validationIsDisable) return true;
+
         if(service.getProvidableServiceIdNum() == null || service.getProvidableServiceIdNum().length() != 6) return false;
         for(int i = 0; i < service.getProvidableServiceIdNum().length(); i++){
             if(!Character.isDigit(service.getProvidableServiceIdNum().charAt(i)))
@@ -38,7 +48,11 @@ public class Validable {
             return false;
         return true;
     }
+
     public boolean isValid(Provider provider){
+
+        if (validationIsDisable) return true;
+
         if(provider.getProviderNumber() == null || provider.getProviderNumber().length() != 9) return false;
         for(int i = 0; i < provider.getProviderNumber().length(); i++){
             if(!Character.isDigit(provider.getProviderNumber().charAt(i)))
@@ -60,7 +74,11 @@ public class Validable {
         }
         return true;
     }
+
     public boolean isValid(Billable billable){
+
+        if (validationIsDisable) return true;
+
         if(billable.getChocoServiceProvidedIdNumber() == null || billable.getChocoServiceProvidedIdNumber().length() < 6) return false;
         for(int i = 0; i < billable.getChocoServiceProvidedIdNumber().length(); i++){
             if(!Character.isDigit(billable.getChocoServiceProvidedIdNumber().charAt(i)))

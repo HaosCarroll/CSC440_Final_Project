@@ -1,6 +1,6 @@
 package entities;
     
-public class Service implements Validable{    
+public class Service extends Validable{    
     
     private String providableServiceIdNum;
     private String providableServiceDescription;
@@ -46,18 +46,6 @@ public class Service implements Validable{
     
     public void setIsProvidableByInternist(boolean isProvidableByInternist) {
         this.isProvidableByInternist = isProvidableByInternist;
-    }
-    
-    @Override
-    public boolean isValid() {
-        if(this.providableServiceIdNum == null || this.providableServiceIdNum.length() != 6) return false;
-        for(int i = 0; i < this.providableServiceIdNum.length(); i++){
-            if(!Character.isDigit(this.providableServiceIdNum.charAt(i)))
-                return false;
-        }
-        if(this.providableServiceDescription == null || this.providableServiceDescription.length() > 20)
-            return false;
-        return true;
     }
     
 }

@@ -52,7 +52,7 @@ public class MainClass {
             ObjectMapper mapper = new ObjectMapper();
             try {
                 Billable u = mapper.readValue(request.body(), Billable.class);
-                if (!u.isValid()) {
+                if (!u.isValid(u)) {
                     response.status(400);
                     return "Correct the fields";
                 }
@@ -110,7 +110,7 @@ public class MainClass {
             
             try {
                 Billable u = mapper.readValue(request.body(), Billable.class);
-                if (!u.isValid()) {
+                if (!u.isValid(u)) {
                     response.status(400);
                     return "Correct the fields";
                 }
@@ -140,7 +140,7 @@ public class MainClass {
             ObjectMapper mapper = new ObjectMapper();
             try {
                 Provider u = mapper.readValue(request.body(), Provider.class);
-                if (!u.isValid()) {
+                if (!u.isValid(u)) {
                     response.status(400);
                     return "Correct the fields";
                 }
@@ -198,7 +198,7 @@ public class MainClass {
             
             try {
                 Provider u = mapper.readValue(request.body(), Provider.class);
-                if (!u.isValid()) {
+                if (!u.isValid(u)) {
                     response.status(400);
                     return "Correct the fields";
                 }
@@ -228,7 +228,7 @@ public class MainClass {
             ObjectMapper mapper = new ObjectMapper();
             try {
                 Service u = mapper.readValue(request.body(), Service.class);
-                if (!u.isValid()) {
+                if (!u.isValid(u)) {
                     response.status(400);
                     return "Correct the fields";
                 }
@@ -286,7 +286,7 @@ public class MainClass {
             
             try {
                 Service u = mapper.readValue(request.body(), Service.class);
-                if (!u.isValid()) {
+                if (!u.isValid(u)) {
                     response.status(400);
                     return "Correct the fields";
                 }
@@ -316,7 +316,7 @@ public class MainClass {
             ObjectMapper mapper = new ObjectMapper();
             try {
                 User u = mapper.readValue(request.body(), User.class);
-                if (!u.isValid()) {
+                if (!u.isValid(u)) {
                     response.status(400);
                     return "Correct the fields";
                 }
@@ -374,7 +374,7 @@ public class MainClass {
             
             try {
                 User u = mapper.readValue(request.body(), User.class);
-                if (!u.isValid()) {
+                if (!u.isValid(u)) {
                     response.status(400);
                     return "Correct the fields";
                 }

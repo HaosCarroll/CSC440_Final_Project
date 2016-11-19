@@ -1,5 +1,8 @@
 package drivers;
 
+// TODO : REMOVE UN-NEEDED IMPORTS! 
+// TODO : Finish Commenting the imports.
+
 // Imports for spring framework.
 
 import org.springframework.boot.SpringApplication;
@@ -27,7 +30,6 @@ import java.io.IOException;
 import entities.*;
 import controls.*;
 
-
 @SpringBootApplication
 public class Application implements CommandLineRunner{
 
@@ -37,24 +39,39 @@ public class Application implements CommandLineRunner{
     private ChocoMongoController mongoController = new ChocoMongoController();
 
 	public static void main(String[] args) {
+
+        // For Testing and Debug.
+        boolean dBug = true;
+        if (dBug) System.out.println("\nDEBUG ON IN : Application.main\n");
+
 		SpringApplication.run(Application.class, args);
 
-		System.out.println("\n\n\n\nSPRING SERVER RUNNING!\n");
-		System.out.println("\nSPARK SERVER RUNNING!\n\n\n\n");
+		if (dBug) System.out.println("\n\n\n\nSPRING SERVER RUNNING!\n");
+		if (dBug) System.out.println("\nSPARK SERVER RUNNING!\n\n\n\n");
 	}
 
 	@Override
 	public void run(String... args) throws Exception {
         // This allow non static method to be called from static main while
         // allowing same method to access 'autowired' repositories.
+
+        // For Testing and Debug.
+        boolean dBug = false;
+        if (dBug) System.out.println("\nDEBUG ON IN : Application.run\n");
+
         startSparkServer();
 	}
 
-
     private void startSparkServer() {
 
+        // For Testing and Debug.
+        boolean dBug = false;
+        if (dBug) System.out.println("\nDEBUG ON IN : Application.startSparkServer\n");
+
+        // Set vars for Spark Server.
         staticFileLocation("/public");
         port(8080); // Spark Server will run on port 8080
+
 
         // Functions for Spark Server Routes
          
@@ -79,39 +96,33 @@ public class Application implements CommandLineRunner{
             ObjectMapper mapper = new ObjectMapper();
             try {
                 Provider u = mapper.readValue(request.body(), Provider.class);
+                
                 if (!u.isValid(u)) {
                     response.status(400);
                     return "Correct the fields";
                 }
+                
+                if(providerRepository.countByProviderNumber(u.getProviderNumber()) == 0) {
                     
-                if(true) {
-                //if(providerMod.checkProvider(u.getProviderNumber())) {
-                    //int id = providerMod.createProvider(u.getProviderNumber(), u.getProviderName(), u.getProviderStreetAddress(), u.getProviderCity(), u.getProviderState(), u.getProviderZip(), u.getIsDietitian(), u.getIsExerciseExpert(), u.getIsInternist());
-                    
-                    if (providerRepository.exists(u.getProviderNumber())){
-                        System.out.println("Create Provider finds exists.");
-                    } else {
-                        System.out.println("Create Provider finds not.");
-                    }
                     int id = 1;
                     
-                    System.out.println("request.body() = " + request.body());
-                    System.out.println("u = " + toJSON(u));
+                    if (dBug) System.out.println("request.body() = " + request.body());
+                    if (dBug) System.out.println("u = " + convertObjectToJSON(u));
                     
 					providerRepository.save(u);
                     response.status(200);
                     response.type("application/json");
                     return id;
-                }
-                else {
+                } else {
                     response.status(400);
                     response.type("application/json");
-                    return "Provider Already Exists";
+        
+                    return "Provider ID Number Already Exists!!";
                 }
-                } catch (JsonParseException jpe) {
-                    response.status(404);
-                    return "Exception";
-                }
+            } catch (JsonParseException jpe) {
+                response.status(404);
+                return "Exception";
+            }
         });
         
         get("/getAllProviders", (request, response) -> {
@@ -120,13 +131,7 @@ public class Application implements CommandLineRunner{
             viewObjects.put("templateName", "showProvider.ftl");
             return new ModelAndView(viewObjects, "main.ftl");
         }, new FreeMarkerEngine());
-
-        get("/getJsonProviderIdsList", (request, response) -> {
-            response.status(200);
-            return mongoController.getJSONListOfIdsFromRepo(providerRepository);
-        });
-
-
+        
         get("/removeProvider", (request, response) -> {
            Map<String, Object> viewObjects = new HashMap<String, Object>();
            viewObjects.put("templateName", "removeProviderForm.ftl");
@@ -152,17 +157,15 @@ public class Application implements CommandLineRunner{
             }
             
         });
-/*
-*/
-        
+
+        // Useful for testing and debuging.
+        get("/getJsonProviderIdsList", (request, response) -> {
+            response.status(200);
+            return mongoController.getJSONListOfIdsFromRepo(providerRepository);
+        });
     }
 
-	
-	    /**
-     *  This function converts an Object to JSON String
-     * @param obj
-     */
-    private String toJSON(Object obj) {
+    private String convertObjectToJSON(Object obj) {
         try {
             ObjectMapper mapper = new ObjectMapper();
             mapper.enable(SerializationFeature.INDENT_OUTPUT);

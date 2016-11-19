@@ -22,6 +22,7 @@ import com.fasterxml.jackson.databind.SerializationFeature;
 import java.io.StringWriter;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.List;
 
 //import servers.*;
 
@@ -131,6 +132,11 @@ public class Application implements CommandLineRunner{
             viewObjects.put("templateName", "showProvider.ftl");
             return new ModelAndView(viewObjects, "main.ftl");
         }, new FreeMarkerEngine());
+        
+        get("/getJsonProviderList", (request, response) -> {
+            response.status(200);
+            return mongoController.getJSONListOfObjectsFromRepo(providerRepository);
+        });
         
         get("/removeProvider", (request, response) -> {
            Map<String, Object> viewObjects = new HashMap<String, Object>();

@@ -43,6 +43,31 @@ public class ChocoMongoController {
         return returnString;
     }
 
+    public String getJSONListOfObjectsFromRepo(MongoRepository repoToGetObjectsFrom){
+
+        // For Testing and Debug.
+        boolean dBug = false;
+        if (dBug) System.out.println("\nDEBUG ON IN : ChocoMongoController.getJSONListOfObjectsFromRepo\n");
+        
+        String returnString = "[";
+        
+        List<String> repoObjects = repoToGetObjectsFrom.findAll();
+        
+        for (int i = 0; i < repoObjects.size(); i++) {
+            if (i > 0){
+                returnString += ",\n    ";
+            } else {
+                returnString += "\n    ";
+            }
+            String temp = convertObjectToJSON(repoObjects.get(i));
+            returnString += temp;
+		}
+        returnString += "\n]\n";
+        
+        if (dBug) System.out.println("returnString : \n" + returnString);
+        return returnString;
+    }
+
     private static String convertObjectToJSON(Object obj) {
         try {
             ObjectMapper mapper = new ObjectMapper();

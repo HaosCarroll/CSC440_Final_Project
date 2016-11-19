@@ -80,8 +80,8 @@ public class Application implements CommandLineRunner{
         get("/", (request, response) -> {
            Map<String, Object> viewObjects = new HashMap<String, Object>();
            viewObjects.put("title", "Welcome to Team Five's Final Project!!!");
-           viewObjects.put("templateName", "home.ftl");
-           return new ModelAndView(viewObjects, "main.ftl");
+           viewObjects.put("templateName", "aHome.ftl");
+           return new ModelAndView(viewObjects, "aMain.ftl");
         }, new FreeMarkerEngine());
 
         
@@ -90,7 +90,7 @@ public class Application implements CommandLineRunner{
         get("/createProvider", (request, response) -> {
            Map<String, Object> viewObjects = new HashMap<String, Object>();
            viewObjects.put("templateName", "createProviderForm.ftl");
-           return new ModelAndView(viewObjects, "main.ftl");
+           return new ModelAndView(viewObjects, "aMain.ftl");
         }, new FreeMarkerEngine());
 
         post("/createProvider", (request, response) -> {
@@ -130,7 +130,7 @@ public class Application implements CommandLineRunner{
             response.status(200);
             Map<String, Object> viewObjects = new HashMap<String, Object>();
             viewObjects.put("templateName", "showProvider.ftl");
-            return new ModelAndView(viewObjects, "main.ftl");
+            return new ModelAndView(viewObjects, "aMain.ftl");
         }, new FreeMarkerEngine());
         
         get("/getJsonProviderList", (request, response) -> {
@@ -142,7 +142,7 @@ public class Application implements CommandLineRunner{
            Map<String, Object> viewObjects = new HashMap<String, Object>();
            viewObjects.put("templateName", "removeProviderForm.ftl");
            viewObjects.put("providers", mongoController.getJSONListOfIdsFromRepo(providerRepository));
-           return new ModelAndView(viewObjects, "main.ftl");
+           return new ModelAndView(viewObjects, "aMain.ftl");
         }, new FreeMarkerEngine());
 
         put("/removeProvider/:id", (request, response) -> {

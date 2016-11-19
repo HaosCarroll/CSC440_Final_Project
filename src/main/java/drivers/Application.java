@@ -25,6 +25,7 @@ import java.util.Map;
 import java.io.IOException;
 
 import entities.*;
+import controls.*;
 
 
 @SpringBootApplication
@@ -33,17 +34,19 @@ public class Application implements CommandLineRunner{
 	@Autowired
 	private ProviderRepository providerRepository;
 
+    private ChocoMongoController mongoController = new ChocoMongoController();
+
 	public static void main(String[] args) {
 		SpringApplication.run(Application.class, args);
 
-		System.out.println("\n\n\n\nSPRING SERVER RUNNING!\n\n\n\n");
-		System.out.println("\n\n\n\nSPARK SERVER RUNNING!\n\n\n\n");
-		
+		System.out.println("\n\n\n\nSPRING SERVER RUNNING!\n");
+		System.out.println("\nSPARK SERVER RUNNING!\n\n\n\n");
 	}
-
 
 	@Override
 	public void run(String... args) throws Exception {
+        // This allow non static method to be called from static main while
+        // allowing same method to access 'autowired' repositories.
         startSparkServer();
 	}
 
@@ -53,15 +56,18 @@ public class Application implements CommandLineRunner{
         staticFileLocation("/public");
         port(8080); // Spark Server will run on port 8080
 
-        /**
-         *  Function for Routes
-         */
+        // Functions for Spark Server Routes
+         
+        // Landing/Home Page Route.
         get("/", (request, response) -> {
            Map<String, Object> viewObjects = new HashMap<String, Object>();
-           viewObjects.put("title", "Welcome to Team Five's Final Project!");
+           viewObjects.put("title", "Welcome to Team Five's Final Project!!!");
            viewObjects.put("templateName", "home.ftl");
            return new ModelAndView(viewObjects, "main.ftl");
         }, new FreeMarkerEngine());
+
+        
+        // Provider Entity CRUD Routes.
 
         get("/createProvider", (request, response) -> {
            Map<String, Object> viewObjects = new HashMap<String, Object>();
@@ -81,10 +87,15 @@ public class Application implements CommandLineRunner{
                 if(true) {
                 //if(providerMod.checkProvider(u.getProviderNumber())) {
                     //int id = providerMod.createProvider(u.getProviderNumber(), u.getProviderName(), u.getProviderStreetAddress(), u.getProviderCity(), u.getProviderState(), u.getProviderZip(), u.getIsDietitian(), u.getIsExerciseExpert(), u.getIsInternist());
+                    
+                    if (providerRepository.exists(u.getProviderNumber())){
+                        System.out.println("Create Provider finds exists.");
+                    } else {
+                        System.out.println("Create Provider finds not.");
+                    }
                     int id = 1;
                     
                     System.out.println("request.body() = " + request.body());
-                    //String requestBodyString = (String)request.body();
                     System.out.println("u = " + toJSON(u));
                     
 					providerRepository.save(u);
@@ -102,6 +113,48 @@ public class Application implements CommandLineRunner{
                     return "Exception";
                 }
         });
+        
+        get("/getAllProviders", (request, response) -> {
+            response.status(200);
+            Map<String, Object> viewObjects = new HashMap<String, Object>();
+            viewObjects.put("templateName", "showProvider.ftl");
+            return new ModelAndView(viewObjects, "main.ftl");
+        }, new FreeMarkerEngine());
+
+        get("/getJsonProviderIdsList", (request, response) -> {
+            response.status(200);
+            return mongoController.getJSONListOfIdsFromRepo(providerRepository);
+        });
+
+
+        get("/removeProvider", (request, response) -> {
+           Map<String, Object> viewObjects = new HashMap<String, Object>();
+           viewObjects.put("templateName", "removeProviderForm.ftl");
+           viewObjects.put("providers", mongoController.getJSONListOfIdsFromRepo(providerRepository));
+           return new ModelAndView(viewObjects, "main.ftl");
+        }, new FreeMarkerEngine());
+
+        put("/removeProvider/:id", (request, response) -> {
+            String id = request.params(":id");
+            
+            long numRemoved = providerRepository.deleteProviderByProviderNumber(id);
+            if (numRemoved == 1){
+                response.status(200);
+                return "One Provider Removed.";
+            } else if (numRemoved > 1){
+                response.status(200);
+                String returnString = "" + numRemoved + " PROVIDERS REMOVED!!";
+                return returnString;
+            }
+            else {
+                response.status(400);
+                return "No Such Provider Found.";
+            }
+            
+        });
+/*
+*/
+        
     }
 
 	

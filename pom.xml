@@ -58,10 +58,8 @@
             <version>3.3.1</version>
             <scope>test</scope>
         </dependency>
-<!-- 
--->
 
-
+<!-- These are the dependencies for the Spring Framework -->
 
         <dependency>
             <groupId>org.springframework.boot</groupId>
@@ -78,7 +76,7 @@
         </dependency>
 
 
-<!-- This handles logging configuration errors The occur without it... -->        
+<!-- This handles logging configuration errors that occur without it... -->        
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter</artifactId>

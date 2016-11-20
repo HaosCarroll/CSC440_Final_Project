@@ -2,12 +2,6 @@ package entities;
 
 public class Validable {
 
-    /**
-     * Just to check if inputs are valid
-     * @return
-     */
-    
-
     private boolean validationIsDisable = true;
 
     public boolean isValid(Object objectIn){

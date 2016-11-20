@@ -164,7 +164,6 @@ public class Application implements CommandLineRunner{
             
         });
 
-        
         get("/updateProvider", (request, response) -> {
            Map<String, Object> viewObjects = new HashMap<String, Object>();
            viewObjects.put("templateName", "updateProviderForm.ftl");
@@ -175,7 +174,6 @@ public class Application implements CommandLineRunner{
             ObjectMapper mapper = new ObjectMapper();
             
             try {
-                System.out.println("TRYING!!");
                 Provider u = mapper.readValue(request.body(), Provider.class);
 
                 if (!u.isValid(u)) {
@@ -184,7 +182,6 @@ public class Application implements CommandLineRunner{
                 }
 
                 if(providerRepository.countByProviderNumber(u.getProviderNumber()) == 1) {
-                    System.out.println("u.getProviderNumber() = " + u.getProviderNumber());
                     providerRepository.deleteProviderByProviderNumber(u.getProviderNumber());
                     providerRepository.save(u);
                     response.status(200);

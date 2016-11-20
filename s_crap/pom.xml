@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 
     <modelVersion>4.0.0</modelVersion>
 
@@ -21,15 +22,11 @@
 
     <dependencies>
 
-        <!-- NEEDS COMMENT -->
-
         <dependency>
            <groupId>com.sparkjava</groupId>
             <artifactId>spark-core</artifactId>
             <version>${spark.version}</version>
         </dependency>
-
-        <!-- NEEDS COMMENT -->
 
         <dependency>
             <groupId>com.sparkjava</groupId>
@@ -37,15 +34,11 @@
             <version>2.3</version>
         </dependency>
 
-        <!-- NEEDS COMMENT -->
-
         <dependency>
             <groupId>com.fasterxml.jackson.core</groupId>
             <artifactId>jackson-core</artifactId>
             <version>2.5.1</version>
         </dependency>
-
-        <!-- NEEDS COMMENT -->
 
         <dependency>
             <groupId>com.fasterxml.jackson.core</groupId>
@@ -53,16 +46,12 @@
             <version>2.5.1</version>
         </dependency>
 
-        <!-- NEEDS COMMENT -->
-
         <dependency>
             <groupId>junit</groupId>
             <artifactId>junit</artifactId>
             <version>4.10</version>
             <scope>test</scope>
         </dependency>
-
-        <!-- NEEDS COMMENT -->
 
         <dependency>
             <groupId>org.easymock</groupId>
@@ -77,28 +66,18 @@
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-data-rest</artifactId>
         </dependency>
-
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-data-mongodb</artifactId>
         </dependency>
-
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-test</artifactId>
             <scope>test</scope>
         </dependency>
 
-        
-        <!-- Joda Time : http://www.joda.org/joda-time/ -->
 
-        <dependency>
-            <groupId>joda-time</groupId>
-            <artifactId>joda-time</artifactId>
-            <version>2.9.6</version>
-        </dependency>
-
-<!-- These two handles logging configuration errors that occur... -->        
+<!-- This handles logging configuration errors that occur without it... -->        
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter</artifactId>

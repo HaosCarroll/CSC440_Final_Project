@@ -3,8 +3,6 @@ package drivers;
 import org.springframework.data.mongodb.repository.MongoRepository;
 import org.springframework.data.repository.query.Param;
 
-import com.mongodb.WriteResult;
-
 import java.util.List;
 
 import entities.Provider;
@@ -18,5 +16,4 @@ public interface ProviderRepository extends MongoRepository<Provider, String> {
 	Long countByProviderNumber(String providerNumber);
 	// Sauce : this just seems reasonable?
 	List<Provider> findAll();
-	
 }

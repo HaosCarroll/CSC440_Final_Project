@@ -5,22 +5,22 @@
  </style>
 
    <div class="starter-template">
-    	<h2> All Providers </h2>
-    	<div class="providerTable"> </div>
+    	<h2> All Billables </h2>
+    	<div class="billableTable"> </div>
 		<div class="paginationContainer "></div>
     </div>	
  	<script src="js/awesomeTable.js" type="text/javascript"></script>
  	<script>
  		$( document ).ready(function() {
- 			$.getJSON('/getJsonProviderList',function(json){
+ 			$.getJSON('/getJsonBillableList',function(json){
     			if ( json.length == 0 ) {
         			console.log("NO DATA!");
-        			$(".providerTable").text("No Providers Found");
+        			$(".billableTable").text("No Billables Found");
     			}
     			else {
     				var tbl = new awesomeTableJs({
 						data:json,
-						tableWrapper:".providerTable",
+						tableWrapper:".billableTable",
 						paginationWrapper:".paginationContainer",
 						buildPageSize: false,
 						buildSearch: false,

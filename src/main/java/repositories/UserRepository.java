@@ -5,15 +5,15 @@ import org.springframework.data.repository.query.Param;
 
 import java.util.List;
 
-import entities.Provider;
+import entities.User;
 
-public interface ProviderRepository extends MongoRepository<Provider, String> {
+public interface UserRepository extends MongoRepository<User, String> {
 
-	List<Provider> findByEntityProviderIdNumber(@Param("entityproviderIdNumber") String entityproviderIdNumber);
+	List<User> findByEntityUserIdNumber(@Param("entityuserIdNumber") String entityuserIdNumber);
 	// Sauce : http://stackoverflow.com/questions/17484153/how-to-delete-items-in-mongorepository-using-query-annotation
-	Long deleteProviderByEntityProviderIdNumber(String entityproviderIdNumber);
+	Long deleteUserByEntityUserIdNumber(String entityuserIdNumber);
 	// Sauce : http://stackoverflow.com/questions/16715010/count-in-spring-data-mongodb-repository
-	Long countByEntityProviderIdNumber(String entityproviderIdNumber);
+	Long countByEntityUserIdNumber(String entityuserIdNumber);
 	// Sauce : this just seems reasonable?
-	List<Provider> findAll();
+	List<User> findAll();
 }    

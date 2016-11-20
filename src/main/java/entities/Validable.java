@@ -7,13 +7,13 @@ public class Validable {
      * @return
      */
     
-<<<<<<< HEAD
 
     private boolean validationIsDisable = true;
 
     public boolean isValid(Object objectIn){
         return true;
     }
+}
 /*
     public boolean isValid(Provider provider){
 
@@ -41,10 +41,6 @@ public class Validable {
         return true;
     }
 
-=======
-    private boolean validationIsDisable = false;
-    
->>>>>>> develop
     public boolean isValid(User user){
         
         if (validationIsDisable) return true;
@@ -85,8 +81,6 @@ public class Validable {
         return true;
     }
 
-<<<<<<< HEAD
-=======
     public boolean isValid(Provider provider){
 
         if (validationIsDisable) return true;
@@ -112,7 +106,6 @@ public class Validable {
         }
         return true;
     }
->>>>>>> develop
 
     public boolean isValid(Billable billable){
 
@@ -142,4 +135,3 @@ public class Validable {
         return true;
     }
 */
-}

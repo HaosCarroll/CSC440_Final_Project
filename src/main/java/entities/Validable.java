@@ -7,6 +7,7 @@ public class Validable {
      * @return
      */
     
+<<<<<<< HEAD
 
     private boolean validationIsDisable = true;
 
@@ -40,6 +41,10 @@ public class Validable {
         return true;
     }
 
+=======
+    private boolean validationIsDisable = false;
+    
+>>>>>>> develop
     public boolean isValid(User user){
         
         if (validationIsDisable) return true;
@@ -80,6 +85,34 @@ public class Validable {
         return true;
     }
 
+<<<<<<< HEAD
+=======
+    public boolean isValid(Provider provider){
+
+        if (validationIsDisable) return true;
+
+        if(provider.getProviderNumber() == null || provider.getProviderNumber().length() != 9) return false;
+        for(int i = 0; i < provider.getProviderNumber().length(); i++){
+            if(!Character.isDigit(provider.getProviderNumber().charAt(i)))
+                return false;
+        }
+        if(provider.getProviderName() == null || provider.getProviderName().length() > 25)
+            return false;
+        if(provider.getProviderStreetAddress() == null || provider.getProviderStreetAddress().length() > 25)
+            return false;
+        if(provider.getProviderCity() == null || provider.getProviderCity().length() > 25)
+            return false;
+        if(provider.getProviderState() == null || provider. getProviderState().length() > 25)
+            return false;
+        if(provider.getProviderZip() == 0 || (String.valueOf(provider.getProviderZip())).length() != 5)
+            return false;
+        for(int i = 0; i < (String.valueOf(provider.getProviderZip())).length(); i++){
+            if(!Character.isDigit((String.valueOf(provider.getProviderZip())).charAt(i)))
+                return false;
+        }
+        return true;
+    }
+>>>>>>> develop
 
     public boolean isValid(Billable billable){
 

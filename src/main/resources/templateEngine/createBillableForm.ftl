@@ -78,8 +78,6 @@ $(document).ready(function() {
 });
 </script>
 
-
-
 <!-- Simple JS Function to convert the data into JSON and Pass it as ajax Call -->
 <script>
 $(function() {

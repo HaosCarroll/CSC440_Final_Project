@@ -53,16 +53,6 @@
     <button type="submit" class="btn btn-default">Submit</button>
   </form>
 
-<!-- Simple JS function to for datepicker -->
-<script>
-$('#dateInput input').datepicker({
-    format: "mm/dd/yyyy",
-    todayBtn: "linked",
-    autoclose: true,
-    todayHighlight: true
-});
-</script>
-
 <!-- Simple JS Function to convert the data into JSON and Pass it as ajax Call --!>
 <script>
 $(function() {

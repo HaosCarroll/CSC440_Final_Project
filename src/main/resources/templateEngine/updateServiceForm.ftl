@@ -5,12 +5,12 @@
 
     <div class="form-group">
       <label for="entityServiceIdNumber">Service entity ID number</label>
-      <input type="text" class="form-control" id="entityServiceIdNumber" name="entityServiceIdNumber" placeholder="Enter ID number for new Service entity.">
+      <input type="text" pattern="[0-9]{6}" title="Six Digit Service ID code." class="form-control" id="entityServiceIdNumber" name="entityServiceIdNumber" placeholder="Enter ID number for new Service entity.">
     </div>
 
     <div class="form-group">
       <label for="providableServiceDescription">Service Descriptor</label>
-      <input type="text" class="form-control" id="providableServiceDescription" name="providableServiceDescription" placeholder="Enter description for providable service.">
+      <input type="text" maxlength="20" title="Maximum of 20 characters." class="form-control" id="providableServiceDescription" name="providableServiceDescription" placeholder="Enter description for providable service.">
     </div>
 
     <div class="form-group">

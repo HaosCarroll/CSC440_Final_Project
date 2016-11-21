@@ -5,17 +5,17 @@
 
     <div class="form-group">
       <label for="entityBillableIdNumber">Billable entity ID number</label>
-      <input type="text" class="form-control" id="entityBillableIdNumber" name="entityBillableIdNumber" placeholder="Enter ID number for new Billable entity.">
+      <input type="text" class="form-control" pattern="[0-9]{1,}" title="Must be digits." id="entityBillableIdNumber" name="entityBillableIdNumber" placeholder="Enter ID number Billable to modify.">
     </div>
 
     <div class="form-group">
       <label for="memberNumberService">Serviced Member ID</label>
-      <input type="text" class="form-control" id="memberNumberService" name="memberNumberService" placeholder="Enter ID of serviced member.">
+      <input type="text" class="form-control" pattern="[0-9]{9}" title="Nine Digit Member ID." id="memberNumberService" name="memberNumberService" placeholder="Enter ID of serviced member.">
     </div>
 
     <div class="form-group">
       <label for="providerNumberServicing">Servicing Provider ID</label>
-      <input type="text" class="form-control" id="providerNumberServicing" name="providerNumberServicing" placeholder="Enter ID of servicing provider.">
+      <input type="text" class="form-control" pattern="[0-9]{9}"  title="Nine Digit Provider ID." id="providerNumberServicing" name="providerNumberServicing" placeholder="Enter ID of servicing provider.">
     </div>
 
     <div class="form-group" id="dateInput">
@@ -30,7 +30,7 @@
 
     <div class="form-group">
       <label for="serviceCost">Cost</label>
-      <input type="number" class="form-control" id="serviceCost" name="serviceCost">
+      <input type="number" step="any" class="form-control currency" id="serviceCost" name="serviceCost" min="0.00" max="999.99" value="0.00" />
     </div>
 
     <div class="form-group">
@@ -40,7 +40,7 @@
     <button type="submit" class="btn btn-default">Submit</button>
   </form>
 
-<!-- Simple JS Function to convert the data into JSON and Pass it as ajax Call --!>
+<!-- Simple JS Function to convert the data into JSON and Pass it as ajax Call -->
 <script>
 $(function() {
     $('form').submit(function(e) {

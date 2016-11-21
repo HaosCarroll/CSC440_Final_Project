@@ -11,6 +11,7 @@ public class Billable extends Validable{
     private String providerNumberServicing;
     private DateTime dateServiced;
     private DateTime dateServicedRecorded;
+    private double serviceCost;
     private String serviceComment;
     
     public String getEntityBillableIdNumber() {
@@ -63,6 +64,14 @@ public class Billable extends Validable{
         tempString += dateServicedRecorded.substring((dateServicedRecorded.indexOf("/")+1), dateServicedRecorded.lastIndexOf("/"));
         
         this.dateServicedRecorded = new DateTime(tempString);
+    }
+    
+    public double getServiceCost() {
+        return serviceCost;
+    }
+    
+    public void setServiceCost(double serviceCost) {
+        this.serviceCost = serviceCost;
     }
     
     public String getServiceComment() {

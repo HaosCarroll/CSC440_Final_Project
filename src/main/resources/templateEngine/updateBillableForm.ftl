@@ -29,7 +29,12 @@
     </div>
 
     <div class="form-group">
-      <label for="serviceComment">COMMENT</label>
+      <label for="serviceCost">Cost</label>
+      <input type="number" class="form-control" id="serviceCost" name="serviceCost">
+    </div>
+
+    <div class="form-group">
+      <label for="serviceComment">Comment</label>
       <input type="text" class="form-control" id="serviceComment" name="serviceComment" placeholder="Enter comment if any.">
     </div>
     <button type="submit" class="btn btn-default">Submit</button>

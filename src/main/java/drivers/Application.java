@@ -617,8 +617,42 @@ public class Application implements CommandLineRunner{
             response.status(200);
             return mongoController.getJSONListOfIdsFromRepo(userRepository);
         });
+
+/*     _     _     _   _     ___ _  __
+ *|_| |_ |  |_)   |_) / \ | | | |_ (_ 
+ *| | |_ |_ |     | \ \_/ |_| | |_ __)
+ */
+
+        get("/installHelp", (request, response) -> {
+           Map<String, Object> viewObjects = new HashMap<String, Object>();
+           viewObjects.put("message", "Install Help Page is currently under construction!");
+           viewObjects.put("templateName", "beingBuilt.ftl");
+           return new ModelAndView(viewObjects, "aMain.ftl");
+        }, new FreeMarkerEngine());
+
+        get("/applicationHelp", (request, response) -> {
+           Map<String, Object> viewObjects = new HashMap<String, Object>();
+           viewObjects.put("message", "Application Help Page is currently under construction!");
+           viewObjects.put("templateName", "beingBuilt.ftl");
+           return new ModelAndView(viewObjects, "aMain.ftl");
+        }, new FreeMarkerEngine());
+
+        get("/developerHelp", (request, response) -> {
+           Map<String, Object> viewObjects = new HashMap<String, Object>();
+           viewObjects.put("message", "Developer Help Page is currently under construction!");
+           viewObjects.put("templateName", "beingBuilt.ftl");
+           return new ModelAndView(viewObjects, "aMain.ftl");
+        }, new FreeMarkerEngine());
+
+        get("/miscellaneousHelp", (request, response) -> {
+           Map<String, Object> viewObjects = new HashMap<String, Object>();
+           viewObjects.put("message", "Miscellaneous Help Page is currently under construction!");
+           viewObjects.put("templateName", "beingBuilt.ftl");
+           return new ModelAndView(viewObjects, "aMain.ftl");
+        }, new FreeMarkerEngine());
+
         
-    }
+    }  // END OF SPRING SERVER
     
     private String convertObjectToJSON(Object obj) {
         try {

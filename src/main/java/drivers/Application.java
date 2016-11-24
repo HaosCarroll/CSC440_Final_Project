@@ -77,16 +77,67 @@ public class Application implements CommandLineRunner{
         staticFileLocation("/public");
         port(8080); // Spark Server will run on port 8080
 
-
         // Functions for Spark Server Routes
 
-        // Landing/Home Page Route.
+        // TODO : Determine the best way to abstract these routes.
+        // TODO : Implement the best way to abstract these routes!
+
+/* _   _   _ ___    _   _     ___ _
+ *|_) / \ / \ |    |_) / \ | | | |_ |
+ *| \ \_/ \_/ |    | \ \_/ |_| | |_ o
+ */                       
+
         get("/", (request, response) -> {
            Map<String, Object> viewObjects = new HashMap<String, Object>();
            viewObjects.put("title", "Welcome to Team Five's Final Project!");
            viewObjects.put("templateName", "aHome.ftl");
            return new ModelAndView(viewObjects, "aMain.ftl");
         }, new FreeMarkerEngine());
+
+/* _   _  _   _   _ ___    _   _     ___ _  __ 
+ *|_) |_ |_) / \ |_) |    |_) / \ | | | |_ (_  
+ *| \ |_ |   \_/ | \ |    | \ \_/ |_| | |_ __)
+ */
+
+        get("/userReport", (request, response) -> {
+           Map<String, Object> viewObjects = new HashMap<String, Object>();
+           viewObjects.put("message", "User Report is currently under construction!");
+           viewObjects.put("templateName", "beingBuilt.ftl");
+           return new ModelAndView(viewObjects, "aMain.ftl");
+        }, new FreeMarkerEngine());
+
+        get("/providerReport", (request, response) -> {
+           Map<String, Object> viewObjects = new HashMap<String, Object>();
+           viewObjects.put("message", "Provider Report is currently under construction!");
+           viewObjects.put("templateName", "beingBuilt.ftl");
+           return new ModelAndView(viewObjects, "aMain.ftl");
+        }, new FreeMarkerEngine());
+
+        get("/managerReport", (request, response) -> {
+           Map<String, Object> viewObjects = new HashMap<String, Object>();
+           viewObjects.put("message", "Manager Report is currently under construction!");
+           viewObjects.put("templateName", "beingBuilt.ftl");
+           return new ModelAndView(viewObjects, "aMain.ftl");
+        }, new FreeMarkerEngine());
+
+        get("/billablesPerEachUserReport", (request, response) -> {
+           Map<String, Object> viewObjects = new HashMap<String, Object>();
+           viewObjects.put("message", "Billables Per Each User Report is currently under construction!");
+           viewObjects.put("templateName", "beingBuilt.ftl");
+           return new ModelAndView(viewObjects, "aMain.ftl");
+        }, new FreeMarkerEngine());
+
+        get("/billablesPerEachProviderReport", (request, response) -> {
+           Map<String, Object> viewObjects = new HashMap<String, Object>();
+           viewObjects.put("message", "Billables Per Each Provider Report is currently under construction!");
+           viewObjects.put("templateName", "beingBuilt.ftl");
+           return new ModelAndView(viewObjects, "aMain.ftl");
+        }, new FreeMarkerEngine());
+
+/*  _  ___             _      _    _   _     ___ _  __ 
+ * |_)  |  |  |   /\  |_) |  |_   |_) / \ | | | |_ (_  
+ * |_) _|_ |_ |_ /--\ |_) |_ |_   | \ \_/ |_| | |_ __) 
+ */
 
         get("/createBillable", (request, response) -> {
            Map<String, Object> viewObjects = new HashMap<String, Object>();
@@ -204,6 +255,11 @@ public class Application implements CommandLineRunner{
             return mongoController.getJSONListOfIdsFromRepo(billableRepository);
         });
         
+/* _   _   _      ___  _   _  _     _   _     ___ _  __ 
+ *|_) |_) / \ \  / |  | \ |_ |_)   |_) / \ | | | |_ (_  
+ *|   | \ \_/  \/ _|_ |_/ |_ | \   | \ \_/ |_| | |_ __) 
+ */                                                     
+
         get("/createProvider", (request, response) -> {
            Map<String, Object> viewObjects = new HashMap<String, Object>();
            viewObjects.put("templateName", "createProviderForm.ftl");
@@ -319,7 +375,12 @@ public class Application implements CommandLineRunner{
             response.status(200);
             return mongoController.getJSONListOfIdsFromRepo(providerRepository);
         });
-        
+
+/* __  _  _      ___  _  _    _   _     ___ _  __
+ *(_  |_ |_) \  / |  /  |_   |_) / \ | | | |_ (_ 
+ *__) |_ | \  \/ _|_ \_ |_   | \ \_/ |_| | |_ __)
+*/
+
         get("/createService", (request, response) -> {
            Map<String, Object> viewObjects = new HashMap<String, Object>();
            viewObjects.put("templateName", "createServiceForm.ftl");
@@ -436,6 +497,11 @@ public class Application implements CommandLineRunner{
             return mongoController.getJSONListOfIdsFromRepo(serviceRepository);
         });
         
+/*     __  _  _     _   _     ___ _  __ 
+ *| | (_  |_ |_)   |_) / \ | | | |_ (_  
+ *|_| __) |_ | \   | \ \_/ |_| | |_ __)
+ */
+                                     
         get("/createUser", (request, response) -> {
            Map<String, Object> viewObjects = new HashMap<String, Object>();
            viewObjects.put("templateName", "createUserForm.ftl");

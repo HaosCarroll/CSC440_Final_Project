@@ -1,6 +1,6 @@
 # CSC440 Final Project - TEAM FIVE
 
-# VEr : - 0.1
+# Version : - 0.01
 
 ## Wat?
 

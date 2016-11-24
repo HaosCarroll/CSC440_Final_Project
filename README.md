@@ -1,5 +1,7 @@
 # CSC440 Final Project - TEAM FIVE
 
+# VEr : - 0.1
+
 ## Wat?
 
 **Team Five's CSC440 Final Project Repo**

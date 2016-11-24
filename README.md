@@ -1,4 +1,4 @@
-# CSC440 Final Project
+# CSC440 Final Project - TEAM FIVE
 
 ## Wat?
 

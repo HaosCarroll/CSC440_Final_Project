@@ -88,7 +88,6 @@
                   </ul>
                </li>
 
-
                <!-- Dropdown Menu for for Report Requests. -->
 
                <li class="dropdown">
@@ -99,6 +98,18 @@
                      <li><a href="managerReport">Manager Report</a></li>
                      <li><a href="billablesPerEachUserReport">Billables per User Report</a></li>
                      <li><a href="billablesPerEachProviderReport">Billables per Provider Report</a></li>
+                  </ul>
+               </li>
+
+               <!-- Dropdown Help Menu. -->
+
+               <li class="dropdown">
+                  <a class="dropdown-toggle" data-toggle="dropdown" href="#">HELP<span class="caret"></span></a>
+                  <ul class="dropdown-menu">
+                     <li><a href="installHelp">Install</a></li>
+                     <li><a href="applicationHelp">Application</a></li>
+                     <li><a href="developerHelp">Develop</a></li>
+                     <li><a href="miscellaneousHelp">Misc.</a></li>
                   </ul>
                </li>
 

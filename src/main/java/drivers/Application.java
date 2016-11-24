@@ -623,6 +623,13 @@ public class Application implements CommandLineRunner{
  *| | |_ |_ |     | \ \_/ |_| | |_ __)
  */
 
+        get("/developerHelp", (request, response) -> {
+           Map<String, Object> viewObjects = new HashMap<String, Object>();
+           viewObjects.put("status_message", "UNDER CONSTRUCTION!");
+           viewObjects.put("templateName", "help_pages/developer_help.ftl");
+           return new ModelAndView(viewObjects, "aMain.ftl");
+        }, new FreeMarkerEngine());
+
         get("/installHelp", (request, response) -> {
            Map<String, Object> viewObjects = new HashMap<String, Object>();
            viewObjects.put("message", "Install Help Page is currently under construction!");
@@ -633,13 +640,6 @@ public class Application implements CommandLineRunner{
         get("/applicationHelp", (request, response) -> {
            Map<String, Object> viewObjects = new HashMap<String, Object>();
            viewObjects.put("message", "Application Help Page is currently under construction!");
-           viewObjects.put("templateName", "beingBuilt.ftl");
-           return new ModelAndView(viewObjects, "aMain.ftl");
-        }, new FreeMarkerEngine());
-
-        get("/developerHelp", (request, response) -> {
-           Map<String, Object> viewObjects = new HashMap<String, Object>();
-           viewObjects.put("message", "Developer Help Page is currently under construction!");
            viewObjects.put("templateName", "beingBuilt.ftl");
            return new ModelAndView(viewObjects, "aMain.ftl");
         }, new FreeMarkerEngine());

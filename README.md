@@ -1,6 +1,6 @@
 # CSC440 Final Project - TEAM FIVE
 
-#### Version : -0.01 (yes, negative value...)
+**Version : -0.01** *(yes, negative value...)*
 
 ## Wat?
 

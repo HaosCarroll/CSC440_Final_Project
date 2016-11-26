@@ -9,6 +9,11 @@
     </div>
 
     <div class="form-group">
+      <label for="entityUserEmailAddress">User email address</label>
+      <input type="email" title="User's email address." class="form-control" id="entityUserEmailAddress" name="entityUserEmailAddress" placeholder="Enter user's email address">
+    </div>
+
+    <div class="form-group">
       <label for="memberName">Name</label>
       <input type="text" maxlength="25" title="Maximum of 25 characters." class="form-control" id="memberName" name="memberName" placeholder="Enter name of member.">
     </div>

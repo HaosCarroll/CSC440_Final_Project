@@ -5,6 +5,7 @@ import org.springframework.data.annotation.Id;
 public class Provider extends Validable{    
 
     private String entityProviderIdNumber;
+    private String entityProviderEmailAddress;
     private String providerName;
     private String providerStreetAddress;
     private String providerCity;
@@ -20,6 +21,14 @@ public class Provider extends Validable{
     
     public void setEntityProviderIdNumber(String entityProviderIdNumber) {
         this.entityProviderIdNumber = entityProviderIdNumber;
+    }
+    
+    public String getEntityProviderEmailAddress() {
+        return entityProviderEmailAddress;
+    }
+    
+    public void setEntityProviderEmailAddress(String entityProviderEmailAddress) {
+        this.entityProviderEmailAddress = entityProviderEmailAddress;
     }
     
     public String getProviderName() {

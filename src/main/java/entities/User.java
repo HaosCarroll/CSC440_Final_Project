@@ -7,6 +7,7 @@ import org.springframework.data.annotation.Id;
 public class User extends Validable{    
 
     private String entityUserIdNumber;
+    private String entityUserEmailAddress;
     private String memberName;
     private String memberStreetAddress;
     private String memberCity;
@@ -20,6 +21,14 @@ public class User extends Validable{
     
     public void setEntityUserIdNumber(String entityUserIdNumber) {
         this.entityUserIdNumber = entityUserIdNumber;
+    }
+    
+    public String getEntityUserEmailAddress() {
+        return entityUserEmailAddress;
+    }
+    
+    public void setEntityUserEmailAddress(String entityUserEmailAddress) {
+        this.entityUserEmailAddress = entityUserEmailAddress;
     }
     
     public String getMemberName() {

@@ -28,7 +28,5 @@
 					tbl.createTable();	
     			}
 			});
- 			
 		});
-	
 	</script>

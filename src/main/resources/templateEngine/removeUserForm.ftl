@@ -11,29 +11,29 @@
 
 <script>
 $( document ).ready(function() {
-      var user = ${users};
-      var sel = $('#users');
-      $.each(user, function(key,val){
-        sel.append('<option value="' + val + '">' + val + '</option>');   
-      });
-      $("button").on("click", function(e) {
-      	e.preventDefault();
-        var this_ = $(this);
-        var arr = $("#users").val();
-        // Ajax Call
-        $.ajax({
-            type: "PUT",
-            url: 'removeUser/' + arr,
-            success : function(e) {
-                $("#users option:selected").remove();
-                $("#status").text(e);
-            },
-            error : function(e) {
-                $("#status").text(e);
-            }
-        });
-        return false;
+    var user = ${users};
+    var sel = $('#users');
+    $.each(user, function(key,val){
+      sel.append('<option value="' + val + '">' + val + '</option>');   
     });
+    $("button").on("click", function(e) {
+    	e.preventDefault();
+      var this_ = $(this);
+      var arr = $("#users").val();
+      // Ajax Call
+      $.ajax({
+          type: "PUT",
+          url: 'removeUser/' + arr,
+          success : function(e) {
+              $("#users option:selected").remove();
+              $("#status").text(e);
+          },
+          error : function(e) {
+              $("#status").text(e);
+          }
+      });
+      return false;
+  });
 });
 	
 </script>

@@ -41,7 +41,8 @@ public class Application implements CommandLineRunner{
 	@Autowired
 	private UserRepository userRepository;
 
-    	private ChocoMongoController mongoController = new ChocoMongoController();
+    private ChocoMongoController mongoController = new ChocoMongoController();
+    private ChocoReportController reportController = new ChocoReportController();
 
 	public static void main(String[] args) {
 
@@ -101,11 +102,36 @@ public class Application implements CommandLineRunner{
 
         get("/userReport", (request, response) -> {
            Map<String, Object> viewObjects = new HashMap<String, Object>();
-           viewObjects.put("message", "User Report is currently under construction!");
-           viewObjects.put("templateName", "beingBuilt.ftl");
+           viewObjects.put("templateName", "report_pages/user_report.ftl");
+           viewObjects.put("title", "User Report being constructed!");
+           viewObjects.put("users", mongoController.getJSONListOfIdsFromRepo(userRepository));
            return new ModelAndView(viewObjects, "aMain.ftl");
         }, new FreeMarkerEngine());
 
+        get("userReport/:id", (request, response) -> {
+            String id =  request.params(":id");
+            
+            String returnString = "";
+
+            List<Billable> usersBillables = billableRepository.findByMemberNumberService(id);
+
+            returnString += "[\n";
+            for (int i = 0; i < usersBillables.size(); i++){
+                String temp = convertObjectToJSON(usersBillables.get(i));
+                if (i < (usersBillables.size()-1)){
+                    temp += ",\n";
+                }
+                returnString += temp;
+            }
+            returnString += "\n]";
+
+            //System.out.println("RETURN STRING:\n" + returnString);
+            int numOfBillables = usersBillables.size();
+
+            return returnString;
+        });
+        
+        
         get("/providerReport", (request, response) -> {
            Map<String, Object> viewObjects = new HashMap<String, Object>();
            viewObjects.put("message", "Provider Report is currently under construction!");
@@ -188,7 +214,12 @@ public class Application implements CommandLineRunner{
 
         get("/getJsonBillableList", (request, response) -> {
             response.status(200);
-            return mongoController.getJSONListOfObjectsFromRepo(billableRepository);
+            String returnString = mongoController.getJSONListOfObjectsFromRepo(billableRepository);
+            System.out.println("/getJsonBillableList route:");
+            System.out.println("returnString:");
+            System.out.println(returnString);
+            
+            return returnString;
         });
 
         get("/removeBillable", (request, response) -> {
@@ -627,6 +658,13 @@ public class Application implements CommandLineRunner{
            Map<String, Object> viewObjects = new HashMap<String, Object>();
            viewObjects.put("status_message", "UNDER CONSTRUCTION!");
            viewObjects.put("templateName", "help_pages/developer_help.ftl");
+           return new ModelAndView(viewObjects, "aMain.ftl");
+        }, new FreeMarkerEngine());
+
+        get("/assignment", (request, response) -> {
+           Map<String, Object> viewObjects = new HashMap<String, Object>();
+           //viewObjects.put("status_message", "UNDER CONSTRUCTION!");
+           viewObjects.put("templateName", "help_pages/assignment.ftl");
            return new ModelAndView(viewObjects, "aMain.ftl");
         }, new FreeMarkerEngine());
 

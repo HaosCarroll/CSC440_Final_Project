@@ -106,6 +106,7 @@
                <li class="dropdown">
                   <a class="dropdown-toggle" data-toggle="dropdown" href="#">HELP<span class="caret"></span></a>
                   <ul class="dropdown-menu">
+                     <li><a href="assignment">Assignment</a></li>
                      <li><a href="installHelp">Install</a></li>
                      <li><a href="applicationHelp">Application</a></li>
                      <li><a href="developerHelp">Develop</a></li>

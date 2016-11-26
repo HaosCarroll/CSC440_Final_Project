@@ -16,6 +16,21 @@ public class ChocoReportController {
     public ChocoReportController() {
     }
 
+    public String gettBillablesForUser(MongoRepository billableRepository, String idOfUser){
+        String returnString = "";
+        
+        
+        List<Billable> allBillables = billableRepository.findAll();
+
+        System.out.printf ("\n# Billables = %s\n", allBillables.size());
+        
+        for (int i = 0; i < allBillables.size(); i++){
+            System.out.println (allBillables.get(i));
+        }
+        
+        return returnString;
+    }
+
     public String getBillablesForEachProvider(MongoRepository billableRepository, MongoRepository providerRepository){
         String returnString = "";
         

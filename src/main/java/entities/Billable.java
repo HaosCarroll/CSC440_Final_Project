@@ -9,6 +9,7 @@ public class Billable extends Validable{
     private String entityBillableIdNumber;
     private String memberNumberService;
     private String providerNumberServicing;
+    private String serviceNumberServiced;
     private DateTime dateServiced;
     private DateTime dateServicedRecorded;
     private double serviceCost;
@@ -36,6 +37,14 @@ public class Billable extends Validable{
     
     public void setProviderNumberServicing(String providerNumberServicing) {
         this.providerNumberServicing = providerNumberServicing;
+    }
+    
+    public String getServiceNumberServiced() {
+        return serviceNumberServiced;
+    }
+    
+    public void setServiceNumberServiced(String serviceNumberServiced) {
+        this.serviceNumberServiced = serviceNumberServiced;
     }
     
     public String getDateServiced() {

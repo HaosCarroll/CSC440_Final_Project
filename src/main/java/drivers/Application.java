@@ -48,14 +48,13 @@ public class Application implements CommandLineRunner{
 
         // For Testing and Debug.
         boolean dBug = true;
-        if (dBug) System.out.println("\nDEBUG ON IN : Application.main\n");
+        if (dBug) System.out.println("\n* * dBug true IN : Application.main\n");
 
 		SpringApplication.run(Application.class, args);
 
-		if (dBug) System.out.println("\n\n\n\nSPRING SERVER RUNNING!\n");
-		if (dBug) System.out.println("\nSPARK SERVER RUNNING!\n\n\n\n");
+		if (dBug) display_spark_startup_text();
 	}
-
+    
 	@Override
 	public void run(String... args) throws Exception {
         // This allow non static method to be called from static main while
@@ -63,16 +62,13 @@ public class Application implements CommandLineRunner{
 
         // For Testing and Debug.
         boolean dBug = false;
-        if (dBug) System.out.println("\nDEBUG ON IN : Application.run\n");
+        if (dBug) System.out.println("\n* * dBug true IN : Application.run\n");
 
-        startSparkServer();
+        runSparkServer();
 	}
 
-    private void startSparkServer() {
+    private void runSparkServer() {
 
-        // For Testing and Debug.
-        boolean dBug = false;
-        if (dBug) System.out.println("\nDEBUG ON IN : Application.startSparkServer\n");
 
         // Set vars for Spark Server.
         staticFileLocation("/public");
@@ -89,6 +85,11 @@ public class Application implements CommandLineRunner{
  */                       
 
         get("/", (request, response) -> {
+
+            // For Testing and Debug.
+            boolean dBug = false;
+            if (dBug) System.out.println("\n* * dBug true IN : Application.runSparkServer : get(/) route.\n");
+
            Map<String, Object> viewObjects = new HashMap<String, Object>();
            viewObjects.put("title", "Welcome to Team Five's Final Project!");
            viewObjects.put("templateName", "aHome.ftl");
@@ -101,6 +102,11 @@ public class Application implements CommandLineRunner{
  */
 
         get("/userReport", (request, response) -> {
+
+            // For Testing and Debug.
+            boolean dBug = false;
+            if (dBug) System.out.println("\n* * dBug true IN : Application.runSparkServer : get(/userReport) route.\n");
+
            Map<String, Object> viewObjects = new HashMap<String, Object>();
            viewObjects.put("templateName", "report_pages/user_report.ftl");
            viewObjects.put("title", "User Report being constructed!");
@@ -108,25 +114,37 @@ public class Application implements CommandLineRunner{
            return new ModelAndView(viewObjects, "aMain.ftl");
         }, new FreeMarkerEngine());
 
+        get("userAddress/:id", (request, response) -> {
+
+            // For Testing and Debug.
+            boolean dBug = false;
+            if (dBug) System.out.println("\n* * dBug true IN : Application.runSparkServer : get(/userAddress/:id) route.\n");
+
+            String returnString;
+            String id =  request.params(":id");
+
+            returnString = reportController.getHtmlStringUserAddress(userRepository, id);
+
+            if (dBug) System.out.println("returnString:\n" + returnString);
+
+            return returnString;
+        });
+
         get("userReport/:id", (request, response) -> {
+
+            // For Testing and Debug.
+            boolean dBug = true;
+            if (dBug) System.out.println("\n* * dBug true IN : Application.runSparkServer : get(/userReport/:id) route.\n");
+
+            String returnString = "";
+            String returnStringOLD = "";
             String id =  request.params(":id");
             
-            String returnString = "";
-
-            List<Billable> usersBillables = billableRepository.findByMemberNumberService(id);
-
-            returnString += "[\n";
-            for (int i = 0; i < usersBillables.size(); i++){
-                String temp = convertObjectToJSON(usersBillables.get(i));
-                if (i < (usersBillables.size()-1)){
-                    temp += ",\n";
-                }
-                returnString += temp;
-            }
-            returnString += "\n]";
-
-            //System.out.println("RETURN STRING:\n" + returnString);
-            int numOfBillables = usersBillables.size();
+            returnStringOLD = reportController.gettBillablesForUserInJson(billableRepository, id);
+            returnString = reportController.gettBillablesReportForUserInJson(billableRepository, providerRepository, serviceRepository, id);
+            
+            if (dBug) System.out.println("returnStringOLD:\n" + returnStringOLD);
+            if (dBug) System.out.println("returnString:\n" + returnString);
 
             return returnString;
         });
@@ -172,6 +190,11 @@ public class Application implements CommandLineRunner{
         }, new FreeMarkerEngine());
         
         post("/createBillable", (request, response) -> {
+
+            // For Testing and Debug.
+            boolean dBug = false;
+            if (dBug) System.out.println("\n* * dBug true IN : Application.runSparkServer : post(/createBillable) route.\n");
+
             ObjectMapper mapper = new ObjectMapper();
             try {
                 Billable u = mapper.readValue(request.body(), Billable.class);
@@ -298,6 +321,11 @@ public class Application implements CommandLineRunner{
         }, new FreeMarkerEngine());
         
         post("/createProvider", (request, response) -> {
+
+            // For Testing and Debug.
+            boolean dBug = false;
+            if (dBug) System.out.println("\n* * dBug true IN : Application.runSparkServer : post(/createProvider) route.\n");
+
             ObjectMapper mapper = new ObjectMapper();
             try {
                 Provider u = mapper.readValue(request.body(), Provider.class);
@@ -419,6 +447,11 @@ public class Application implements CommandLineRunner{
         }, new FreeMarkerEngine());
         
         post("/createService", (request, response) -> {
+
+            // For Testing and Debug.
+            boolean dBug = false;
+            if (dBug) System.out.println("\n* * dBug true IN : Application.runSparkServer : post(/createService) route.\n");
+
             ObjectMapper mapper = new ObjectMapper();
             try {
                 Service u = mapper.readValue(request.body(), Service.class);
@@ -540,6 +573,11 @@ public class Application implements CommandLineRunner{
         }, new FreeMarkerEngine());
         
         post("/createUser", (request, response) -> {
+
+            // For Testing and Debug.
+            boolean dBug = false;
+            if (dBug) System.out.println("\n* * dBug true IN : Application.runSparkServer : post(/createUser) route.\n");
+
             ObjectMapper mapper = new ObjectMapper();
             try {
                 User u = mapper.readValue(request.body(), User.class);
@@ -704,6 +742,24 @@ public class Application implements CommandLineRunner{
             System.err.println(e);
         }
         return null;
+    }
+
+    private static void display_spark_startup_text(){
+        
+        System.out.println("");
+        System.out.println(" (");
+        System.out.println(" )\\ )                  )  ");
+        System.out.println("(()/(         ) (   ( /(  ");
+        System.out.println(" /(_)`  )  ( /( )(  )\\()) ");
+        System.out.println("(_)) /(/(  )(_)(()\\((_)\\  ");
+        System.out.println("/ __((_)_\\((_)_ ((_| |(_) ");
+        System.out.println("\\__ | '_ \\/ _` | '_| / / ");
+        System.out.println("|___| .__/\\__,_|_| |_\\_\\ ");
+        System.out.println("    |_|");
+        System.out.println("");
+        System.out.println("ChocAn Spark Server Started!");
+        System.out.println("");
+        
     }
 }
 

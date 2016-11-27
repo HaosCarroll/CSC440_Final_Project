@@ -14,8 +14,7 @@ public interface ProviderRepository extends MongoRepository<Provider, String> {
 	Long deleteProviderByEntityProviderIdNumber(String entityproviderIdNumber);
 	// Sauce : http://stackoverflow.com/questions/16715010/count-in-spring-data-mongodb-repository
 	Long countByEntityProviderIdNumber(String entityproviderIdNumber);
-	// Sauce : this just seems reasonable?
+	// Sauce : tHESE just seems reasonable?
 	List<Provider> findAll();
-	
 	Provider findOneByEntityProviderIdNumber(@Param("providerIdNumber") String providerIdNumber);
 }    

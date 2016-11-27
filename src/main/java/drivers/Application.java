@@ -133,17 +133,14 @@ public class Application implements CommandLineRunner{
         get("userReport/:id", (request, response) -> {
 
             // For Testing and Debug.
-            boolean dBug = true;
+            boolean dBug = false;
             if (dBug) System.out.println("\n* * dBug true IN : Application.runSparkServer : get(/userReport/:id) route.\n");
 
             String returnString = "";
-            String returnStringOLD = "";
             String id =  request.params(":id");
             
-            returnStringOLD = reportController.gettBillablesForUserInJson(billableRepository, id);
-            returnString = reportController.gettBillablesReportForUserInJson(billableRepository, providerRepository, serviceRepository, id);
+            returnString = reportController.getBillablesReportForUserInJson(billableRepository, providerRepository, serviceRepository, id);
             
-            if (dBug) System.out.println("returnStringOLD:\n" + returnStringOLD);
             if (dBug) System.out.println("returnString:\n" + returnString);
 
             return returnString;
@@ -152,10 +149,59 @@ public class Application implements CommandLineRunner{
         
         get("/providerReport", (request, response) -> {
            Map<String, Object> viewObjects = new HashMap<String, Object>();
-           viewObjects.put("message", "Provider Report is currently under construction!");
-           viewObjects.put("templateName", "beingBuilt.ftl");
+           viewObjects.put("templateName", "report_pages/provider_report.ftl");
+           viewObjects.put("title", "Provider Report being constructed!");
+           viewObjects.put("providers", mongoController.getJSONListOfIdsFromRepo(providerRepository));
            return new ModelAndView(viewObjects, "aMain.ftl");
         }, new FreeMarkerEngine());
+
+        get("providerReport/:id", (request, response) -> {
+
+            // For Testing and Debug.
+            boolean dBug = true;
+            if (dBug) System.out.println("\n* * dBug true IN : Application.runSparkServer : get(/providerReport/:id) route.\n");
+
+            String returnString = "";
+            String id =  request.params(":id");
+            
+            returnString = reportController.getBillablesReportForProviderInJson(billableRepository, providerRepository, serviceRepository, userRepository, id);
+            
+            if (dBug) System.out.println("returnString:\n" + returnString);
+
+            return returnString;
+        });
+
+        get("providerBillablesTabulations/:id", (request, response) -> {
+
+            // For Testing and Debug.
+            boolean dBug = false;
+            if (dBug) System.out.println("\n* * dBug true IN : Application.runSparkServer : get(/providerAddress/:id) route.\n");
+
+            String returnString;
+            String id =  request.params(":id");
+
+            returnString = reportController.getHtmlConsultsAndFeeTotalForLastReportInHtml();
+
+            if (dBug) System.out.println("returnString:\n" + returnString);
+
+            return returnString;
+        });
+
+        get("providerAddress/:id", (request, response) -> {
+
+            // For Testing and Debug.
+            boolean dBug = false;
+            if (dBug) System.out.println("\n* * dBug true IN : Application.runSparkServer : get(/providerAddress/:id) route.\n");
+
+            String returnString;
+            String id =  request.params(":id");
+
+            returnString = reportController.getHtmlStringProviderAddress(providerRepository, id);
+
+            if (dBug) System.out.println("returnString:\n" + returnString);
+
+            return returnString;
+        });
 
         get("/managerReport", (request, response) -> {
            Map<String, Object> viewObjects = new HashMap<String, Object>();
@@ -745,7 +791,9 @@ public class Application implements CommandLineRunner{
     }
 
     private static void display_spark_startup_text(){
-        
+    
+    // Sauce : http://patorjk.com/software/taag/#p=display&f=Fire%20Font-s&t=Spark
+    //       : http://stackoverflow.com/questions/5762491/how-to-print-color-in-console-using-system-out-println
         String ANSI_RESET = "\u001B[0m";
         String ANSI_GREEN = "\u001B[32m";
         String ANSI_RED = "\u001B[31m";

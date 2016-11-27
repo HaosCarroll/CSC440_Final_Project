@@ -14,8 +14,14 @@ import drivers.*;
 
 public class ChocoReportController {
     
-    // The most Basic Constructor. (i wonder if there could be more use to this?)
+    // This is hacky but it works for now.
+    private int numConsultsForLastReport;
+    private double totalFeesForLastReport;
+
+    // Basic Constructor.
     public ChocoReportController() {
+        numConsultsForLastReport = 0;
+        totalFeesForLastReport = 0.00;
     }
 
     public String getHtmlStringUserAddress(UserRepository userRepository, String idToQuery){
@@ -43,7 +49,7 @@ public class ChocoReportController {
         return returnString;        
     }
 
-    public String gettBillablesReportForUserInJson(BillableRepository billableRepository, ProviderRepository providerRepository, ServiceRepository serviceRepository, String idOfUser){
+    public String getBillablesReportForUserInJson(BillableRepository billableRepository, ProviderRepository providerRepository, ServiceRepository serviceRepository, String idOfUser){
 
         // For Testing and Debug.
         boolean dBug = false;
@@ -123,6 +129,134 @@ public class ChocoReportController {
         if (dBug) System.out.printf ("\n# Billables for id = %s\n", usersBillables.size());
 
         return returnString;
+    }
+
+    public String getHtmlStringProviderAddress(ProviderRepository providerRepository, String idToQuery){
+
+        // For Testing and Debug.
+        boolean dBug = false;
+        if (dBug) System.out.println("\n* * dBug true IN : ChocoReportController.getHtmlStringUserAddress()\n");
+
+        String returnString = "";
+        String id =  idToQuery;
+        
+        Provider queriedProvider = providerRepository.findOneByEntityProviderIdNumber(id);
+        
+        returnString += String.format("<h2>%s</h2>\n", queriedProvider.getProviderName());
+        returnString += String.format("<h3> PROVIDER ID# : %s</h3>\n", queriedProvider.getEntityProviderIdNumber());
+        returnString += String.format("<p>\n");
+        returnString += String.format("   %s<br>\n", queriedProvider.getProviderStreetAddress());
+        returnString += String.format("   %s<br>\n", queriedProvider.getProviderCity());
+        returnString += String.format("   %s<br>\n", queriedProvider.getProviderState());
+        returnString += String.format("   %s<br>\n", String.valueOf(queriedProvider.getProviderZip()));
+        returnString += String.format("</p>\n");
+        
+        if (dBug) System.out.println("returnString:\n" + returnString);
+
+        return returnString;        
+    }
+
+    public String getBillablesReportForProviderInJson(BillableRepository billableRepository, ProviderRepository providerRepository, ServiceRepository serviceRepository, UserRepository userRepository, String idOfProvider){
+        
+        // For Testing and Debug.
+        boolean dBug = true;
+        if (dBug) System.out.println("\n* * dBug true IN : ChocoReportController.getBillablesReportForProviderInJson()\n");
+
+        String returnString = "";
+        
+        
+        // Create a list of billables for the provider being queried.
+        List<Billable> providerBillables = billableRepository.findByProviderNumberServicing(idOfProvider);
+        
+        resetTabulators();
+        int numConsults = providerBillables.size();
+        double feesToPayProvider = 0.0;
+        
+        // Start of returned a JSON string.
+        returnString += "[\n";
+        
+        
+        // Iterate through the list of billables for the provider.
+        for (int i = 0; i < providerBillables.size(); i++){
+            
+            
+            // Required spec #1 for provider report.
+            String serviceProvidedDate = providerBillables.get(i).getDateServiced();
+            
+            // Required spec #2 for provider report.
+            String serviceProvidedDateRecorded = providerBillables.get(i).getDateServicedRecorded();
+            
+            // Required spec #3 and #4 for provider report.
+            String userServicedIdNum = providerBillables.get(i).getMemberNumberService();
+            User userProvidedService = userRepository.findOneByEntityUserIdNumber(userServicedIdNum);
+            String userProvidedServiceServiceNameString = userProvidedService.getMemberName();
+            
+            // Required spec #5 for provider report.
+            String serviceProvidedId = providerBillables.get(i).getServiceNumberServiced();
+
+            // Required spec #6 for provider report.
+            String serviceProvidedFeeToPay = String.format("$%.2f", providerBillables.get(i).getServiceCost());
+            // Add billable to fee tabulation.
+            feesToPayProvider += providerBillables.get(i).getServiceCost();
+            
+            String not_yet_string = "Coming SOON!";
+            // Turn specs into JSON.
+            String temp = "{\n";
+            temp += "\"Service Provided Date\" : \"" + serviceProvidedDate + "\",\n";
+            temp += "\"Service Provided Recorded Date\" : \"" + serviceProvidedDateRecorded + "\",\n";
+            temp += "\"Member Serviced Name\" : \"" + userProvidedServiceServiceNameString + "\",\n";
+            temp += "\"Member Serviced ID Number\" : \"" + userServicedIdNum + "\",\n";
+            temp += "\"Provided Service Code\" : \"" + serviceProvidedId + "\",\n";
+            temp += "\"Provided Service Fee to Pay\" : \"" + serviceProvidedFeeToPay + "\"\n";
+
+            // Add JSON element end depending on if is or is not last element.
+            if (i < (providerBillables.size()-1)){
+                temp += "\n},\n";
+            } else {
+                temp += "\n}\n";
+            }
+            returnString += temp;
+        }
+        
+        // End  of returned a JSON string.
+        returnString += "]";
+        
+        if (dBug) System.out.printf("\nQuerried id = %s\n", idOfProvider);
+        if (dBug) System.out.printf("\n# Billables for id = %s\n", providerBillables.size());
+        if (dBug) System.out.printf("\nreturnString :\n %s\n", returnString);
+        
+        
+        setTabulators(numConsults, feesToPayProvider);
+        getHtmlConsultsAndFeeTotalForLastReportInHtml();
+        return returnString;
+    }
+
+    public String getHtmlConsultsAndFeeTotalForLastReportInHtml(){
+        
+        // For Testing and Debug.
+        boolean dBug = true;
+        if (dBug) System.out.println("\n* * dBug true IN : ChocoReportController.getHtmlConsultsAndFeeTotalForLastReportInHtml()\n");
+        
+        String returnString = "";
+        
+        System.out.printf("Total Consults : %d\n", numConsultsForLastReport);
+        System.out.printf("Total Fees to Pay : $%.2f\n", totalFeesForLastReport);
+        
+        returnString += String.format("Total Consults : %d<br>", numConsultsForLastReport);
+        returnString += String.format("Total Fees to Pay : $%.2f<br>", totalFeesForLastReport);
+        
+        
+        return returnString;
+    }
+
+    public void resetTabulators(){
+        numConsultsForLastReport = 0;
+        totalFeesForLastReport = 0.00;
+    }
+
+    public void setTabulators(int numConsults, double totalFees){
+        numConsultsForLastReport = numConsults;
+        totalFeesForLastReport = totalFees;
     }
 
     private static String convertObjectToJSON(Object obj) {

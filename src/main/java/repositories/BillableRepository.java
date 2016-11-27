@@ -17,6 +17,7 @@ public interface BillableRepository extends MongoRepository<Billable, String> {
 
 	// Sauce : these just seems reasonable?
 	List<Billable> findAll();
-	
 	List<Billable> findByMemberNumberService(@Param("memberNumberService") String memberNumberService);
+	List<Billable> findByProviderNumberServicing(@Param("providerNumberServicing") String providerNumberServicing);
+	// AND THEY WORK!! WOOT WOOT!!
 }    

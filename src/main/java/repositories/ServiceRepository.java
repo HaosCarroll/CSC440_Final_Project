@@ -16,4 +16,7 @@ public interface ServiceRepository extends MongoRepository<Service, String> {
 	Long countByEntityServiceIdNumber(String entityserviceIdNumber);
 	// Sauce : this just seems reasonable?
 	List<Service> findAll();
+
+	Service findOneByEntityServiceIdNumber(@Param("serviceIdNumber") String serviceIdNumber);
+
 }    

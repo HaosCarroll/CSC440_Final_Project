@@ -16,4 +16,6 @@ public interface ProviderRepository extends MongoRepository<Provider, String> {
 	Long countByEntityProviderIdNumber(String entityproviderIdNumber);
 	// Sauce : this just seems reasonable?
 	List<Provider> findAll();
+	
+	Provider findOneByEntityProviderIdNumber(@Param("providerIdNumber") String providerIdNumber);
 }    

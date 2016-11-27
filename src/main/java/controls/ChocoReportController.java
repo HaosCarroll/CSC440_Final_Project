@@ -57,17 +57,20 @@ public class ChocoReportController {
         returnString += "[\n";
         for (int i = 0; i < usersBillables.size(); i++){
             
-            String serviceProvidedProviderId = usersBillables.get(i).getProviderNumberServicing();
-            String serviceProvidedId = usersBillables.get(i).getServiceNumberServiced();
             String serviceProvidedDate = usersBillables.get(i).getDateServiced();
             
+            String serviceProvidedProviderId = usersBillables.get(i).getProviderNumberServicing();
+            Provider providerProvidingService = providerRepository.findOneByEntityProviderIdNumber(serviceProvidedProviderId);
+            String providerProvidingServiceNameString = providerProvidingService.getProviderName();
+            
+            String serviceProvidedId = usersBillables.get(i).getServiceNumberServiced();
+            Service providedService =serviceRepository.findOneByEntityServiceIdNumber(serviceProvidedId);
+            String serviceProvidedName = providedService.getProvidableServiceDescription();
+
             String temp = "{\n";
-            temp += "\"Provider Number Servicing\" : \"" + serviceProvidedProviderId + "\",\n";
-            temp += "\"WOOT WOOT Servicing\" : \"222222222\",\n";
-            temp += "\"YADA0 YADA Servicing\" : \"222222222\",\n";
-            temp += "\"YADA1 YADA Servicing\" : \"222222222\",\n";
-            temp += "\"YADA2 YADA Servicing\" : \"222222222\",\n";
-            temp += "\"DADA DADA Number Servicing\" : \"222222222\"";
+            temp += "\"Servicing Provided Date\" : \"" + serviceProvidedDate + "\",\n";
+            temp += "\"Provider Servicing\" : \"" + providerProvidingServiceNameString + "\",\n";
+            temp += "\"Provided Service Name\" : \"" + serviceProvidedName + "\"\n";
 
             if (i < (usersBillables.size()-1)){
                 temp += "\n},\n";

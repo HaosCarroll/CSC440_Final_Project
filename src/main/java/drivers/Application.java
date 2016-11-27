@@ -746,18 +746,24 @@ public class Application implements CommandLineRunner{
 
     private static void display_spark_startup_text(){
         
+        String ANSI_RESET = "\u001B[0m";
+        String ANSI_GREEN = "\u001B[32m";
+        String ANSI_RED = "\u001B[31m";
+        String ANSI_YELLOW = "\u001B[33m";
+        
+        
         System.out.println("");
-        System.out.println(" (");
+        System.out.println(ANSI_YELLOW + " (");
         System.out.println(" )\\ )                  )  ");
-        System.out.println("(()/(         ) (   ( /(  ");
-        System.out.println(" /(_)`  )  ( /( )(  )\\()) ");
-        System.out.println("(_)) /(/(  )(_)(()\\((_)\\  ");
-        System.out.println("/ __((_)_\\((_)_ ((_| |(_) ");
+        System.out.println("(()/(         ) (   ( /(  " + ANSI_RESET);
+        System.out.println(ANSI_RED + " /(_)`  )  ( /( )(  )\\()) ");
+        System.out.println("("+ANSI_RESET+"___"+ANSI_RED+")) /(/(  )(_)(()\\((_)\\  " + ANSI_RESET);
+        System.out.println("/ __|_"+ANSI_RED+"("+ANSI_RESET+"_"+ANSI_RED+")"+ANSI_RESET+"  _"+ANSI_RED+"(("+ANSI_RESET+"_"+ANSI_RED+")(("+ANSI_RESET+"_"+ANSI_RED+"|"+ANSI_RESET+"_"+ANSI_RED+"|("+ANSI_RESET+"_"+ANSI_RED+") "+ANSI_RESET);
         System.out.println("\\__ | '_ \\/ _` | '_| / / ");
         System.out.println("|___| .__/\\__,_|_| |_\\_\\ ");
         System.out.println("    |_|");
         System.out.println("");
-        System.out.println("ChocAn Spark Server Started!");
+        System.out.println(ANSI_GREEN + "ChocAn Spark Server Started!" + ANSI_RESET);
         System.out.println("");
         
     }

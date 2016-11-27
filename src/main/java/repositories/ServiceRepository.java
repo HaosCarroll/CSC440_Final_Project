@@ -18,5 +18,4 @@ public interface ServiceRepository extends MongoRepository<Service, String> {
 	List<Service> findAll();
 
 	Service findOneByEntityServiceIdNumber(@Param("serviceIdNumber") String serviceIdNumber);
-
 }    

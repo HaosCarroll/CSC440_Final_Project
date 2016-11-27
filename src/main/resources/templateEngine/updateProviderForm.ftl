@@ -9,6 +9,11 @@
     </div>
 
     <div class="form-group">
+      <label for="entityProviderEmailAddress">Provider email address</label>
+      <input type="email" title="Provider's email address." class="form-control" id="entityProviderEmailAddress" name="entityProviderEmailAddress" placeholder="Enter provider's email address">
+    </div>
+
+    <div class="form-group">
       <label for="providerName">Name</label>
       <input type="text" maxlength="25" title="Maximum of 25 characters." class="form-control" id="providerName" name="providerName" placeholder="Enter name of provider.">
     </div>

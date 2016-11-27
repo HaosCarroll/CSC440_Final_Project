@@ -41,20 +41,20 @@ public class Application implements CommandLineRunner{
 	@Autowired
 	private UserRepository userRepository;
 
-    	private ChocoMongoController mongoController = new ChocoMongoController();
+    private ChocoMongoController mongoController = new ChocoMongoController();
+    private ChocoReportController reportController = new ChocoReportController();
 
 	public static void main(String[] args) {
 
         // For Testing and Debug.
         boolean dBug = true;
-        if (dBug) System.out.println("\nDEBUG ON IN : Application.main\n");
+        if (dBug) System.out.println("\n* * dBug true IN : Application.main\n");
 
 		SpringApplication.run(Application.class, args);
 
-		if (dBug) System.out.println("\n\n\n\nSPRING SERVER RUNNING!\n");
-		if (dBug) System.out.println("\nSPARK SERVER RUNNING!\n\n\n\n");
+		if (dBug) display_spark_startup_text();
 	}
-
+    
 	@Override
 	public void run(String... args) throws Exception {
         // This allow non static method to be called from static main while
@@ -62,16 +62,13 @@ public class Application implements CommandLineRunner{
 
         // For Testing and Debug.
         boolean dBug = false;
-        if (dBug) System.out.println("\nDEBUG ON IN : Application.run\n");
+        if (dBug) System.out.println("\n* * dBug true IN : Application.run\n");
 
-        startSparkServer();
+        runSparkServer();
 	}
 
-    private void startSparkServer() {
+    private void runSparkServer() {
 
-        // For Testing and Debug.
-        boolean dBug = false;
-        if (dBug) System.out.println("\nDEBUG ON IN : Application.startSparkServer\n");
 
         // Set vars for Spark Server.
         staticFileLocation("/public");
@@ -88,6 +85,11 @@ public class Application implements CommandLineRunner{
  */                       
 
         get("/", (request, response) -> {
+
+            // For Testing and Debug.
+            boolean dBug = false;
+            if (dBug) System.out.println("\n* * dBug true IN : Application.runSparkServer : get(/) route.\n");
+
            Map<String, Object> viewObjects = new HashMap<String, Object>();
            viewObjects.put("title", "Welcome to Team Five's Final Project!");
            viewObjects.put("templateName", "aHome.ftl");
@@ -100,18 +102,106 @@ public class Application implements CommandLineRunner{
  */
 
         get("/userReport", (request, response) -> {
+
+            // For Testing and Debug.
+            boolean dBug = false;
+            if (dBug) System.out.println("\n* * dBug true IN : Application.runSparkServer : get(/userReport) route.\n");
+
            Map<String, Object> viewObjects = new HashMap<String, Object>();
-           viewObjects.put("message", "User Report is currently under construction!");
-           viewObjects.put("templateName", "beingBuilt.ftl");
+           viewObjects.put("templateName", "report_pages/user_report.ftl");
+           viewObjects.put("title", "User Report being constructed!");
+           viewObjects.put("users", mongoController.getJSONListOfIdsFromRepo(userRepository));
            return new ModelAndView(viewObjects, "aMain.ftl");
         }, new FreeMarkerEngine());
 
+        get("userAddress/:id", (request, response) -> {
+
+            // For Testing and Debug.
+            boolean dBug = false;
+            if (dBug) System.out.println("\n* * dBug true IN : Application.runSparkServer : get(/userAddress/:id) route.\n");
+
+            String returnString;
+            String id =  request.params(":id");
+
+            returnString = reportController.getHtmlStringUserAddress(userRepository, id);
+
+            if (dBug) System.out.println("returnString:\n" + returnString);
+
+            return returnString;
+        });
+
+        get("userReport/:id", (request, response) -> {
+
+            // For Testing and Debug.
+            boolean dBug = false;
+            if (dBug) System.out.println("\n* * dBug true IN : Application.runSparkServer : get(/userReport/:id) route.\n");
+
+            String returnString = "";
+            String id =  request.params(":id");
+            
+            returnString = reportController.getBillablesReportForUserInJson(billableRepository, providerRepository, serviceRepository, id);
+            
+            if (dBug) System.out.println("returnString:\n" + returnString);
+
+            return returnString;
+        });
+        
+        
         get("/providerReport", (request, response) -> {
            Map<String, Object> viewObjects = new HashMap<String, Object>();
-           viewObjects.put("message", "Provider Report is currently under construction!");
-           viewObjects.put("templateName", "beingBuilt.ftl");
+           viewObjects.put("templateName", "report_pages/provider_report.ftl");
+           viewObjects.put("title", "Provider Report being constructed!");
+           viewObjects.put("providers", mongoController.getJSONListOfIdsFromRepo(providerRepository));
            return new ModelAndView(viewObjects, "aMain.ftl");
         }, new FreeMarkerEngine());
+
+        get("providerReport/:id", (request, response) -> {
+
+            // For Testing and Debug.
+            boolean dBug = true;
+            if (dBug) System.out.println("\n* * dBug true IN : Application.runSparkServer : get(/providerReport/:id) route.\n");
+
+            String returnString = "";
+            String id =  request.params(":id");
+            
+            returnString = reportController.getBillablesReportForProviderInJson(billableRepository, providerRepository, serviceRepository, userRepository, id);
+            
+            if (dBug) System.out.println("returnString:\n" + returnString);
+
+            return returnString;
+        });
+
+        get("providerBillablesTabulations/:id", (request, response) -> {
+
+            // For Testing and Debug.
+            boolean dBug = false;
+            if (dBug) System.out.println("\n* * dBug true IN : Application.runSparkServer : get(/providerAddress/:id) route.\n");
+
+            String returnString;
+            String id =  request.params(":id");
+
+            returnString = reportController.getHtmlConsultsAndFeeTotalForLastReportInHtml();
+
+            if (dBug) System.out.println("returnString:\n" + returnString);
+
+            return returnString;
+        });
+
+        get("providerAddress/:id", (request, response) -> {
+
+            // For Testing and Debug.
+            boolean dBug = false;
+            if (dBug) System.out.println("\n* * dBug true IN : Application.runSparkServer : get(/providerAddress/:id) route.\n");
+
+            String returnString;
+            String id =  request.params(":id");
+
+            returnString = reportController.getHtmlStringProviderAddress(providerRepository, id);
+
+            if (dBug) System.out.println("returnString:\n" + returnString);
+
+            return returnString;
+        });
 
         get("/managerReport", (request, response) -> {
            Map<String, Object> viewObjects = new HashMap<String, Object>();
@@ -146,6 +236,11 @@ public class Application implements CommandLineRunner{
         }, new FreeMarkerEngine());
         
         post("/createBillable", (request, response) -> {
+
+            // For Testing and Debug.
+            boolean dBug = false;
+            if (dBug) System.out.println("\n* * dBug true IN : Application.runSparkServer : post(/createBillable) route.\n");
+
             ObjectMapper mapper = new ObjectMapper();
             try {
                 Billable u = mapper.readValue(request.body(), Billable.class);
@@ -188,7 +283,12 @@ public class Application implements CommandLineRunner{
 
         get("/getJsonBillableList", (request, response) -> {
             response.status(200);
-            return mongoController.getJSONListOfObjectsFromRepo(billableRepository);
+            String returnString = mongoController.getJSONListOfObjectsFromRepo(billableRepository);
+            System.out.println("/getJsonBillableList route:");
+            System.out.println("returnString:");
+            System.out.println(returnString);
+            
+            return returnString;
         });
 
         get("/removeBillable", (request, response) -> {
@@ -267,6 +367,11 @@ public class Application implements CommandLineRunner{
         }, new FreeMarkerEngine());
         
         post("/createProvider", (request, response) -> {
+
+            // For Testing and Debug.
+            boolean dBug = false;
+            if (dBug) System.out.println("\n* * dBug true IN : Application.runSparkServer : post(/createProvider) route.\n");
+
             ObjectMapper mapper = new ObjectMapper();
             try {
                 Provider u = mapper.readValue(request.body(), Provider.class);
@@ -388,6 +493,11 @@ public class Application implements CommandLineRunner{
         }, new FreeMarkerEngine());
         
         post("/createService", (request, response) -> {
+
+            // For Testing and Debug.
+            boolean dBug = false;
+            if (dBug) System.out.println("\n* * dBug true IN : Application.runSparkServer : post(/createService) route.\n");
+
             ObjectMapper mapper = new ObjectMapper();
             try {
                 Service u = mapper.readValue(request.body(), Service.class);
@@ -509,6 +619,11 @@ public class Application implements CommandLineRunner{
         }, new FreeMarkerEngine());
         
         post("/createUser", (request, response) -> {
+
+            // For Testing and Debug.
+            boolean dBug = false;
+            if (dBug) System.out.println("\n* * dBug true IN : Application.runSparkServer : post(/createUser) route.\n");
+
             ObjectMapper mapper = new ObjectMapper();
             try {
                 User u = mapper.readValue(request.body(), User.class);
@@ -630,6 +745,13 @@ public class Application implements CommandLineRunner{
            return new ModelAndView(viewObjects, "aMain.ftl");
         }, new FreeMarkerEngine());
 
+        get("/assignment", (request, response) -> {
+           Map<String, Object> viewObjects = new HashMap<String, Object>();
+           //viewObjects.put("status_message", "UNDER CONSTRUCTION!");
+           viewObjects.put("templateName", "help_pages/assignment.ftl");
+           return new ModelAndView(viewObjects, "aMain.ftl");
+        }, new FreeMarkerEngine());
+
         get("/installHelp", (request, response) -> {
            Map<String, Object> viewObjects = new HashMap<String, Object>();
            viewObjects.put("message", "Install Help Page is currently under construction!");
@@ -666,6 +788,32 @@ public class Application implements CommandLineRunner{
             System.err.println(e);
         }
         return null;
+    }
+
+    private static void display_spark_startup_text(){
+    
+    // Sauce : http://patorjk.com/software/taag/#p=display&f=Fire%20Font-s&t=Spark
+    //       : http://stackoverflow.com/questions/5762491/how-to-print-color-in-console-using-system-out-println
+        String ANSI_RESET = "\u001B[0m";
+        String ANSI_GREEN = "\u001B[32m";
+        String ANSI_RED = "\u001B[31m";
+        String ANSI_YELLOW = "\u001B[33m";
+        
+        
+        System.out.println("");
+        System.out.println(ANSI_YELLOW + " (");
+        System.out.println(" )\\ )                  )  ");
+        System.out.println("(()/(         ) (   ( /(  " + ANSI_RESET);
+        System.out.println(ANSI_RED + " /(_)`  )  ( /( )(  )\\()) ");
+        System.out.println("("+ANSI_RESET+"___"+ANSI_RED+")) /(/(  )(_)(()\\((_)\\  " + ANSI_RESET);
+        System.out.println("/ __|_"+ANSI_RED+"("+ANSI_RESET+"_"+ANSI_RED+")"+ANSI_RESET+"  _"+ANSI_RED+"(("+ANSI_RESET+"_"+ANSI_RED+")(("+ANSI_RESET+"_"+ANSI_RED+"|"+ANSI_RESET+"_"+ANSI_RED+"|("+ANSI_RESET+"_"+ANSI_RED+") "+ANSI_RESET);
+        System.out.println("\\__ | '_ \\/ _` | '_| / / ");
+        System.out.println("|___| .__/\\__,_|_| |_\\_\\ ");
+        System.out.println("    |_|");
+        System.out.println("");
+        System.out.println(ANSI_GREEN + "ChocAn Spark Server Started!" + ANSI_RESET);
+        System.out.println("");
+        
     }
 }
 

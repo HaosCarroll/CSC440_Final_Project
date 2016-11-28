@@ -14,6 +14,10 @@ public interface BillableRepository extends MongoRepository<Billable, String> {
 	Long deleteBillableByEntityBillableIdNumber(String entitybillableIdNumber);
 	// Sauce : http://stackoverflow.com/questions/16715010/count-in-spring-data-mongodb-repository
 	Long countByEntityBillableIdNumber(String entitybillableIdNumber);
-	// Sauce : this just seems reasonable?
+
+	// Sauce : these just seems reasonable?
 	List<Billable> findAll();
+	List<Billable> findByMemberNumberService(@Param("memberNumberService") String memberNumberService);
+	List<Billable> findByProviderNumberServicing(@Param("providerNumberServicing") String providerNumberServicing);
+	// AND THEY WORK!! WOOT WOOT!!
 }    

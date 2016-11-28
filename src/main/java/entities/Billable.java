@@ -9,6 +9,7 @@ public class Billable extends Validable{
     private String entityBillableIdNumber;
     private String memberNumberService;
     private String providerNumberServicing;
+    private String serviceNumberServiced;
     private DateTime dateServiced;
     private DateTime dateServicedRecorded;
     private double serviceCost;
@@ -38,6 +39,14 @@ public class Billable extends Validable{
         this.providerNumberServicing = providerNumberServicing;
     }
     
+    public String getServiceNumberServiced() {
+        return serviceNumberServiced;
+    }
+    
+    public void setServiceNumberServiced(String serviceNumberServiced) {
+        this.serviceNumberServiced = serviceNumberServiced;
+    }
+    
     public String getDateServiced() {
         return dateServiced.toString("MM/dd/yyyy");
     }
@@ -49,21 +58,35 @@ public class Billable extends Validable{
         tempString += dateServiced.substring(0, dateServiced.indexOf("/")) + "-";
         tempString += dateServiced.substring((dateServiced.indexOf("/")+1), dateServiced.lastIndexOf("/"));
         
+        
         this.dateServiced = new DateTime(tempString);
     }
     
     public String getDateServicedRecorded() {
-        return dateServicedRecorded.toString("MM/dd/yyyy");
+        return dateServicedRecorded.toString("MM/dd/yyyy HH:mm:ss");
     }
     
+    // This is used when a new entity is created.
+    public void setDateServicedRecorded() {
+        
+        DateTime dateTimeCreated = new DateTime();
+        
+        System.out.println("setDateServicedRecorded called!");
+        System.out.println("dateTimeCreated = " + dateTimeCreated.toString("MM/dd/yyyy HH:mm:ss"));
+
+        this.dateServicedRecorded = dateTimeCreated;
+    }
+    
+    // This is used for creating test data.
     public void setDateServicedRecorded(String dateServicedRecorded) {
         
         String tempString = "";
-        tempString = dateServicedRecorded.substring(dateServicedRecorded.lastIndexOf("/")+1) + "-";
-        tempString += dateServicedRecorded.substring(0, dateServicedRecorded.indexOf("/")) + "-";
-        tempString += dateServicedRecorded.substring((dateServicedRecorded.indexOf("/")+1), dateServicedRecorded.lastIndexOf("/"));
-        
-        this.dateServicedRecorded = new DateTime(tempString);
+        //tempString = dateServicedRecorded.substring(dateServicedRecorded.lastIndexOf("/")+1) + "-";
+        //tempString += dateServicedRecorded.substring(0, dateServicedRecorded.indexOf("/")) + "-";
+        //tempString += dateServicedRecorded.substring((dateServicedRecorded.indexOf("/")+1), dateServicedRecorded.lastIndexOf("/"));
+
+        //this.dateServicedRecorded = new DateTime(tempString);
+        this.dateServicedRecorded = new DateTime(dateServicedRecorded);
     }
     
     public double getServiceCost() {

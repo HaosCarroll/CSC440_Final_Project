@@ -4,32 +4,37 @@
 
     <div class="form-group">
       <label for="entityUserIdNumber">User entity ID number</label>
-      <input type="text" class="form-control" id="entityUserIdNumber" name="entityUserIdNumber" placeholder="Enter ID number for new User entity.">
+      <input type="text" pattern="[0-9]{9}" title="Nine Digit Member ID." class="form-control" id="entityUserIdNumber" name="entityUserIdNumber" placeholder="Enter ID number for new User entity.">
+    </div>
+
+    <div class="form-group">
+      <label for="entityUserEmailAddress">User email address</label>
+      <input type="email" title="User's email address." class="form-control" id="entityUserEmailAddress" name="entityUserEmailAddress" placeholder="Enter user's email address">
     </div>
 
     <div class="form-group">
       <label for="memberName">Name</label>
-      <input type="text" class="form-control" id="memberName" name="memberName" placeholder="Enter name of member.">
+      <input type="text" maxlength="25" title="Maximum of 25 characters." class="form-control" id="memberName" name="memberName" placeholder="Enter name of member.">
     </div>
 
     <div class="form-group">
       <label for="memberStreetAddress">Street Address</label>
-      <input type="text" class="form-control" id="memberStreetAddress" name="memberStreetAddress" placeholder="Enter street address for member.">
+      <input type="text" maxlength="25" title="Maximum of 25 characters." class="form-control" id="memberStreetAddress" name="memberStreetAddress" placeholder="Enter street address for member.">
     </div>
 
     <div class="form-group">
       <label for="memberCity">City</label>
-      <input type="text" class="form-control" id="memberCity" name="memberCity" placeholder="Enter City for member.">
+      <input type="text" maxlength="14" title="Maximum of 14 characters." class="form-control" id="memberCity" name="memberCity" placeholder="Enter City for member.">
     </div>
 
     <div class="form-group">
       <label for="memberState">STATE</label>
-      <input type="text" class="form-control" id="memberState" name="memberState" placeholder="Enter State for member.">
+      <input type="text" pattern="[A-Z]{2}" title="Must be two uppercase letters." class="form-control" id="memberState" name="memberState" placeholder="Enter State for member.">
     </div>
 
     <div class="form-group">
       <label for="memberZip">ZIP CODE</label>
-      <input type="number" class="form-control" id="memberZip" name="memberZip">
+      <input type="text" pattern="[0-9]{5}" title="Must be 5 digit zip code" class="form-control" id="memberZip" name="memberZip">
     </div>
 
     <div class="form-group" id="dateInput">

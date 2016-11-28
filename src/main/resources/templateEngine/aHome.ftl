@@ -1,4 +1,4 @@
-<div class="starter-template">
+<div class="home-page-template">
 
 <h2>${title}</h2>
 

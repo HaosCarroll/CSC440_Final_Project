@@ -16,4 +16,6 @@ public interface UserRepository extends MongoRepository<User, String> {
 	Long countByEntityUserIdNumber(String entityuserIdNumber);
 	// Sauce : this just seems reasonable?
 	List<User> findAll();
+	
+	User findOneByEntityUserIdNumber(@Param("entityuserIdNumber") String entityuserIdNumber);
 }    

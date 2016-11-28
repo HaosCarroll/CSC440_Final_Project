@@ -4,32 +4,37 @@
 
     <div class="form-group">
       <label for="entityProviderIdNumber">Provider entity ID number</label>
-      <input type="text" class="form-control" id="entityProviderIdNumber" name="entityProviderIdNumber" placeholder="Enter ID number for new Provider entity.">
+      <input type="text" class="form-control"  pattern="[0-9]{9}" title="Nine Digit Provider ID." id="entityProviderIdNumber" name="entityProviderIdNumber" placeholder="Enter ID number for new Provider entity.">
+    </div>
+
+    <div class="form-group">
+      <label for="entityProviderEmailAddress">Provider email address</label>
+      <input type="email" title="Provider's email address." class="form-control" id="entityProviderEmailAddress" name="entityProviderEmailAddress" placeholder="Enter provider's email address">
     </div>
 
     <div class="form-group">
       <label for="providerName">Name</label>
-      <input type="text" class="form-control" id="providerName" name="providerName" placeholder="Enter name of provider.">
+      <input type="text" maxlength="25" title="Maximum of 25 characters." class="form-control" id="providerName" name="providerName" placeholder="Enter name of provider.">
     </div>
 
     <div class="form-group">
       <label for="providerStreetAddress">Street Address</label>
-      <input type="text" class="form-control" id="providerStreetAddress" name="providerStreetAddress" placeholder="Enter street address for provider.">
+      <input type="text"  maxlength="25" title="Maximum of 25 characters." class="form-control" id="providerStreetAddress" name="providerStreetAddress" placeholder="Enter street address for provider.">
     </div>
 
     <div class="form-group">
       <label for="providerCity">City</label>
-      <input type="text" class="form-control" id="providerCity" name="providerCity" placeholder="Enter City for provider.">
+      <input type="text"  maxlength="14" title="Maximum of 14 characters." class="form-control" id="providerCity" name="providerCity" placeholder="Enter City for provider.">
     </div>
 
     <div class="form-group">
       <label for="providerState">STATE</label>
-      <input type="text" class="form-control" id="providerState" name="providerState" placeholder="Enter State for provider.">
+      <input type="text"  pattern="[A-Z]{2}" title="Must be two capital letters." class="form-control" id="providerState" name="providerState" placeholder="Enter State for provider.">
     </div>
 
     <div class="form-group">
       <label for="providerZip">ZIP CODE</label>
-      <input type="number" class="form-control" id="providerZip" name="providerZip">
+      <input type="text" pattern="[0-9]{5}" title="Five digit zip code." class="form-control" id="providerZip" name="providerZip">
     </div>
 
     <div class="form-group">
@@ -52,16 +57,6 @@
 
     <button type="submit" class="btn btn-default">Submit</button>
   </form>
-
-<!-- Simple JS function to for datepicker -->
-<script>
-$('#dateInput input').datepicker({
-    format: "mm/dd/yyyy",
-    todayBtn: "linked",
-    autoclose: true,
-    todayHighlight: true
-});
-</script>
 
 <!-- Simple JS Function to convert the data into JSON and Pass it as ajax Call --!>
 <script>

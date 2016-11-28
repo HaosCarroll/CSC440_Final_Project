@@ -26,6 +26,8 @@
    <link rel="stylesheet" href="css/bootstrap-datepicker3.standalone.css">
 
    <link rel="stylesheet" href="css/choco-application-template.css">
+   
+   
 </head>
 
 <body>
@@ -119,13 +121,23 @@
                <!-- Dropdown Help Menu. -->
 
                <li class="dropdown">
-                  <a class="dropdown-toggle" data-toggle="dropdown" href="#">HELP<span class="caret"></span></a>
+                  <a class="dropdown-toggle" data-toggle="dropdown" href="#">Info<span class="caret"></span></a>
                   <ul class="dropdown-menu">
                      <li><a href="assignment">Assignment</a></li>
                      <li><a href="installHelp">Install</a></li>
                      <li><a href="applicationHelp">Application</a></li>
                      <li><a href="developerHelp">Develop</a></li>
                      <li><a href="miscellaneousHelp">Misc.</a></li>
+                     <!-- Nested Dropdown -->
+                     <!-- Sauce : http://www.w3schools.com/Bootstrap/tryit.asp?filename=trybs_ref_js_dropdown_multilevel_css&stacked=h -->
+                     <!-- TODO : Fix styling so it behaves more conformitivly -->
+                     <li class="dropdown-submenu">
+                        <a class="testing_dropdown" data-toggle="dropdown" href="#">Testing<span class="caret"></span></a>
+                        <ul class="dropdown-menu">
+                           <li><a href="addTestData">Insert Test Data</a></li>
+                           <li><a href="clearMongoDB">Remove All MongoDB Data</a></li>
+                        </ul>
+                     </li>
                   </ul>
                </li>
 
@@ -139,6 +151,17 @@
    <script src="js/jquery.min.js"></script>
    <script src="js/bootstrap.min.js"></script>
    <script src="js/bootstrap-datepicker.min.js"></script>
+   
+   <script>
+   $(document).ready(function(){
+     $('.dropdown-submenu a.testing_dropdown').on("click", function(e){
+       $(this).next('ul').toggle();
+       e.stopPropagation();
+       e.preventDefault();
+     });
+   });
+   </script>
+   
    <div class="container">
       <#include "${templateName}">
    </div>

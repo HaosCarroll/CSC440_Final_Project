@@ -43,6 +43,7 @@ public class Application implements CommandLineRunner{
 
     private ChocoMongoController mongoController = new ChocoMongoController();
     private ChocoReportController reportController = new ChocoReportController();
+    private ChocoTestDataController testDataController = new ChocoTestDataController();
 
 	public static void main(String[] args) {
 
@@ -145,7 +146,7 @@ public class Application implements CommandLineRunner{
 
             return returnString;
         });
-        
+
         
         get("/providerReport", (request, response) -> {
            Map<String, Object> viewObjects = new HashMap<String, Object>();
@@ -244,7 +245,7 @@ public class Application implements CommandLineRunner{
             ObjectMapper mapper = new ObjectMapper();
             try {
                 Billable u = mapper.readValue(request.body(), Billable.class);
-                
+                u.setDateServicedRecorded();
                 if (!u.isValid(u)) {
                     response.status(400);
                     return "Correct the fields";
@@ -328,7 +329,7 @@ public class Application implements CommandLineRunner{
             
             try {
                 Billable u = mapper.readValue(request.body(), Billable.class);
-                
+                u.setDateServicedRecorded();
                 if (!u.isValid(u)) {
                     response.status(400);
                     return "Correct The Fields.";
@@ -773,6 +774,38 @@ public class Application implements CommandLineRunner{
            return new ModelAndView(viewObjects, "aMain.ftl");
         }, new FreeMarkerEngine());
 
+/* ___ _  __ ___ ___       __    _   _     ___ _  __ 
+ *  | |_ (_   |   |  |\ | /__   |_) / \ | | | |_ (_  
+ *  | |_ __)  |  _|_ | \| \_|   | \ \_/ |_| | |_ __) 
+ */                                                  
+
+        get("/addTestData", (request, response) -> {
+           Map<String, Object> viewObjects = new HashMap<String, Object>();
+           //viewObjects.put("message", "Insert Test Data is currently under construction!");
+           viewObjects.put("templateName", "testing_pages/addTestData.ftl");
+           return new ModelAndView(viewObjects, "aMain.ftl");
+        }, new FreeMarkerEngine());
+
+        put("/autoAddDataToMongoDB", (request, response) -> {
+            
+            String returnString = "";
+
+            if (testDataController.addTestDataTo(billableRepository)){
+                returnString += "BILLABLE TEST DATA SUCCESSFULLY ADDED.";
+            } else {
+                returnString += "ERROR : BILLABLE TEST DATA * * * * *";
+            }
+
+            response.status(200);
+            return returnString;
+        });
+        
+        get("/clearMongoDB", (request, response) -> {
+           Map<String, Object> viewObjects = new HashMap<String, Object>();
+           //viewObjects.put("message", "Clear Mongo Database is currently under construction!");
+           viewObjects.put("templateName", "testing_pages/clearMongoDB.ftl");
+           return new ModelAndView(viewObjects, "aMain.ftl");
+        }, new FreeMarkerEngine());
         
     }  // END OF SPRING SERVER
     
@@ -804,9 +837,9 @@ public class Application implements CommandLineRunner{
         System.out.println(ANSI_YELLOW + " (");
         System.out.println(" )\\ )                  )  ");
         System.out.println("(()/(         ) (   ( /(  " + ANSI_RESET);
-        System.out.println(ANSI_RED + " /(_)`  )  ( /( )(  )\\()) ");
-        System.out.println("("+ANSI_RESET+"___"+ANSI_RED+")) /(/(  )(_)(()\\((_)\\  " + ANSI_RESET);
-        System.out.println("/ __|_"+ANSI_RED+"("+ANSI_RESET+"_"+ANSI_RED+")"+ANSI_RESET+"  _"+ANSI_RED+"(("+ANSI_RESET+"_"+ANSI_RED+")(("+ANSI_RESET+"_"+ANSI_RED+"|"+ANSI_RESET+"_"+ANSI_RED+"|("+ANSI_RESET+"_"+ANSI_RED+") "+ANSI_RESET);
+        System.out.println(ANSI_RED + " /("+ANSI_YELLOW+"_"+ANSI_RED+")`  )  ( /( )(  )\\()) ");
+        System.out.println("("+ANSI_RESET+"___"+ANSI_RED+")) /(/(  )("+ANSI_YELLOW+"_"+ANSI_RED+")(()\\(("+ANSI_YELLOW+"_"+ANSI_RED+")\\  " + ANSI_RESET);
+        System.out.println("/ __|_"+ANSI_RED+"("+ANSI_RESET+"_"+ANSI_RED+")"+ANSI_RESET+"  _"+ANSI_RED+"(("+ANSI_RESET+"_"+ANSI_RED+")"+ANSI_RESET+"_"+ANSI_RED+"("+ANSI_RESET+"_"+ANSI_YELLOW+"|"+ANSI_RESET+"_"+ANSI_YELLOW+"|"+ANSI_RED+"("+ANSI_RESET+"_"+ANSI_RED+") "+ANSI_RESET);
         System.out.println("\\__ | '_ \\/ _` | '_| / / ");
         System.out.println("|___| .__/\\__,_|_| |_\\_\\ ");
         System.out.println("    |_|");
@@ -817,3 +850,6 @@ public class Application implements CommandLineRunner{
     }
 }
 
+/*
+ * ASCII COMMENTS : http://patorjk.com/software/taag/#p=display&f=Mini&t=
+ */

@@ -29,10 +29,14 @@
         <input  type="text" class="form-control" id="dateServiced" name="dateServiced" data-provide="datepicker">
     </div>
 
+
+<!-- 
+
     <div class="form-group" id="dateInput">
 		<label for="dateServicedRecorded">Date Recorded</label><br>
         <input  type="text" class="form-control" id="dateServicedRecorded" name="dateServicedRecorded" data-provide="datepicker">
     </div>
+-->
 
     <div class="form-group">
       <label for="serviceCost">Cost</label>

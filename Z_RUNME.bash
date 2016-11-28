@@ -2,6 +2,7 @@ function init(){
     switch_repo_to_dev_branch
     run_cloud9_setup_scripts
     init_git_flow_on_repo
+    explain_things
     read -p "Attempt to reset terminal now? " -n 1 -r
     printf"\n"
     if [[ $REPLY =~ ^[Yy]$ ]]

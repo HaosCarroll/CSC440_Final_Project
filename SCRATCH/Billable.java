@@ -1,0 +1,8 @@
+setEntityBillableIdNumber("")
+setMemberNumberService("")
+setProviderNumberServicing("")
+setServiceNumberServiced("")
+setDateServiced("")
+setDateServicedRecorded("")
+setServiceCost()
+setServiceComment("")

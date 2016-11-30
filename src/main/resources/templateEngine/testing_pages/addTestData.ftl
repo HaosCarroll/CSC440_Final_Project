@@ -16,7 +16,8 @@
                 type: "PUT",
                 url: url_string_for_adding_test_data,
                 success : function(e) {
-                    $("#status").text(e);
+                    $("#status").text("");
+                    $("#status").append(e);
                 },
                 error : function(e) {
                     console.log("Error! (addTestData.ftl)");

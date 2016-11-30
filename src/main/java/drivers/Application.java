@@ -791,14 +791,50 @@ public class Application implements CommandLineRunner{
             String returnString = "";
 
             if (testDataController.addTestDataTo(billableRepository)){
-                returnString += "BILLABLE TEST DATA SUCCESSFULLY ADDED.";
+                returnString += "BILLABLE TEST DATA SUCCESSFULLY ADDED.<br>";
             } else {
-                returnString += "ERROR : BILLABLE TEST DATA * * * * *";
+                returnString += "ERROR : BILLABLE TEST DATA * * * * *<br>";
+            }
+
+
+            if (testDataController.addTestDataTo(providerRepository)){
+                returnString += "PROVIDER TEST DATA SUCCESSFULLY ADDED.<br>";
+            } else {
+                returnString += "ERROR : PROVIDER TEST DATA * * * * *<br>";
+            }
+
+
+            if (testDataController.addTestDataTo(serviceRepository)){
+                returnString += "SERVICE TEST DATA SUCCESSFULLY ADDED.<br>";
+            } else {
+                returnString += "ERROR : SERVICE TEST DATA * * * * *<br>";
+            }
+
+
+            if (testDataController.addTestDataTo(userRepository)){
+                returnString += "USER TEST DATA SUCCESSFULLY ADDED.<br>";
+            } else {
+                returnString += "ERROR : USER TEST DATA * * * * *<br>";
             }
 
             response.status(200);
             return returnString;
         });
+        
+        put("/removeAllDataFromMongoDB", (request, response) -> {
+            
+            billableRepository.deleteAll();
+            userRepository.deleteAll();
+            serviceRepository.deleteAll();
+            providerRepository.deleteAll();
+            
+            response.status(200);
+            
+            String returnString = "GONE!";
+            return returnString;
+
+        });        
+        //
         
         get("/clearMongoDB", (request, response) -> {
            Map<String, Object> viewObjects = new HashMap<String, Object>();

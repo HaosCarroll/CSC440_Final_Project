@@ -72,7 +72,23 @@ public class ChocoTestDataController {
             if (providerRepository.findAll().size() > 0){
                 return false;
             }
-            
+
+
+            Provider providerTestData = new Provider();
+
+            providerTestData.setEntityProviderIdNumber("111111111");
+            providerTestData.setEntityProviderEmailAddress("providerOne@providers.com");
+            providerTestData.setProviderName("Provider One");
+            providerTestData.setProviderStreetAddress("1 S. Provider St.");
+            providerTestData.setProviderCity("Provider Town");
+            providerTestData.setProviderState("WI");
+            providerTestData.setProviderZip(55544);
+            providerTestData.setIsDietitian(true);
+            providerTestData.setIsExerciseExpert(false);
+            providerTestData.setIsInternist(false);
+
+            providerRepository.save(providerTestData);
+
             return true;
     }
     
@@ -80,6 +96,17 @@ public class ChocoTestDataController {
             if (serviceRepository.findAll().size() > 0){
                 return false;
             }
+            
+            Service serviceTestData = new Service();
+            
+            serviceTestData.setEntityServiceIdNumber("111111");
+            serviceTestData.setProvidableServiceDescription("Provided Service One");
+            serviceTestData.setIsProvidableByDietitian(true);
+            serviceTestData.setIsProvidableByExerciseExpert(false);
+            serviceTestData.setIsProvidableByInternist(false);
+            
+            serviceRepository.save(serviceTestData);
+            
             return true;
     }
     
@@ -87,6 +114,20 @@ public class ChocoTestDataController {
             if (userRepository.findAll().size() > 0){
                 return false;
             }
+            
+            User userTestData = new User();
+            
+            userTestData.setEntityUserIdNumber("111111111");
+            userTestData.setEntityUserEmailAddress("userOneEmail@users.com");
+            userTestData.setMemberName("User One");
+            userTestData.setMemberStreetAddress("1 N. User Drive");
+            userTestData.setMemberCity("Userville");
+            userTestData.setMemberState("IL");
+            userTestData.setMemberZip(43454);
+            userTestData.setMemberValidThrough("12/12/2016");            
+            
+            userRepository.save(userTestData);
+            
             return true;
     }
 }

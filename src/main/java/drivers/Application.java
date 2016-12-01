@@ -781,7 +781,6 @@ public class Application implements CommandLineRunner{
 
         get("/addTestData", (request, response) -> {
            Map<String, Object> viewObjects = new HashMap<String, Object>();
-           //viewObjects.put("message", "Insert Test Data is currently under construction!");
            viewObjects.put("templateName", "testing_pages/addTestData.ftl");
            return new ModelAndView(viewObjects, "aMain.ftl");
         }, new FreeMarkerEngine());
@@ -796,20 +795,18 @@ public class Application implements CommandLineRunner{
                 returnString += "ERROR : BILLABLE TEST DATA * * * * *<br>";
             }
 
-
             if (testDataController.addTestDataTo(providerRepository)){
                 returnString += "PROVIDER TEST DATA SUCCESSFULLY ADDED.<br>";
             } else {
                 returnString += "ERROR : PROVIDER TEST DATA * * * * *<br>";
             }
 
-
             if (testDataController.addTestDataTo(serviceRepository)){
                 returnString += "SERVICE TEST DATA SUCCESSFULLY ADDED.<br>";
             } else {
                 returnString += "ERROR : SERVICE TEST DATA * * * * *<br>";
             }
-
+            
 
             if (testDataController.addTestDataTo(userRepository)){
                 returnString += "USER TEST DATA SUCCESSFULLY ADDED.<br>";
@@ -832,13 +829,10 @@ public class Application implements CommandLineRunner{
             
             String returnString = "GONE!";
             return returnString;
-
         });        
-        //
-        
+
         get("/clearMongoDB", (request, response) -> {
            Map<String, Object> viewObjects = new HashMap<String, Object>();
-           //viewObjects.put("message", "Clear Mongo Database is currently under construction!");
            viewObjects.put("templateName", "testing_pages/clearMongoDB.ftl");
            return new ModelAndView(viewObjects, "aMain.ftl");
         }, new FreeMarkerEngine());

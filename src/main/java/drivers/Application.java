@@ -677,7 +677,6 @@ public class Application implements CommandLineRunner{
             return returnString;
         });
 
-        
         get("/providerReport", (request, response) -> {
            Map<String, Object> viewObjects = new HashMap<String, Object>();
            viewObjects.put("templateName", "report_pages/provider_report.ftl");
@@ -693,9 +692,11 @@ public class Application implements CommandLineRunner{
             if (dBug) System.out.println("\n* * dBug true IN : Application.runSparkServer : get(\"/providerReport/:id\") route.\n");
 
             String returnString = "";
+            String testString = "";
             String id =  request.params(":id");
             
             returnString = reportController.getBillablesReportForProviderInJson(billableRepository, providerRepository, serviceRepository, userRepository, id);
+            testString = reportController.getBillablesReportForEachWeekForProviderInJson(billableRepository, providerRepository, serviceRepository, userRepository, id);
             
             if (dBug) System.out.println("returnString:\n" + returnString);
 

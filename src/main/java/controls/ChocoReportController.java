@@ -156,11 +156,29 @@ public class ChocoReportController {
         return returnString;        
     }
 
+    public String getBillablesReportForEachWeekForProviderInJson(BillableRepository billableRepository, ProviderRepository providerRepository, ServiceRepository serviceRepository, UserRepository userRepository, String idOfProvider){
+    
+        // For Testing and Debug.
+        boolean dBug = true;
+        if (dBug) System.out.println("\n* * dBug true IN : ChocoReportController.getBillablesReportForEachWeekForProviderInJson(...)\n");
+
+        String returnString = "";
+
+        // Create a list of billables for the provider being queried.
+        List<Billable> providerBillables = billableRepository.findByProviderNumberServicing(idOfProvider);
+        
+        
+        return returnString;
+    }
+    
+
+
+
     public String getBillablesReportForProviderInJson(BillableRepository billableRepository, ProviderRepository providerRepository, ServiceRepository serviceRepository, UserRepository userRepository, String idOfProvider){
         
         // For Testing and Debug.
         boolean dBug = false;
-        if (dBug) System.out.println("\n* * dBug true IN : ChocoReportController.getBillablesReportForProviderInJson()\n");
+        if (dBug) System.out.println("\n* * dBug true IN : ChocoReportController.getBillablesReportForProviderInJson(...)\n");
 
         String returnString = "";
         

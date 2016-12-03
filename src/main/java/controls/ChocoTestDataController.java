@@ -14,7 +14,7 @@ public class ChocoTestDataController {
             
         // Format for setting data recorded value : yyyy-MM-dd'T'HH:mm:ssZ
         
-        String[][] billableStringDataArray = new String[26][];
+        String[][] billableStringDataArray = new String[42][];
 
         billableStringDataArray[0] = new String[]{"1",   "111111111", "111111111", "111111", "1/27/2016", "2016-11-26T10:32:31Z", "23.12", "Test Billable! #1"};
         billableStringDataArray[1] = new String[]{"2",   "222222222", "222222222", "222222", "2/24/2016", "2016-11-27T14:01:10Z", "32.15", "Test Billable! #2"};
@@ -42,6 +42,30 @@ public class ChocoTestDataController {
         billableStringDataArray[23] = new String[]{"24", "888888888", "888888888", "888888", "11/27/2016", "2016-11-26T10:32:31Z", "83.18", "Test Billable! #24"};
         billableStringDataArray[24] = new String[]{"25", "999999999", "999999999", "999999", "1/27/2016", "2016-11-26T10:32:31Z", "93.19", "Test Billable! #25"};
         billableStringDataArray[25] = new String[]{"26", "999999999", "999999999", "999999", "2/27/2016", "2016-11-26T10:32:31Z", "93.19", "Test Billable! #26"};
+
+        //                                {"Billable_ID", "Member_ID", "Provider_ID", "Service_ID", "Date_Serviced", "Date_Recorded", "Cost", "Comment"};
+
+        billableStringDataArray[26] = new String[]{"27",   "111111111", "111111111", "111111", "8/25/2016", "2016-8-26T20:59:31Z", "43.62", "Edge Test Billable! #1.1 - FRONT"};
+        billableStringDataArray[27] = new String[]{"28",   "222222222", "111111111", "111111", "8/26/2016", "2016-8-26T21:00:01Z", "99.99", "Edge Test Billable! #1.2 - REAR"};
+
+        billableStringDataArray[28] = new String[]{"29",   "444444444", "111111111", "111111", "9/8/2016", "2016-9-9T20:59:59Z", "13.52", "Edge Test Billable! #2.1 - FRONT"};
+        billableStringDataArray[29] = new String[]{"30",   "333333333", "111111111", "111111", "9/9/2016", "2016-9-9T21:00:00Z", "45.56", "Edge Test Billable! #2.2 - FRONT"};
+        billableStringDataArray[30] = new String[]{"31",   "222222222", "111111111", "222222", "9/9/2016", "2016-9-9T21:00:01Z", "100.23", "Edge Test Billable! #2.3 - REAR"};
+        billableStringDataArray[31] = new String[]{"32",   "111111111", "111111111", "222222", "9/9/2016", "2016-9-9T21:00:31Z", "23.12", "Edge Test Billable! #2.4 - REAR"};
+
+        billableStringDataArray[32] = new String[]{"33",   "111111111", "111111111", "333333", "10/12/2016", "2016-10-13T10:32:31Z", "100.52", "Random Test Billable! #3.0"};
+
+        billableStringDataArray[33] = new String[]{"34",   "222222222", "111111111", "333333", "11/03/2016", "2016-11-4T20:59:31Z", "62.34", "Edge Test Billable! #4.1 - FRONT"};
+        billableStringDataArray[34] = new String[]{"35",   "111111111", "111111111", "999999", "11/4/2016", "2016-11-4T20:59:59Z", "123.43", "Edge Test Billable! #4.2 - FRONT"};
+        billableStringDataArray[35] = new String[]{"36",   "333333333", "111111111", "333333", "11/4/2016", "2016-11-4T21:00:00Z", "123.42", "Edge Test Billable! #4.3 - FRONT"};
+        billableStringDataArray[36] = new String[]{"37",   "111111111", "111111111", "111111", "11/4/2016", "2016-11-4T21:00:01Z", "323.52", "Edge Test Billable! #4.4 - REAR"};
+        billableStringDataArray[37] = new String[]{"38",   "777777777", "111111111", "444444", "11/4/2016", "2016-11-4T21:01:01Z", "193.15", "Edge Test Billable! #4.5 - REAR"};
+
+        billableStringDataArray[38] = new String[]{"39",   "888888888", "111111111", "111111", "12/1/2016", "2016-12-2T10:32:31Z", "123.12", "Edge Test Billable! #5.1 - FRONT"};
+        billableStringDataArray[39] = new String[]{"40",   "999999999", "111111111", "444444", "12/1/2016", "2016-12-2T20:59:59Z", "213.15", "Edge Test Billable! #5.2 - FRONT"};
+        billableStringDataArray[40] = new String[]{"39",   "888888888", "111111111", "111111", "12/2/2016", "2016-12-2T21:00:00Z", "134.43", "Edge Test Billable! #5.3 - FRONT"};
+        billableStringDataArray[41] = new String[]{"40",   "999999999", "111111111", "444444", "12/2/2016", "2016-12-2T21:00:01Z", "163.67", "Edge Test Billable! #5.4 - REAR"};
+
 
         if (billableRepository.findAll().size() > 0){
             return false;

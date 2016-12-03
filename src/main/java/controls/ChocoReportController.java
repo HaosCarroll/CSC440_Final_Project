@@ -159,7 +159,7 @@ public class ChocoReportController {
     public String getBillablesReportForProviderInJson(BillableRepository billableRepository, ProviderRepository providerRepository, ServiceRepository serviceRepository, UserRepository userRepository, String idOfProvider){
         
         // For Testing and Debug.
-        boolean dBug = true;
+        boolean dBug = false;
         if (dBug) System.out.println("\n* * dBug true IN : ChocoReportController.getBillablesReportForProviderInJson()\n");
 
         String returnString = "";
@@ -234,13 +234,13 @@ public class ChocoReportController {
     public String getHtmlConsultsAndFeeTotalForLastReportInHtml(){
         
         // For Testing and Debug.
-        boolean dBug = true;
+        boolean dBug = false;
         if (dBug) System.out.println("\n* * dBug true IN : ChocoReportController.getHtmlConsultsAndFeeTotalForLastReportInHtml()\n");
         
         String returnString = "";
         
-        System.out.printf("Total Consults : %d\n", numConsultsForLastReport);
-        System.out.printf("Total Fees to Pay : $%.2f\n", totalFeesForLastReport);
+        if (dBug) System.out.printf("Total Consults : %d\n", numConsultsForLastReport);
+        if (dBug) System.out.printf("Total Fees to Pay : $%.2f\n", totalFeesForLastReport);
         
         returnString += String.format("Total Consults : %d<br>", numConsultsForLastReport);
         returnString += String.format("Total Fees to Pay : $%.2f<br>", totalFeesForLastReport);

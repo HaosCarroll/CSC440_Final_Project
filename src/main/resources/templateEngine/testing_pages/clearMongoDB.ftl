@@ -1,7 +1,7 @@
 <div class="add_test_data-template">
 
     <h2>Remove All Data!</h2>
-    <button type="submit" class="btn btn-default">ADD TEST DATA!</button>
+    <button type="submit" class="btn btn-default">REMOVE ALL DATA!</button>
     <p id="status"></p>
 
 </div>

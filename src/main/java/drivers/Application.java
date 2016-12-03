@@ -49,7 +49,7 @@ public class Application implements CommandLineRunner{
 
         // For Testing and Debug.
         boolean dBug = true;
-        if (dBug) System.out.println("\n* * dBug true IN : Application.main\n");
+        if (dBug) System.out.println("\n* * dBug true IN : Application.main()\n");
 
 		SpringApplication.run(Application.class, args);
 
@@ -63,7 +63,7 @@ public class Application implements CommandLineRunner{
 
         // For Testing and Debug.
         boolean dBug = false;
-        if (dBug) System.out.println("\n* * dBug true IN : Application.run\n");
+        if (dBug) System.out.println("\n* * dBug true IN : Application.run()\n");
 
         runSparkServer();
 	}
@@ -89,7 +89,7 @@ public class Application implements CommandLineRunner{
 
             // For Testing and Debug.
             boolean dBug = false;
-            if (dBug) System.out.println("\n* * dBug true IN : Application.runSparkServer : get(/) route.\n");
+            if (dBug) System.out.println("\n* * dBug true IN : Application.runSparkServer : get(\"/\") route.\n");
 
            Map<String, Object> viewObjects = new HashMap<String, Object>();
            viewObjects.put("title", "Welcome to Team Five's Final Project!");
@@ -106,7 +106,7 @@ public class Application implements CommandLineRunner{
 
             // For Testing and Debug.
             boolean dBug = false;
-            if (dBug) System.out.println("\n* * dBug true IN : Application.runSparkServer : get(/userReport) route.\n");
+            if (dBug) System.out.println("\n* * dBug true IN : Application.runSparkServer : get(\"/userReport\") route.\n");
 
            Map<String, Object> viewObjects = new HashMap<String, Object>();
            viewObjects.put("templateName", "report_pages/user_report.ftl");
@@ -119,7 +119,7 @@ public class Application implements CommandLineRunner{
 
             // For Testing and Debug.
             boolean dBug = false;
-            if (dBug) System.out.println("\n* * dBug true IN : Application.runSparkServer : get(/userAddress/:id) route.\n");
+            if (dBug) System.out.println("\n* * dBug true IN : Application.runSparkServer : get(\"/userAddress/:id\") route.\n");
 
             String returnString;
             String id =  request.params(":id");
@@ -135,7 +135,7 @@ public class Application implements CommandLineRunner{
 
             // For Testing and Debug.
             boolean dBug = false;
-            if (dBug) System.out.println("\n* * dBug true IN : Application.runSparkServer : get(/userReport/:id) route.\n");
+            if (dBug) System.out.println("\n* * dBug true IN : Application.runSparkServer : get(\"/userReport/:id\") route.\n");
 
             String returnString = "";
             String id =  request.params(":id");
@@ -159,8 +159,8 @@ public class Application implements CommandLineRunner{
         get("providerReport/:id", (request, response) -> {
 
             // For Testing and Debug.
-            boolean dBug = true;
-            if (dBug) System.out.println("\n* * dBug true IN : Application.runSparkServer : get(/providerReport/:id) route.\n");
+            boolean dBug = false;
+            if (dBug) System.out.println("\n* * dBug true IN : Application.runSparkServer : get(\"/providerReport/:id\") route.\n");
 
             String returnString = "";
             String id =  request.params(":id");
@@ -176,7 +176,7 @@ public class Application implements CommandLineRunner{
 
             // For Testing and Debug.
             boolean dBug = false;
-            if (dBug) System.out.println("\n* * dBug true IN : Application.runSparkServer : get(/providerAddress/:id) route.\n");
+            if (dBug) System.out.println("\n* * dBug true IN : Application.runSparkServer : get(\"/providerBillablesTabulations/:id\") route.\n");
 
             String returnString;
             String id =  request.params(":id");
@@ -192,7 +192,7 @@ public class Application implements CommandLineRunner{
 
             // For Testing and Debug.
             boolean dBug = false;
-            if (dBug) System.out.println("\n* * dBug true IN : Application.runSparkServer : get(/providerAddress/:id) route.\n");
+            if (dBug) System.out.println("\n* * dBug true IN : Application.runSparkServer : get(\"/providerAddress/:id\") route.\n");
 
             String returnString;
             String id =  request.params(":id");
@@ -240,7 +240,7 @@ public class Application implements CommandLineRunner{
 
             // For Testing and Debug.
             boolean dBug = false;
-            if (dBug) System.out.println("\n* * dBug true IN : Application.runSparkServer : post(/createBillable) route.\n");
+            if (dBug) System.out.println("\n* * dBug true IN : Application.runSparkServer : post(\"/createBillable\") route.\n");
 
             ObjectMapper mapper = new ObjectMapper();
             try {
@@ -283,11 +283,16 @@ public class Application implements CommandLineRunner{
         }, new FreeMarkerEngine());
 
         get("/getJsonBillableList", (request, response) -> {
+
+            // For Testing and Debug.
+            boolean dBug = false;
+            if (dBug) System.out.println("\n* * dBug true IN : Application.runSparkServer : get(\"/getJsonBillableList\" route.\n");
+
             response.status(200);
             String returnString = mongoController.getJSONListOfObjectsFromRepo(billableRepository);
-            System.out.println("/getJsonBillableList route:");
-            System.out.println("returnString:");
-            System.out.println(returnString);
+            
+            if (dBug) System.out.println("returnString:");
+            if (dBug) System.out.println(returnString);
             
             return returnString;
         });
@@ -371,7 +376,7 @@ public class Application implements CommandLineRunner{
 
             // For Testing and Debug.
             boolean dBug = false;
-            if (dBug) System.out.println("\n* * dBug true IN : Application.runSparkServer : post(/createProvider) route.\n");
+            if (dBug) System.out.println("\n* * dBug true IN : Application.runSparkServer : post(\"/createProvider\") route.\n");
 
             ObjectMapper mapper = new ObjectMapper();
             try {
@@ -497,7 +502,7 @@ public class Application implements CommandLineRunner{
 
             // For Testing and Debug.
             boolean dBug = false;
-            if (dBug) System.out.println("\n* * dBug true IN : Application.runSparkServer : post(/createService) route.\n");
+            if (dBug) System.out.println("\n* * dBug true IN : Application.runSparkServer : post(\"/createService\") route.\n");
 
             ObjectMapper mapper = new ObjectMapper();
             try {
@@ -623,7 +628,7 @@ public class Application implements CommandLineRunner{
 
             // For Testing and Debug.
             boolean dBug = false;
-            if (dBug) System.out.println("\n* * dBug true IN : Application.runSparkServer : post(/createUser) route.\n");
+            if (dBug) System.out.println("\n* * dBug true IN : Application.runSparkServer : post(\"/createUser\") route.\n");
 
             ObjectMapper mapper = new ObjectMapper();
             try {

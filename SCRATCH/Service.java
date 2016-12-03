@@ -1,5 +1,0 @@
-serviceTestData.setEntityServiceIdNumber("")
-serviceTestData.setProvidableServiceDescription("")
-serviceTestData.setIsProvidableByDietitian()
-serviceTestData.setIsProvidableByExerciseExpert()
-serviceTestData.setIsProvidableByInternist()

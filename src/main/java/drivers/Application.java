@@ -692,12 +692,30 @@ public class Application implements CommandLineRunner{
             if (dBug) System.out.println("\n* * dBug true IN : Application.runSparkServer : get(\"/providerReport/:id\") route.\n");
 
             String returnString = "";
-            String testString = "";
+            String jsonList;
+            
+            String id =  request.params(":id");
+            
+            //returnString = reportController.getAllBillablesReportForProviderInJson(billableRepository, providerRepository, serviceRepository, userRepository, id);
+            returnString = reportController.getJsonListOfDatesThatHaveBillablesForProvider(billableRepository, id);
+            
+            if (dBug) System.out.println("returnString:\n" + returnString);
+
+            return returnString;
+        });
+
+        get("providerReport/:id/:startDate", (request, response) -> {
+
+            // For Testing and Debug.
+            boolean dBug = true;
+            if (dBug) System.out.println("\n* * dBug true IN : Application.runSparkServer : get(\"/providerReport/:id/:startDate\") route.\n");
+
+            String returnString = "";
+
             String id =  request.params(":id");
             
             returnString = reportController.getAllBillablesReportForProviderInJson(billableRepository, providerRepository, serviceRepository, userRepository, id);
-            testString = reportController.getListOfDatesThatHaveBillablesForProvider(billableRepository, id);
-            
+
             if (dBug) System.out.println("returnString:\n" + returnString);
 
             return returnString;

@@ -6,10 +6,11 @@ import com.fasterxml.jackson.databind.SerializationFeature;
 import java.io.IOException;
 import java.io.StringWriter;
 
-//import org.springframework.data.mongodb.repository.MongoRepository;
-import java.util.List;
-import entities.*;
+import org.joda.time.DateTime;
 
+import java.util.List;
+
+import entities.*;
 import drivers.*;
 
 public class ChocoReportController {
@@ -156,6 +157,9 @@ public class ChocoReportController {
         return returnString;        
     }
 
+
+
+
     public String getBillablesReportForEachWeekForProviderInJson(BillableRepository billableRepository, ProviderRepository providerRepository, ServiceRepository serviceRepository, UserRepository userRepository, String idOfProvider){
     
         // For Testing and Debug.
@@ -164,9 +168,30 @@ public class ChocoReportController {
 
         String returnString = "";
 
-        // Create a list of billables for the provider being queried.
-        List<Billable> providerBillables = billableRepository.findByProviderNumberServicing(idOfProvider);
+        DateTime firstDateTime = new DateTime("2016-10-15");
+        DateTime lastDateTime = new DateTime();
         
+        List<Billable> providerBillables = billableRepository.findByProviderNumberServicingAndDateServicedBetween(idOfProvider, firstDateTime, lastDateTime);
+        
+        if (dBug) System.out.println("idOfProvider = " + idOfProvider);
+        if (dBug) System.out.println("providerBillables.size() = " + providerBillables.size());
+        
+        if (dBug) {
+            for (int i = 0; i < providerBillables.size(); i ++){
+                System.out.printf("providerBillables.get(%d) :\n", i);
+                System.out.println(convertObjectToJSON(providerBillables.get(i)));
+            }
+        }
+        
+        //Billable testBillableOne = billableRepository.findFirstByOrderByDateServicedAsc();
+        
+        //if (dBug) System.out.println("testBillableOne : \n" + convertObjectToJSON(testBillableOne));
+        
+        Billable testBillableTwo = billableRepository.findByProviderNumberServicingOrderByDateServicedAsc(idOfProvider);
+        Billable testBillableTre = billableRepository.findByProviderNumberServicingOrderByDateServicedDesc(idOfProvider);
+        
+        if (dBug) System.out.println("testBillableTwo : \n" + convertObjectToJSON(testBillableTwo));
+        if (dBug) System.out.println("testBillableTre : \n" + convertObjectToJSON(testBillableTre));
         
         return returnString;
     }

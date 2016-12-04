@@ -186,6 +186,12 @@ public class ChocoReportController {
         if (dBug) System.out.println("fridayLastWeek.toString() = " + fridayLastWeek.toString());
         if (dBug) System.out.println("fridayWeekBefore.toString() = " + fridayWeekBefore.toString());
         
+        if (latestDateTime.isAfter(fridayLastWeek)){
+            if (dBug) System.out.println("\nUnreported Records Exist for this week!\n");
+        } else {
+            if (dBug) System.out.println("\nNo records for this week.\n");
+        }
+        
         return returnString;
     }
     

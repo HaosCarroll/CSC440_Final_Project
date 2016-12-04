@@ -16,26 +16,36 @@ public class ChocoTestDataController {
         
         String[][] billableStringDataArray = new String[42][];
 
-        billableStringDataArray[0] = new String[]{"1",   "111111111", "111111111", "111111", "1/27/2016", "2016-11-26T10:32:31Z", "23.12", "Test Billable! #1"};
-        billableStringDataArray[1] = new String[]{"2",   "222222222", "222222222", "222222", "2/24/2016", "2016-11-27T14:01:10Z", "32.15", "Test Billable! #2"};
-        billableStringDataArray[2] = new String[]{"3",   "333333333", "333333333", "333333", "3/24/2016", "2016-11-27T14:01:10Z", "32.15", "Test Billable! #3"};
-        billableStringDataArray[3] = new String[]{"4",   "444444444", "444444444", "444444", "4/24/2016", "2016-11-27T14:01:10Z", "42.15", "Test Billable! #4"};
-        billableStringDataArray[4] = new String[]{"5",   "555555555", "555555555", "555555", "5/27/2016", "2016-11-26T10:32:31Z", "53.15", "Test Billable! #5"};
-        billableStringDataArray[5] = new String[]{"6",   "666666666", "666666666", "666666", "6/27/2016", "2016-11-26T10:32:31Z", "63.16", "Test Billable! #6"};
-        billableStringDataArray[6] = new String[]{"7",   "777777777", "777777777", "777777", "7/27/2016", "2016-11-26T10:32:31Z", "73.17", "Test Billable! #7"};
-        billableStringDataArray[7] = new String[]{"8",   "888888888", "888888888", "888888", "8/27/2016", "2016-11-26T10:32:31Z", "83.18", "Test Billable! #8"};
-        billableStringDataArray[8] = new String[]{"9",   "999999999", "999999999", "999999", "9/27/2016", "2016-11-26T10:32:31Z", "93.19", "Test Billable! #9"};
-        billableStringDataArray[9] = new String[]{"10",  "111111111", "111111111", "111111", "10/27/2016", "2016-11-26T10:32:31Z", "13.11", "Test Billable! #10"};
-        billableStringDataArray[10] = new String[]{"11", "222222222", "222222222", "222222", "11/27/2016", "2016-11-26T10:32:31Z", "23.12", "Test Billable! #11"};
-        billableStringDataArray[11] = new String[]{"12", "222222222", "222222222", "222222", "11/27/2016", "2016-11-26T10:32:31Z", "23.12", "Test Billable! #12"};
-        billableStringDataArray[12] = new String[]{"13", "333333333", "333333333", "333333", "1/27/2016", "2016-11-26T10:32:31Z", "33.13", "Test Billable! #13"};
-        billableStringDataArray[13] = new String[]{"14", "333333333", "333333333", "333333", "2/27/2016", "2016-11-26T10:32:31Z", "33.13", "Test Billable! #14"};
+        // Test data for xxx :
+        // Basic test data for creating date range selector in provider report:
+        //                                {"Billable_ID","Member_ID","Provider_ID","Serv_ID","DateSrved", "Date_Served_Recorded", "Cost", "Comment"};
+        billableStringDataArray[0] = new String[]{"1",   "111111111", "222222222", "111111", "1/27/2016", "2016-1-28T10:32:31Z", "23.12", "Provider Date Range Test Billable! #1.1"};
+        billableStringDataArray[1] = new String[]{"2",   "222222222", "222222222", "222222", "2/13/2016", "2016-2-14T14:01:10Z", "32.15", "Provider Date Range Test Billable! #1.2"};
+        billableStringDataArray[2] = new String[]{"3",   "333333333", "222222222", "333333", "3/24/2016", "2016-3-25T14:01:10Z", "32.15", "Provider Date Range Test Billable! #1.3"};
+        billableStringDataArray[3] = new String[]{"4",   "444444444", "222222222", "444444", "6/24/2016", "2016-6-25T14:01:10Z", "42.15", "Provider Date Range Test Billable! #1.4"};
+        billableStringDataArray[4] = new String[]{"5",   "555555555", "222222222", "555555", "12/3/2016", "2016-12-4T10:32:31Z", "53.15", "Provider Date Range Test Billable! #1.5"};
+        
+        
+        // Second Test data for creating date range selector in provider report with no service provided in last week:
+        //                                {"Billable_ID","Member_ID","Provider_ID","Serv_ID","DateSrved", "Date_Served_Recorded", "Cost", "Comment"};
+        billableStringDataArray[5] = new String[]{"6",   "666666666", "333333333", "666666", "6/21/2016", "2016-6-22T10:32:31Z", "63.16", "Test Billable! #6"};
+        billableStringDataArray[6] = new String[]{"7",   "777777777", "333333333", "777777", "7/4/2016", "2016-7-5T10:32:31Z", "73.17", "Test Billable! #7"};
+        billableStringDataArray[7] = new String[]{"8",   "888888888", "333333333", "888888", "8/12/2016", "2016-8-13T10:32:31Z", "83.18", "Test Billable! #8"};
+        billableStringDataArray[8] = new String[]{"9",   "999999999", "333333333", "999999", "9/30/2016", "2016-9-30T10:32:31Z", "93.19", "Test Billable! #9"};
+        billableStringDataArray[9] = new String[]{"10",  "111111111", "333333333", "111111", "10/5/2016", "2016-10-6T10:32:31Z", "13.11", "Test Billable! #10"};
+
+
+        billableStringDataArray[10] = new String[]{"11", "222222222", "999999999", "222222", "11/27/2016", "2016-11-26T10:32:31Z", "23.12", "Test Billable! #11"};
+        billableStringDataArray[11] = new String[]{"12", "222222222", "999999999", "222222", "11/27/2016", "2016-11-26T10:32:31Z", "23.12", "Test Billable! #12"};
+        billableStringDataArray[12] = new String[]{"13", "333333333", "888888888", "333333", "1/27/2016", "2016-11-26T10:32:31Z", "33.13", "Test Billable! #13"};
+        billableStringDataArray[13] = new String[]{"14", "333333333", "888888888", "333333", "2/27/2016", "2016-11-26T10:32:31Z", "33.13", "Test Billable! #14"};
         billableStringDataArray[14] = new String[]{"15", "444444444", "444444444", "444444", "3/27/2016", "2016-11-26T10:32:31Z", "43.14", "Test Billable! #15"};
         billableStringDataArray[15] = new String[]{"16", "444444444", "444444444", "444444", "4/27/2016", "2016-11-26T10:32:31Z", "43.14", "Test Billable! #16"};
         billableStringDataArray[16] = new String[]{"17", "555555555", "555555555", "555555", "5/27/2016", "2016-11-26T10:32:31Z", "53.15", "Test Billable! #17"};
         billableStringDataArray[17] = new String[]{"18", "555555555", "555555555", "555555", "6/27/2016", "2016-11-26T10:32:31Z", "53.15", "Test Billable! #18"};
         billableStringDataArray[18] = new String[]{"19", "666666666", "666666666", "666666", "7/27/2016", "2016-11-26T10:32:31Z", "63.16", "Test Billable! #19"};
         billableStringDataArray[19] = new String[]{"20", "666666666", "666666666", "666666", "8/27/2016", "2016-11-26T10:32:31Z", "63.16", "Test Billable! #20"};
+
         billableStringDataArray[20] = new String[]{"21", "777777777", "777777777", "777777", "9/27/2016", "2016-11-26T10:32:31Z", "73.17", "Test Billable! #21"};
         billableStringDataArray[21] = new String[]{"22", "777777777", "777777777", "777777", "10/27/2016", "2016-11-26T10:32:31Z", "73.17", "Test Billable! #22"};
         billableStringDataArray[22] = new String[]{"23", "888888888", "888888888", "888888", "11/27/2016", "2016-11-26T10:32:31Z", "83.18", "Test Billable! #23"};
@@ -43,26 +53,24 @@ public class ChocoTestDataController {
         billableStringDataArray[24] = new String[]{"25", "999999999", "999999999", "999999", "1/27/2016", "2016-11-26T10:32:31Z", "93.19", "Test Billable! #25"};
         billableStringDataArray[25] = new String[]{"26", "999999999", "999999999", "999999", "2/27/2016", "2016-11-26T10:32:31Z", "93.19", "Test Billable! #26"};
 
-        //                                {"Billable_ID", "Member_ID", "Provider_ID", "Service_ID", "Date_Serviced", "Date_Recorded", "Cost", "Comment"};
-
+        // Test data for testing edge cases on reports, (edge is Friday at 9pm) :
+        //                                {"Billable_ID","Member_ID","Provider_ID","Serv_ID","DateSrved", "Date_Served_Recorded", "Cost", "Comment"};
         billableStringDataArray[26] = new String[]{"27",   "111111111", "111111111", "111111", "8/25/2016", "2016-8-26T20:59:31Z", "43.62", "Edge Test Billable! #1.1 - FRONT"};
         billableStringDataArray[27] = new String[]{"28",   "222222222", "111111111", "111111", "8/26/2016", "2016-8-26T21:00:01Z", "99.99", "Edge Test Billable! #1.2 - REAR"};
-
         billableStringDataArray[28] = new String[]{"29",   "444444444", "111111111", "111111", "9/8/2016", "2016-9-9T20:59:59Z", "13.52", "Edge Test Billable! #2.1 - FRONT"};
         billableStringDataArray[29] = new String[]{"30",   "333333333", "111111111", "111111", "9/9/2016", "2016-9-9T21:00:00Z", "45.56", "Edge Test Billable! #2.2 - FRONT"};
+
         billableStringDataArray[30] = new String[]{"31",   "222222222", "111111111", "222222", "9/9/2016", "2016-9-9T21:00:01Z", "100.23", "Edge Test Billable! #2.3 - REAR"};
         billableStringDataArray[31] = new String[]{"32",   "111111111", "111111111", "222222", "9/9/2016", "2016-9-9T21:00:31Z", "23.12", "Edge Test Billable! #2.4 - REAR"};
-
         billableStringDataArray[32] = new String[]{"33",   "111111111", "111111111", "333333", "10/12/2016", "2016-10-13T10:32:31Z", "100.52", "Random Test Billable! #3.0"};
-
         billableStringDataArray[33] = new String[]{"34",   "222222222", "111111111", "333333", "11/03/2016", "2016-11-4T20:59:31Z", "62.34", "Edge Test Billable! #4.1 - FRONT"};
         billableStringDataArray[34] = new String[]{"35",   "111111111", "111111111", "999999", "11/4/2016", "2016-11-4T20:59:59Z", "123.43", "Edge Test Billable! #4.2 - FRONT"};
         billableStringDataArray[35] = new String[]{"36",   "333333333", "111111111", "333333", "11/4/2016", "2016-11-4T21:00:00Z", "123.42", "Edge Test Billable! #4.3 - FRONT"};
         billableStringDataArray[36] = new String[]{"37",   "111111111", "111111111", "111111", "11/4/2016", "2016-11-4T21:00:01Z", "323.52", "Edge Test Billable! #4.4 - REAR"};
         billableStringDataArray[37] = new String[]{"38",   "777777777", "111111111", "444444", "11/4/2016", "2016-11-4T21:01:01Z", "193.15", "Edge Test Billable! #4.5 - REAR"};
-
         billableStringDataArray[38] = new String[]{"39",   "888888888", "111111111", "111111", "12/1/2016", "2016-12-2T10:32:31Z", "123.12", "Edge Test Billable! #5.1 - FRONT"};
         billableStringDataArray[39] = new String[]{"40",   "999999999", "111111111", "444444", "12/1/2016", "2016-12-2T20:59:59Z", "213.15", "Edge Test Billable! #5.2 - FRONT"};
+
         billableStringDataArray[40] = new String[]{"39",   "888888888", "111111111", "111111", "12/2/2016", "2016-12-2T21:00:00Z", "134.43", "Edge Test Billable! #5.3 - FRONT"};
         billableStringDataArray[41] = new String[]{"40",   "999999999", "111111111", "444444", "12/2/2016", "2016-12-2T21:00:01Z", "163.67", "Edge Test Billable! #5.4 - REAR"};
 

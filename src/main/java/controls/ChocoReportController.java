@@ -6,7 +6,8 @@ import com.fasterxml.jackson.databind.SerializationFeature;
 import java.io.IOException;
 import java.io.StringWriter;
 
-import org.joda.time.DateTime;
+//import org.joda.time.DateTime;
+import org.joda.time.*;
 
 import java.util.List;
 
@@ -160,46 +161,56 @@ public class ChocoReportController {
 
 
 
-    public String getBillablesReportForEachWeekForProviderInJson(BillableRepository billableRepository, ProviderRepository providerRepository, ServiceRepository serviceRepository, UserRepository userRepository, String idOfProvider){
-    
+    public String getListOfDatesThatHaveBillablesForProvider(BillableRepository billableRepository, String idOfProvider){
+        
+        // TODO : Make it return a list or better, something that can be linked to a drop-down selector in the ftl.
+        
         // For Testing and Debug.
         boolean dBug = true;
         if (dBug) System.out.println("\n* * dBug true IN : ChocoReportController.getBillablesReportForEachWeekForProviderInJson(...)\n");
 
         String returnString = "";
 
-        DateTime firstDateTime = new DateTime("2016-10-15");
-        DateTime lastDateTime = new DateTime();
+        DateTime earliestDateTime = getDateTimeOfFirstBillableInRepositoryForProviderId(billableRepository, idOfProvider);
+        DateTime latestDateTime = getDateTimeOfLastBillableInRepositoryForProviderId(billableRepository, idOfProvider);
         
-        List<Billable> providerBillables = billableRepository.findByProviderNumberServicingAndDateServicedBetween(idOfProvider, firstDateTime, lastDateTime);
+        DateTime todaysDateTime = new DateTime();
         
-        if (dBug) System.out.println("idOfProvider = " + idOfProvider);
-        if (dBug) System.out.println("providerBillables.size() = " + providerBillables.size());
+        DateTime fridayLastWeek = todaysDateTime.withDayOfWeek(DateTimeConstants.FRIDAY).withTime(21, 0, 0, 0);
+        DateTime fridayWeekBefore = fridayLastWeek.minusWeeks(1).withTime(21, 0, 0, 1);
         
-        if (dBug) {
-            for (int i = 0; i < providerBillables.size(); i ++){
-                System.out.printf("providerBillables.get(%d) :\n", i);
-                System.out.println(convertObjectToJSON(providerBillables.get(i)));
-            }
-        }
-        
-        //Billable testBillableOne = billableRepository.findFirstByOrderByDateServicedAsc();
-        
-        //if (dBug) System.out.println("testBillableOne : \n" + convertObjectToJSON(testBillableOne));
-        
-        Billable testBillableTwo = billableRepository.findByProviderNumberServicingOrderByDateServicedAsc(idOfProvider);
-        Billable testBillableTre = billableRepository.findByProviderNumberServicingOrderByDateServicedDesc(idOfProvider);
-        
-        if (dBug) System.out.println("testBillableTwo : \n" + convertObjectToJSON(testBillableTwo));
-        if (dBug) System.out.println("testBillableTre : \n" + convertObjectToJSON(testBillableTre));
+        if (dBug) System.out.println("earliestDateTime.toString() = " + earliestDateTime.toString());
+        if (dBug) System.out.println("latestDateTime.toString() = " + latestDateTime.toString());
+
+        if (dBug) System.out.println("todaysDateTime.toString() = " + todaysDateTime.toString());
+        if (dBug) System.out.println("fridayLastWeek.toString() = " + fridayLastWeek.toString());
+        if (dBug) System.out.println("fridayWeekBefore.toString() = " + fridayWeekBefore.toString());
         
         return returnString;
     }
     
+    private DateTime getDateTimeOfFirstBillableInRepositoryForProviderId(BillableRepository billableRepository, String idOfProvider) {
+        DateTime returnDateTime;
+        
+        Billable firstBillableForProvider = billableRepository.findByProviderNumberServicingOrderByDateServicedRecordedAsc(idOfProvider);
+        
+        returnDateTime = firstBillableForProvider.getDateTimeServicedRecorded();
+        
+        return returnDateTime;
+    }
+    
+    private DateTime getDateTimeOfLastBillableInRepositoryForProviderId(BillableRepository billableRepository, String idOfProvider) {
+        DateTime returnDateTime;
+        
+        Billable firstBillableForProvider = billableRepository.findByProviderNumberServicingOrderByDateServicedRecordedDesc(idOfProvider);
+        
+        returnDateTime = firstBillableForProvider.getDateTimeServicedRecorded();
+        
+        return returnDateTime;
+    }
 
 
-
-    public String getBillablesReportForProviderInJson(BillableRepository billableRepository, ProviderRepository providerRepository, ServiceRepository serviceRepository, UserRepository userRepository, String idOfProvider){
+    public String getAllBillablesReportForProviderInJson(BillableRepository billableRepository, ProviderRepository providerRepository, ServiceRepository serviceRepository, UserRepository userRepository, String idOfProvider){
         
         // For Testing and Debug.
         boolean dBug = false;

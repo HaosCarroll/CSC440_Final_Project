@@ -65,7 +65,11 @@ public class Billable extends Validable{
     public String getDateServicedRecorded() {
         return dateServicedRecorded.toString("MM/dd/yyyy HH:mm:ss");
     }
-    
+
+    public DateTime getDateTimeServicedRecorded(){
+         DateTime returnDateTime = new DateTime(dateServicedRecorded.toString());
+         return returnDateTime;
+    }   
     // This is used when a new entity is created.
     public void setDateServicedRecorded() {
         
@@ -79,13 +83,6 @@ public class Billable extends Validable{
     
     // This is used for creating test data.
     public void setDateServicedRecorded(String dateServicedRecorded) {
-        
-        String tempString = "";
-        //tempString = dateServicedRecorded.substring(dateServicedRecorded.lastIndexOf("/")+1) + "-";
-        //tempString += dateServicedRecorded.substring(0, dateServicedRecorded.indexOf("/")) + "-";
-        //tempString += dateServicedRecorded.substring((dateServicedRecorded.indexOf("/")+1), dateServicedRecorded.lastIndexOf("/"));
-
-        //this.dateServicedRecorded = new DateTime(tempString);
         this.dateServicedRecorded = new DateTime(dateServicedRecorded);
     }
     

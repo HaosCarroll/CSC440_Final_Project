@@ -695,8 +695,8 @@ public class Application implements CommandLineRunner{
             String testString = "";
             String id =  request.params(":id");
             
-            returnString = reportController.getBillablesReportForProviderInJson(billableRepository, providerRepository, serviceRepository, userRepository, id);
-            testString = reportController.getBillablesReportForEachWeekForProviderInJson(billableRepository, providerRepository, serviceRepository, userRepository, id);
+            returnString = reportController.getAllBillablesReportForProviderInJson(billableRepository, providerRepository, serviceRepository, userRepository, id);
+            testString = reportController.getListOfDatesThatHaveBillablesForProvider(billableRepository, id);
             
             if (dBug) System.out.println("returnString:\n" + returnString);
 

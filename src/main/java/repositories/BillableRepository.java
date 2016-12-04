@@ -24,15 +24,17 @@ public interface BillableRepository extends MongoRepository<Billable, String> {
 	// AND THEY WORK!! WOOT WOOT!!
 	
 	// Bryant adds a call to return billable entities between a date range:
-	List<Billable> findByDateServicedBetween(DateTime first, DateTime last);
+	List<Billable> findByDateServicedRecordedBetween(DateTime first, DateTime last);
 
 	// And then we try this...
-	List<Billable> findByProviderNumberServicingAndDateServicedBetween(@Param("providerNumberServicing") String providerNumberServicing, @Param("dateServiced") DateTime first, @Param("dateServiced") DateTime last);
+	List<Billable> findByProviderNumberServicingAndDateServicedRecordedBetween(@Param("providerNumberServicing") String providerNumberServicing, @Param("dateServicedRecorded") DateTime first, @Param("dateServicedRecorded") DateTime last);
 	
 	// We need the earliest billable, so starting here:
 	// Sauce : http://docs.spring.io/spring-data/mongodb/docs/current/reference/html/#repositories.limit-query-result
-	Billable findFirstByOrderByDateServicedAsc();
+	Billable findFirstByOrderByDateServicedRecordedAsc();
 
-	Billable findByProviderNumberServicingOrderByDateServicedAsc(@Param("providerNumberServicing") String providerNumberServicing);
-	Billable findByProviderNumberServicingOrderByDateServicedDesc(@Param("providerNumberServicing") String providerNumberServicing);
+	// This function gets the first billable record for the provider ID passed to it.
+	Billable findByProviderNumberServicingOrderByDateServicedRecordedAsc(@Param("providerNumberServicing") String providerNumberServicing);
+	// This function gets the last billable record for the provider ID passed to it.
+	Billable findByProviderNumberServicingOrderByDateServicedRecordedDesc(@Param("providerNumberServicing") String providerNumberServicing);
 }  

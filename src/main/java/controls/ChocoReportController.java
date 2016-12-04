@@ -176,8 +176,8 @@ public class ChocoReportController {
         
         DateTime todaysDateTime = new DateTime();
         
-        DateTime fridayLastWeek = todaysDateTime.withDayOfWeek(DateTimeConstants.FRIDAY).withTime(21, 0, 0, 0);
-        DateTime fridayWeekBefore = fridayLastWeek.minusWeeks(1).withTime(21, 0, 0, 1);
+        DateTime fridayLastWeek = todaysDateTime.withDayOfWeek(DateTimeConstants.FRIDAY).withTime(21, 0, 0, 1);
+        DateTime fridayWeekBefore = fridayLastWeek.minusWeeks(1).withTime(21, 0, 0, 0);
         
         if (dBug) System.out.println("earliestDateTime.toString() = " + earliestDateTime.toString());
         if (dBug) System.out.println("latestDateTime.toString() = " + latestDateTime.toString());
@@ -186,11 +186,21 @@ public class ChocoReportController {
         if (dBug) System.out.println("fridayLastWeek.toString() = " + fridayLastWeek.toString());
         if (dBug) System.out.println("fridayWeekBefore.toString() = " + fridayWeekBefore.toString());
         
+        DateTime endDateTime;
+        DateTime startDateTime;
+
         if (latestDateTime.isAfter(fridayLastWeek)){
             if (dBug) System.out.println("\nUnreported Records Exist for this week!\n");
+            endDateTime = fridayLastWeek.plusWeeks(1).withTime(21, 0, 0, 0);
+            startDateTime = fridayLastWeek;
         } else {
             if (dBug) System.out.println("\nNo records for this week.\n");
+            endDateTime = earliestDateTime.plusWeeks(1).withTime(21, 0, 0, 0);
+            startDateTime = earliestDateTime.withDayOfWeek(DateTimeConstants.FRIDAY).withTime(21, 0, 0, 1);
         }
+        
+        if (dBug) System.out.println("endDateTime.toString() = " + endDateTime.toString());
+        if (dBug) System.out.println("startDateTime.toString() = " + startDateTime.toString());
         
         return returnString;
     }
@@ -333,3 +343,14 @@ public class ChocoReportController {
         return null;
     }
 }
+
+
+/*
+Sauce List:
+
+https://www.google.com/search?sourceid=chrome-psyapi2&ion=1&espv=2&ie=UTF-8&q=joda%20datetime%20object%20change%20time&oq=joda%20datetime%20object%20change%20time&aqs=chrome..69i57j0l2.5135j0j4
+http://stackoverflow.com/questions/17172782/comparing-two-joda-time-datetime-objects
+http://stackoverflow.com/questions/1636038/time-how-to-get-the-next-friday
+http://stackoverflow.com/questions/12661203/what-is-the-best-way-to-retrieve-the-dates-for-last-monday-and-friday
+http://stackoverflow.com/questions/29380681/how-to-set-time-property-in-java-using-joda-time
+*/

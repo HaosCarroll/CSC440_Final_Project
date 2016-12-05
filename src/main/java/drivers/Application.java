@@ -50,7 +50,7 @@ public class Application implements CommandLineRunner{
 	public static void main(String[] args) {
 
         // For Testing and Debug.
-        boolean dBug = false;
+        boolean dBug = true;
         if (dBug) System.out.println("\n* * dBug true IN : Application.main()\n");
 
 		SpringApplication.run(Application.class, args);
@@ -682,7 +682,7 @@ public class Application implements CommandLineRunner{
         get("/providerReport", (request, response) -> {
            Map<String, Object> viewObjects = new HashMap<String, Object>();
            viewObjects.put("templateName", "report_pages/provider_report.ftl");
-           viewObjects.put("title", "Provider Report being constructed!");
+           viewObjects.put("title", "Provider Report!");
            viewObjects.put("providers", mongoController.getJSONListOfIdsFromRepo(providerRepository));
            return new ModelAndView(viewObjects, "aMain.ftl");
         }, new FreeMarkerEngine());

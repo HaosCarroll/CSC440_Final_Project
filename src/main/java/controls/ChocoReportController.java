@@ -145,13 +145,12 @@ public class ChocoReportController {
         
         Provider queriedProvider = providerRepository.findOneByEntityProviderIdNumber(id);
         
-        returnString += String.format("<h2>%s</h2>\n", queriedProvider.getProviderName());
-        returnString += String.format("<h3> PROVIDER ID# : %s</h3>\n", queriedProvider.getEntityProviderIdNumber());
         returnString += String.format("<p>\n");
+        returnString += String.format("<h2>%s</h2>\n", queriedProvider.getProviderName());
         returnString += String.format("   %s<br>\n", queriedProvider.getProviderStreetAddress());
-        returnString += String.format("   %s<br>\n", queriedProvider.getProviderCity());
-        returnString += String.format("   %s<br>\n", queriedProvider.getProviderState());
+        returnString += String.format("   %s, %s<br>\n", queriedProvider.getProviderCity(), queriedProvider.getProviderState());
         returnString += String.format("   %s<br>\n", String.valueOf(queriedProvider.getProviderZip()));
+        returnString += String.format("<h4>ID# : %s</h>\n", queriedProvider.getEntityProviderIdNumber());
         returnString += String.format("</p>\n");
         
         if (dBug) System.out.println("returnString:\n" + returnString);

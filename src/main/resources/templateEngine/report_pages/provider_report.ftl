@@ -19,6 +19,8 @@
 
     <div id="provider_billables_heading"></div>
 
+    <div id="provider_billables_report_heading"></div>
+
     <div class="providerBillableTable"></div>
     <div class="paginationContainer"></div>
 
@@ -79,6 +81,14 @@
                     console.log("prov_arr = " + prov_arr);
                     console.log("date_arr = " + date_arr);
                     var url_string_for_report = '/providerReport/' + prov_arr + '/' + date_arr
+
+                    var stringDateToParse = date_arr.replace(/-/g, '\/');
+                    var dateStart = new Date(stringDateToParse);
+                    var dateEnd = new Date(stringDateToParse);
+                    dateEnd.setDate(dateEnd.getDate()+7);
+                    
+                    $('#provider_billables_report_heading').text("");
+                    $('#provider_billables_report_heading').append('<h4>' + dateStart.toDateString() + ' (9pm) - ' + dateEnd.toDateString() + ' (9pm)</h4>');
 
                     $.getJSON(url_string_for_report, function(json) {
                         if (json.length == 0) {

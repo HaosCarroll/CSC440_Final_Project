@@ -211,25 +211,27 @@ public class ChocoReportController {
             returnStringList.add(startDateTime.toString());
         } else {
             if (dBug) System.out.println("\nNo records for this week.\n");
-            endDateTime = followingFridayFromDate(latestDateTime);
             startDateTime = previousFridayFromDate(latestDateTime);
-            returnStringList.add(startDateTime.toString());
+            endDateTime = followingFridayFromDate(latestDateTime);
         }
         
         if (dBug) System.out.println("todaysDateTime.toString() = " + todaysDateTime.toString());
         if (dBug) System.out.println("\nearliestDateTime.toString() = " + earliestDateTime.toString());
-        if (dBug) System.out.println("latestDateTime.toString() = " + latestDateTime.toString());
-        if (dBug) System.out.println("\nendDateTime.toString() = " + endDateTime.toString());
-        if (dBug) System.out.println("startDateTime.toString() = " + startDateTime.toString() + "\n");
+        if (dBug) System.out.println("\nlatestDateTime.toString() = " + latestDateTime.toString());
+        if (dBug) System.out.println("\nstartDateTime.toString() = " + startDateTime.toString());
+        if (dBug) System.out.println("endDateTime.toString() = " + endDateTime.toString() + "\n");
 
         while (startDateTime.isAfter(earliestDateTime)){
             startDateTime = startDateTime.minusWeeks(1);
             endDateTime = endDateTime.minusWeeks(1);
-            if ( billableRepository.findByProviderNumberServicingAndDateServicedRecordedBetween(idOfProvider, startDateTime, endDateTime).size()> 0){
-                if (dBug) System.out.printf("(%s - %s) * FOUND RECORD(S).\n", startDateTime.toString(), endDateTime.toString());
+            
+            int numBillablesInWeek = billableRepository.findByProviderNumberServicingAndDateServicedRecordedBetween(idOfProvider, startDateTime, endDateTime).size();
+            
+            if ( numBillablesInWeek > 0){
+                if (dBug) System.out.printf("(%s - %s) * FOUND %s RECORD(S).\n", startDateTime.toString(), endDateTime.toString(), numBillablesInWeek);
                 returnStringList.add(startDateTime.toString());
             } else {
-                if (dBug) System.out.printf("(%s - %s) * NO RECORD FOUND.\n", startDateTime.toString(), endDateTime.toString());
+                if (dBug) System.out.printf("(%s - %s) * NONE.\n", startDateTime.toString(), endDateTime.toString());
             }
         }
         
@@ -244,12 +246,24 @@ public class ChocoReportController {
     }
     
     private DateTime followingFridayFromDate(DateTime dateTimeIn) {
-        DateTime returnDateTime = dateTimeIn.plusWeeks(1).withDayOfWeek(DateTimeConstants.FRIDAY).withTime(21, 0, 0, 0);
+        DateTime returnDateTime = dateTimeIn.plusWeeks(1).withDayOfWeek(DateTimeConstants.FRIDAY).withTime(21, 0, 1, 0);
         return returnDateTime;
     }
     
     private DateTime previousFridayFromDate(DateTime dateTimeIn) {
-        DateTime returnDateTime = dateTimeIn.withDayOfWeek(DateTimeConstants.FRIDAY).withTime(21, 0, 0, 1);
+        
+        // For Testing and Debug.
+        boolean dBug = false;
+        if (dBug) System.out.println("\n* * dBug true IN : ChocoReportController.previousFridayFromDate(...)\n");
+        if (dBug) System.out.println("\ndateTimeIn.toString() = " + dateTimeIn.toString());
+
+        if (dateTimeIn.getDayOfWeek() == DateTimeConstants.FRIDAY) {
+            dateTimeIn = dateTimeIn.minusWeeks(1);
+        }
+
+        DateTime returnDateTime = dateTimeIn.withDayOfWeek(DateTimeConstants.FRIDAY).withTime(21, 0, 0, 0);
+        
+        if (dBug) System.out.println("returnDateTime.toString() = " + returnDateTime.toString() + "\n");
         return returnDateTime;
     }
     

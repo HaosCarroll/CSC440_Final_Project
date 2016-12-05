@@ -50,7 +50,7 @@ public class Application implements CommandLineRunner{
 	public static void main(String[] args) {
 
         // For Testing and Debug.
-        boolean dBug = true;
+        boolean dBug = false;
         if (dBug) System.out.println("\n* * dBug true IN : Application.main()\n");
 
 		SpringApplication.run(Application.class, args);
@@ -698,22 +698,26 @@ public class Application implements CommandLineRunner{
             return returnString;
         });
 
-        get("providerReport/:id/:startDate", (request, response) -> {
+        get("providerReport/:id/:endQueryDate", (request, response) -> {
             // For Testing and Debug.
             boolean dBug = false;
-            if (dBug) System.out.println("\n* * dBug true IN : Application.runSparkServer : get(\"/providerReport/:id/:startDate\") route.\n");
+            if (dBug) System.out.println("\n* * dBug true IN : Application.runSparkServer : get(\"/providerReport/:id/:endQueryDate\") route.\n");
 
             String returnString = "";
 
             String id =  request.params(":id");
-            String startDate =  request.params(":startDate");
+            String endDate =  request.params(":endQueryDate");
 
-            DateTime startDateTime = new DateTime(startDate).withTime(21, 0, 0, 1);
-            DateTime endDateTime = new DateTime(startDate).plusWeeks(1).withTime(21, 0, 0, 0);
+            DateTime endDateTime = new DateTime(endDate).plusWeeks(1).withTime(21, 0, 1, 0);
+            DateTime startDateTime = new DateTime(endDate).withTime(21, 0, 0, 0);
+            
+            if (dBug) System.out.println("\nendDate :" + endDate);
+            if (dBug) System.out.println("endDateTime :" + endDateTime);
+            if (dBug) System.out.println("startDateTime :" + startDateTime);
             
             returnString = reportController.getBillablesReportForProviderByDateRangeInJson(billableRepository, providerRepository, serviceRepository, userRepository, id, startDateTime, endDateTime);
 
-            if (dBug) System.out.println("returnString:\n" + returnString);
+            //if (dBug) System.out.println("returnString:\n" + returnString);
             return returnString;
         });
 

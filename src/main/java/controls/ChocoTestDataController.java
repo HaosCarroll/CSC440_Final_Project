@@ -14,65 +14,549 @@ public class ChocoTestDataController {
             
         // Format for setting data recorded value : yyyy-MM-dd'T'HH:mm:ssZ
         
-        String[][] billableStringDataArray = new String[42][];
 
-        // Test data for xxx :
-        // Basic test data for creating date range selector in provider report:
-        //                                {"Billable_ID","Member_ID","Provider_ID","Serv_ID","DateSrved", "Date_Served_Recorded", "Cost", "Comment"};
-        billableStringDataArray[0] = new String[]{"1",   "111111111", "222222222", "111111", "1/27/2016", "2016-1-28T10:32:31Z", "23.12", "Provider Date Range Test Billable! #1.1"};
-        billableStringDataArray[1] = new String[]{"2",   "222222222", "222222222", "222222", "2/13/2016", "2016-2-14T14:01:10Z", "32.15", "Provider Date Range Test Billable! #1.2"};
-        billableStringDataArray[2] = new String[]{"3",   "333333333", "222222222", "333333", "3/24/2016", "2016-3-25T14:01:10Z", "32.15", "Provider Date Range Test Billable! #1.3"};
-        billableStringDataArray[3] = new String[]{"4",   "444444444", "222222222", "444444", "6/24/2016", "2016-6-25T14:01:10Z", "42.15", "Provider Date Range Test Billable! #1.4"};
-        billableStringDataArray[4] = new String[]{"5",   "555555555", "222222222", "555555", "12/3/2016", "2016-12-4T10:32:31Z", "53.15", "Provider Date Range Test Billable! #1.5"};
-        
-        
-        // Second Test data for creating date range selector in provider report with no service provided in last week:
-        //                                {"Billable_ID","Member_ID","Provider_ID","Serv_ID","DateSrved", "Date_Served_Recorded", "Cost", "Comment"};
-        billableStringDataArray[5] = new String[]{"6",   "666666666", "333333333", "666666", "6/21/2016", "2016-6-22T10:32:31Z", "63.16", "Test Billable! #6"};
-        billableStringDataArray[6] = new String[]{"7",   "777777777", "333333333", "777777", "7/4/2016", "2016-7-5T10:32:31Z", "73.17", "Test Billable! #7"};
-        billableStringDataArray[7] = new String[]{"8",   "888888888", "333333333", "888888", "8/12/2016", "2016-8-13T10:32:31Z", "83.18", "Test Billable! #8"};
-        billableStringDataArray[8] = new String[]{"9",   "999999999", "333333333", "999999", "9/30/2016", "2016-9-30T10:32:31Z", "93.19", "Test Billable! #9"};
-        billableStringDataArray[9] = new String[]{"10",  "111111111", "333333333", "111111", "10/5/2016", "2016-10-6T10:32:31Z", "13.11", "Test Billable! #10"};
+      String[][] billableStringDataArray = new String[405][];
 
 
-        billableStringDataArray[10] = new String[]{"11", "222222222", "999999999", "222222", "11/27/2016", "2016-11-26T10:32:31Z", "23.12", "Test Billable! #11"};
-        billableStringDataArray[11] = new String[]{"12", "222222222", "999999999", "222222", "11/27/2016", "2016-11-26T10:32:31Z", "23.12", "Test Billable! #12"};
-        billableStringDataArray[12] = new String[]{"13", "333333333", "888888888", "333333", "1/27/2016", "2016-11-26T10:32:31Z", "33.13", "Test Billable! #13"};
-        billableStringDataArray[13] = new String[]{"14", "333333333", "888888888", "333333", "2/27/2016", "2016-11-26T10:32:31Z", "33.13", "Test Billable! #14"};
-        billableStringDataArray[14] = new String[]{"15", "444444444", "444444444", "444444", "3/27/2016", "2016-11-26T10:32:31Z", "43.14", "Test Billable! #15"};
-        billableStringDataArray[15] = new String[]{"16", "444444444", "444444444", "444444", "4/27/2016", "2016-11-26T10:32:31Z", "43.14", "Test Billable! #16"};
-        billableStringDataArray[16] = new String[]{"17", "555555555", "555555555", "555555", "5/27/2016", "2016-11-26T10:32:31Z", "53.15", "Test Billable! #17"};
-        billableStringDataArray[17] = new String[]{"18", "555555555", "555555555", "555555", "6/27/2016", "2016-11-26T10:32:31Z", "53.15", "Test Billable! #18"};
-        billableStringDataArray[18] = new String[]{"19", "666666666", "666666666", "666666", "7/27/2016", "2016-11-26T10:32:31Z", "63.16", "Test Billable! #19"};
-        billableStringDataArray[19] = new String[]{"20", "666666666", "666666666", "666666", "8/27/2016", "2016-11-26T10:32:31Z", "63.16", "Test Billable! #20"};
+// <--  Test Data Set # 1 START!
 
-        billableStringDataArray[20] = new String[]{"21", "777777777", "777777777", "777777", "9/27/2016", "2016-11-26T10:32:31Z", "73.17", "Test Billable! #21"};
-        billableStringDataArray[21] = new String[]{"22", "777777777", "777777777", "777777", "10/27/2016", "2016-11-26T10:32:31Z", "73.17", "Test Billable! #22"};
-        billableStringDataArray[22] = new String[]{"23", "888888888", "888888888", "888888", "11/27/2016", "2016-11-26T10:32:31Z", "83.18", "Test Billable! #23"};
-        billableStringDataArray[23] = new String[]{"24", "888888888", "888888888", "888888", "11/27/2016", "2016-11-26T10:32:31Z", "83.18", "Test Billable! #24"};
-        billableStringDataArray[24] = new String[]{"25", "999999999", "999999999", "999999", "1/27/2016", "2016-11-26T10:32:31Z", "93.19", "Test Billable! #25"};
-        billableStringDataArray[25] = new String[]{"26", "999999999", "999999999", "999999", "2/27/2016", "2016-11-26T10:32:31Z", "93.19", "Test Billable! #26"};
+       billableStringDataArray[0] = new String[]{"1", /*U*/"222222222", /*P*/"111111111", /*S*/"444444", "8/18/2016",    "2016-8-19T21:00:01Z", "59.39", " Test Case : 1.1.1"};
 
-        // Test data for testing edge cases on reports, (edge is Friday at 9pm) :
-        //                                {"Billable_ID","Member_ID","Provider_ID","Serv_ID","DateSrved", "Date_Served_Recorded", "Cost", "Comment"};
-        billableStringDataArray[26] = new String[]{"27",   "111111111", "111111111", "111111", "8/25/2016", "2016-8-26T20:59:31Z", "43.62", "Edge Test Billable! #1.1 - FRONT"};
-        billableStringDataArray[27] = new String[]{"28",   "222222222", "111111111", "111111", "8/26/2016", "2016-8-26T21:00:01Z", "99.99", "Edge Test Billable! #1.2 - REAR"};
-        billableStringDataArray[28] = new String[]{"29",   "444444444", "111111111", "111111", "9/8/2016", "2016-9-9T20:59:59Z", "13.52", "Edge Test Billable! #2.1 - FRONT"};
-        billableStringDataArray[29] = new String[]{"30",   "333333333", "111111111", "111111", "9/9/2016", "2016-9-9T21:00:00Z", "45.56", "Edge Test Billable! #2.2 - FRONT"};
+       billableStringDataArray[1] = new String[]{"2", /*U*/"888888888", /*P*/"111111111", /*S*/"444444", "8/25/2016",    "2016-8-26T21:00:01Z", "171.23", " Test Case : 1.2.1"};
+       billableStringDataArray[2] = new String[]{"3", /*U*/"555555555", /*P*/"111111111", /*S*/"777777", "9/1/2016",     "2016-9-2T21:00:00Z", "27.2", " Test Case : 1.2.2"};
 
-        billableStringDataArray[30] = new String[]{"31",   "222222222", "111111111", "222222", "9/9/2016", "2016-9-9T21:00:01Z", "100.23", "Edge Test Billable! #2.3 - REAR"};
-        billableStringDataArray[31] = new String[]{"32",   "111111111", "111111111", "222222", "9/9/2016", "2016-9-9T21:00:31Z", "23.12", "Edge Test Billable! #2.4 - REAR"};
-        billableStringDataArray[32] = new String[]{"33",   "111111111", "111111111", "333333", "10/12/2016", "2016-10-13T10:32:31Z", "100.52", "Random Test Billable! #3.0"};
-        billableStringDataArray[33] = new String[]{"34",   "222222222", "111111111", "333333", "11/03/2016", "2016-11-4T20:59:31Z", "62.34", "Edge Test Billable! #4.1 - FRONT"};
-        billableStringDataArray[34] = new String[]{"35",   "111111111", "111111111", "999999", "11/4/2016", "2016-11-4T20:59:59Z", "123.43", "Edge Test Billable! #4.2 - FRONT"};
-        billableStringDataArray[35] = new String[]{"36",   "333333333", "111111111", "333333", "11/4/2016", "2016-11-4T21:00:00Z", "123.42", "Edge Test Billable! #4.3 - FRONT"};
-        billableStringDataArray[36] = new String[]{"37",   "111111111", "111111111", "111111", "11/4/2016", "2016-11-4T21:00:01Z", "323.52", "Edge Test Billable! #4.4 - REAR"};
-        billableStringDataArray[37] = new String[]{"38",   "777777777", "111111111", "444444", "11/4/2016", "2016-11-4T21:01:01Z", "193.15", "Edge Test Billable! #4.5 - REAR"};
-        billableStringDataArray[38] = new String[]{"39",   "888888888", "111111111", "111111", "12/1/2016", "2016-12-2T10:32:31Z", "123.12", "Edge Test Billable! #5.1 - FRONT"};
-        billableStringDataArray[39] = new String[]{"40",   "999999999", "111111111", "444444", "12/1/2016", "2016-12-2T20:59:59Z", "213.15", "Edge Test Billable! #5.2 - FRONT"};
+       billableStringDataArray[3] = new String[]{"4", /*U*/"555555555", /*P*/"111111111", /*S*/"555555", "9/1/2016",     "2016-9-2T21:00:01Z", "34.50", " Test Case : 1.3.1"};
+       billableStringDataArray[4] = new String[]{"5", /*U*/"888888888", /*P*/"111111111", /*S*/"444444", "9/3/2016",     "2016-9-4T21:36:15Z", "245.85", " Test Case : 1.3.2"};
+       billableStringDataArray[5] = new String[]{"6", /*U*/"444444444", /*P*/"111111111", /*S*/"444444", "9/8/2016",     "2016-9-9T21:00:00Z", "6.87", " Test Case : 1.3.3"};
 
-        billableStringDataArray[40] = new String[]{"39",   "888888888", "111111111", "111111", "12/2/2016", "2016-12-2T21:00:00Z", "134.43", "Edge Test Billable! #5.3 - FRONT"};
-        billableStringDataArray[41] = new String[]{"40",   "999999999", "111111111", "444444", "12/2/2016", "2016-12-2T21:00:01Z", "163.67", "Edge Test Billable! #5.4 - REAR"};
+       billableStringDataArray[6] = new String[]{"7", /*U*/"222222222", /*P*/"111111111", /*S*/"111111", "9/9/2016",     "2016-9-9T21:00:01Z", "186.72", " Test Case : 1.4.1"};
+       billableStringDataArray[7] = new String[]{"8", /*U*/"222222222", /*P*/"111111111", /*S*/"444444", "9/10/2016",    "2016-9-11T14:34:35Z", "230.65", " Test Case : 1.4.2"};
+       billableStringDataArray[8] = new String[]{"9", /*U*/"999999999", /*P*/"111111111", /*S*/"222222", "9/12/2016",    "2016-9-13T11:11:2Z", "125.15", " Test Case : 1.4.3"};
+       billableStringDataArray[9] = new String[]{"10", /*U*/"777777777", /*P*/"111111111", /*S*/"444444", "9/16/2016",   "2016-9-16T21:00:00Z", "159.61", " Test Case : 1.4.4"};
+
+       billableStringDataArray[10] = new String[]{"11", /*U*/"888888888", /*P*/"111111111", /*S*/"555555", "10/7/2016",  "2016-10-7T21:00:01Z", "100.10", " Test Case : 1.5.1"};
+       billableStringDataArray[11] = new String[]{"12", /*U*/"999999999", /*P*/"111111111", /*S*/"666666", "10/8/2016",  "2016-10-9T09:28:24Z", "73.70", " Test Case : 1.5.2"};
+       billableStringDataArray[12] = new String[]{"13", /*U*/"555555555", /*P*/"111111111", /*S*/"777777", "10/10/2016", "2016-10-11T21:23:57Z", "243.92", " Test Case : 1.5.3"};
+       billableStringDataArray[13] = new String[]{"14", /*U*/"333333333", /*P*/"111111111", /*S*/"999999", "10/11/2016", "2016-10-12T23:59:3Z", "234.56", " Test Case : 1.5.4"};
+       billableStringDataArray[14] = new String[]{"15", /*U*/"999999999", /*P*/"111111111", /*S*/"999999", "10/13/2016", "2016-10-14T21:00:00Z", "58.10", " Test Case : 1.5.5"};
+
+       billableStringDataArray[15] = new String[]{"16", /*U*/"666666666", /*P*/"111111111", /*S*/"777777", "10/28/2016", "2016-10-28T21:00:01Z", "182.63", " Test Case : 1.6.1"};
+       billableStringDataArray[16] = new String[]{"17", /*U*/"999999999", /*P*/"111111111", /*S*/"999999", "10/29/2016", "2016-10-29T04:6:53Z", "59.64", " Test Case : 1.6.2"};
+       billableStringDataArray[17] = new String[]{"18", /*U*/"555555555", /*P*/"111111111", /*S*/"111111", "10/30/2016", "2016-10-30T07:10:27Z", "104.56", " Test Case : 1.6.3"};
+       billableStringDataArray[18] = new String[]{"19", /*U*/"444444444", /*P*/"111111111", /*S*/"777777", "10/30/2016", "2016-10-30T03:47:20Z", "218.89", " Test Case : 1.6.4"};
+       billableStringDataArray[19] = new String[]{"20", /*U*/"111111111", /*P*/"111111111", /*S*/"333333", "11/2/2016",  "2016-11-3T11:3:9Z", "46.90", " Test Case : 1.6.5"};
+       billableStringDataArray[20] = new String[]{"21", /*U*/"999999999", /*P*/"111111111", /*S*/"555555", "11/4/2016",  "2016-11-4T21:00:00Z", "245.81", " Test Case : 1.6.6"};
+
+       billableStringDataArray[21] = new String[]{"22", /*U*/"222222222", /*P*/"111111111", /*S*/"444444", "11/4/2016",  "2016-11-4T21:00:01Z", "161.59", " Test Case : 1.7.1"};
+       billableStringDataArray[22] = new String[]{"23", /*U*/"999999999", /*P*/"111111111", /*S*/"555555", "11/5/2016",  "2016-11-5T17:28:11Z", "25.58", " Test Case : 1.7.2"};
+       billableStringDataArray[23] = new String[]{"24", /*U*/"888888888", /*P*/"111111111", /*S*/"777777", "11/6/2016",  "2016-11-6T15:30:21Z", "115.4", " Test Case : 1.7.3"};
+       billableStringDataArray[24] = new String[]{"25", /*U*/"444444444", /*P*/"111111111", /*S*/"111111", "11/7/2016",  "2016-11-7T04:31:18Z", "32.12", " Test Case : 1.7.4"};
+       billableStringDataArray[25] = new String[]{"26", /*U*/"444444444", /*P*/"111111111", /*S*/"999999", "11/8/2016",  "2016-11-8T15:25:51Z", "112.97", " Test Case : 1.7.5"};
+       billableStringDataArray[26] = new String[]{"27", /*U*/"555555555", /*P*/"111111111", /*S*/"111111", "1/9/2016",   "2016-11-9T21:35:27Z", "172.61", " Test Case : 1.7.6"};
+       billableStringDataArray[27] = new String[]{"28", /*U*/"333333333", /*P*/"111111111", /*S*/"999999", "11/10/2016",  "2016-11-11T21:00:00Z", "27.12", " Test Case : 1.7.7"};
+
+       billableStringDataArray[28] = new String[]{"29", /*U*/"222222222", /*P*/"111111111", /*S*/"333333", "11/25/2016", "2016-11-25T21:00:01Z", "164.4", " Test Case : 1.8.1"};
+       billableStringDataArray[29] = new String[]{"30", /*U*/"666666666", /*P*/"111111111", /*S*/"444444", "11/26/2016", "2016-11-25T22:24:38Z", "92.95", " Test Case : 1.8.2"};
+       billableStringDataArray[30] = new String[]{"31", /*U*/"444444444", /*P*/"111111111", /*S*/"555555", "11/27/2016", "2016-11-26T21:5:45Z", "154.39", " Test Case : 1.8.3"};
+       billableStringDataArray[31] = new String[]{"32", /*U*/"222222222", /*P*/"111111111", /*S*/"555555", "11/27/2016", "2016-11-27T07:55:2Z", "158.82", " Test Case : 1.8.4"};
+       billableStringDataArray[32] = new String[]{"33", /*U*/"111111111", /*P*/"111111111", /*S*/"666666", "11/29/2016", "2016-11-28T23:59:59Z", "88.82", " Test Case : 1.8.5"};
+       billableStringDataArray[33] = new String[]{"34", /*U*/"666666666", /*P*/"111111111", /*S*/"333333", "11/30/2016", "2016-11-30T04:23:30Z", "201.79", " Test Case : 1.8.6"};
+       billableStringDataArray[34] = new String[]{"35", /*U*/"888888888", /*P*/"111111111", /*S*/"333333", "12/1/2016",  "2016-12-1T16:34:19Z", "169.72", " Test Case : 1.8.7"};
+       billableStringDataArray[35] = new String[]{"36", /*U*/"333333333", /*P*/"111111111", /*S*/"666666", "12/1/2016",  "2016-12-2T21:00:00Z", "214.99", " Test Case : 1.8.8"};
+
+       billableStringDataArray[36] = new String[]{"37", /*U*/"555555555", /*P*/"111111111", /*S*/"999999", "12/1/2016",  "2016-12-2T21:00:01Z", "133.95", " Test Case : 1.9.1"};
+       billableStringDataArray[37] = new String[]{"38", /*U*/"555555555", /*P*/"111111111", /*S*/"333333", "12/1/2016",  "2016-12-3T20:11:50Z", "2.26", " Test Case : 1.9.2"};
+       billableStringDataArray[38] = new String[]{"39", /*U*/"222222222", /*P*/"111111111", /*S*/"777777", "12/1/2016",  "2016-12-3T10:33:49Z", "160.33", " Test Case : 1.9.3"};
+       billableStringDataArray[39] = new String[]{"40", /*U*/"222222222", /*P*/"111111111", /*S*/"222222", "12/1/2016",  "2016-12-3T12:36:18Z", "248.90", " Test Case : 1.9.4"};
+       billableStringDataArray[40] = new String[]{"41", /*U*/"444444444", /*P*/"111111111", /*S*/"222222", "12/1/2016",  "2016-12-3T16:40:11Z", "214.90", " Test Case : 1.9.5"};
+       billableStringDataArray[41] = new String[]{"42", /*U*/"666666666", /*P*/"111111111", /*S*/"999999", "12/2/2016",  "2016-12-3T21:54:55Z", "200.20", " Test Case : 1.9.6"};
+       billableStringDataArray[42] = new String[]{"43", /*U*/"555555555", /*P*/"111111111", /*S*/"777777", "12/3/2016",  "2016-12-4T09:31:38Z", "59.67", " Test Case : 1.9.7"};
+       billableStringDataArray[43] = new String[]{"44", /*U*/"555555555", /*P*/"111111111", /*S*/"444444", "12/4/2016",  "2016-12-5T16:27:1Z", "241.44", " Test Case : 1.9.8"};
+       billableStringDataArray[44] = new String[]{"45", /*U*/"333333333", /*P*/"111111111", /*S*/"666666", "12/5/2016",  "2016-12-5T21:00:00Z", "182.89", " Test Case : 1.9.9"};
+
+
+// <--  END Test Data Set # 1
+
+
+// <--  Test Data Set # 2 START!
+
+       billableStringDataArray[45] = new String[]{"46", /*U*/"444444444", /*P*/"222222222", /*S*/"555555", "8/22/2016", "2016-8-22T21:00:01Z", "69.70", " Test Case : 2.1.1"};
+
+       billableStringDataArray[46] = new String[]{"47", /*U*/"999999999", /*P*/"222222222", /*S*/"666666", "6/1/2016", "2016-6-1T21:00:01Z", "112.22", " Test Case : 2.2.1"};
+       billableStringDataArray[47] = new String[]{"48", /*U*/"111111111", /*P*/"222222222", /*S*/"444444", "3/2/2016", "2016-3-2T21:00:00Z", "112.51", " Test Case : 2.2.2"};
+
+       billableStringDataArray[48] = new String[]{"49", /*U*/"444444444", /*P*/"222222222", /*S*/"222222", "5/9/2016", "2016-5-9T21:00:01Z", "192.71", " Test Case : 2.3.1"};
+       billableStringDataArray[49] = new String[]{"50", /*U*/"555555555", /*P*/"222222222", /*S*/"777777", "9/17/2016", "2016-9-17T17:57:56Z", "121.28", " Test Case : 2.3.2"};
+       billableStringDataArray[50] = new String[]{"51", /*U*/"333333333", /*P*/"222222222", /*S*/"999999", "1/1/2016", "2016-1-1T21:00:00Z", "120.9", " Test Case : 2.3.3"};
+
+       billableStringDataArray[51] = new String[]{"52", /*U*/"555555555", /*P*/"222222222", /*S*/"666666", "9/16/2016", "2016-9-16T21:00:01Z", "229.99", " Test Case : 2.4.1"};
+       billableStringDataArray[52] = new String[]{"53", /*U*/"222222222", /*P*/"222222222", /*S*/"888888", "6/21/2016", "2016-6-21T07:20:58Z", "186.37", " Test Case : 2.4.2"};
+       billableStringDataArray[53] = new String[]{"54", /*U*/"666666666", /*P*/"222222222", /*S*/"333333", "11/23/2016", "2016-11-23T00:7:35Z", "18.94", " Test Case : 2.4.3"};
+       billableStringDataArray[54] = new String[]{"55", /*U*/"888888888", /*P*/"222222222", /*S*/"333333", "4/10/2016", "2016-4-10T21:00:00Z", "102.31", " Test Case : 2.4.4"};
+
+       billableStringDataArray[55] = new String[]{"56", /*U*/"999999999", /*P*/"222222222", /*S*/"222222", "3/27/2016", "2016-3-27T21:00:01Z", "5.2", " Test Case : 2.5.1"};
+       billableStringDataArray[56] = new String[]{"57", /*U*/"222222222", /*P*/"222222222", /*S*/"333333", "3/11/2016", "2016-3-11T07:54:39Z", "190.47", " Test Case : 2.5.2"};
+       billableStringDataArray[57] = new String[]{"58", /*U*/"444444444", /*P*/"222222222", /*S*/"777777", "1/22/2016", "2016-1-22T23:59:59Z", "70.9", " Test Case : 2.5.3"};
+       billableStringDataArray[58] = new String[]{"59", /*U*/"999999999", /*P*/"222222222", /*S*/"222222", "2/28/2016", "2016-2-28T06:45:20Z", "226.61", " Test Case : 2.5.4"};
+       billableStringDataArray[59] = new String[]{"60", /*U*/"666666666", /*P*/"222222222", /*S*/"666666", "5/4/2016", "2016-5-4T21:00:00Z", "110.20", " Test Case : 2.5.5"};
+
+       billableStringDataArray[60] = new String[]{"61", /*U*/"555555555", /*P*/"222222222", /*S*/"444444", "6/20/2016", "2016-6-20T21:00:01Z", "30.57", " Test Case : 2.6.1"};
+       billableStringDataArray[61] = new String[]{"62", /*U*/"999999999", /*P*/"222222222", /*S*/"999999", "3/2/2016", "2016-3-2T13:46:41Z", "249.52", " Test Case : 2.6.2"};
+       billableStringDataArray[62] = new String[]{"63", /*U*/"111111111", /*P*/"222222222", /*S*/"666666", "2/8/2016", "2016-2-8T12:47:39Z", "71.39", " Test Case : 2.6.3"};
+       billableStringDataArray[63] = new String[]{"64", /*U*/"333333333", /*P*/"222222222", /*S*/"666666", "2/3/2016", "2016-2-3T22:51:5Z", "170.16", " Test Case : 2.6.4"};
+       billableStringDataArray[64] = new String[]{"65", /*U*/"333333333", /*P*/"222222222", /*S*/"999999", "3/20/2016", "2016-3-20T10:13:44Z", "27.41", " Test Case : 2.6.5"};
+       billableStringDataArray[65] = new String[]{"66", /*U*/"777777777", /*P*/"222222222", /*S*/"999999", "2/19/2016", "2016-2-19T21:00:00Z", "234.70", " Test Case : 2.6.6"};
+
+       billableStringDataArray[66] = new String[]{"67", /*U*/"444444444", /*P*/"222222222", /*S*/"777777", "5/22/2016", "2016-5-22T21:00:01Z", "241.38", " Test Case : 2.7.1"};
+       billableStringDataArray[67] = new String[]{"68", /*U*/"222222222", /*P*/"222222222", /*S*/"333333", "11/10/2016", "2016-11-10T20:21:22Z", "124.32", " Test Case : 2.7.2"};
+       billableStringDataArray[68] = new String[]{"69", /*U*/"777777777", /*P*/"222222222", /*S*/"444444", "6/19/2016", "2016-6-19T22:11:6Z", "39.39", " Test Case : 2.7.3"};
+       billableStringDataArray[69] = new String[]{"70", /*U*/"111111111", /*P*/"222222222", /*S*/"333333", "6/22/2016", "2016-6-22T20:7:5Z", "243.43", " Test Case : 2.7.4"};
+       billableStringDataArray[70] = new String[]{"71", /*U*/"333333333", /*P*/"222222222", /*S*/"333333", "3/14/2016", "2016-3-14T16:1:22Z", "108.10", " Test Case : 2.7.5"};
+       billableStringDataArray[71] = new String[]{"72", /*U*/"888888888", /*P*/"222222222", /*S*/"444444", "4/16/2016", "2016-4-16T15:18:30Z", "207.99", " Test Case : 2.7.6"};
+       billableStringDataArray[72] = new String[]{"73", /*U*/"555555555", /*P*/"222222222", /*S*/"333333", "2/28/2016", "2016-2-28T21:00:00Z", "57.30", " Test Case : 2.7.7"};
+
+       billableStringDataArray[73] = new String[]{"74", /*U*/"333333333", /*P*/"222222222", /*S*/"555555", "6/7/2016", "2016-6-7T21:00:01Z", "244.3", " Test Case : 2.8.1"};
+       billableStringDataArray[74] = new String[]{"75", /*U*/"444444444", /*P*/"222222222", /*S*/"999999", "1/8/2016", "2016-1-8T20:27:20Z", "135.19", " Test Case : 2.8.2"};
+       billableStringDataArray[75] = new String[]{"76", /*U*/"777777777", /*P*/"222222222", /*S*/"333333", "3/8/2016", "2016-3-8T01:28:37Z", "189.50", " Test Case : 2.8.3"};
+       billableStringDataArray[76] = new String[]{"77", /*U*/"555555555", /*P*/"222222222", /*S*/"333333", "11/12/2016", "2016-11-12T14:15:53Z", "238.57", " Test Case : 2.8.4"};
+       billableStringDataArray[77] = new String[]{"78", /*U*/"777777777", /*P*/"222222222", /*S*/"555555", "9/8/2016", "2016-9-8T11:4:16Z", "122.70", " Test Case : 2.8.5"};
+       billableStringDataArray[78] = new String[]{"79", /*U*/"777777777", /*P*/"222222222", /*S*/"888888", "6/11/2016", "2016-6-11T02:7:57Z", "202.54", " Test Case : 2.8.6"};
+       billableStringDataArray[79] = new String[]{"80", /*U*/"222222222", /*P*/"222222222", /*S*/"777777", "10/18/2016", "2016-10-18T10:1:32Z", "12.55", " Test Case : 2.8.7"};
+       billableStringDataArray[80] = new String[]{"81", /*U*/"666666666", /*P*/"222222222", /*S*/"111111", "10/27/2016", "2016-10-27T21:00:00Z", "74.80", " Test Case : 2.8.8"};
+
+       billableStringDataArray[81] = new String[]{"82", /*U*/"555555555", /*P*/"222222222", /*S*/"333333", "8/4/2016", "2016-8-4T21:00:01Z", "210.33", " Test Case : 2.9.1"};
+       billableStringDataArray[82] = new String[]{"83", /*U*/"333333333", /*P*/"222222222", /*S*/"999999", "2/13/2016", "2016-2-13T04:34:21Z", "117.39", " Test Case : 2.9.2"};
+       billableStringDataArray[83] = new String[]{"84", /*U*/"666666666", /*P*/"222222222", /*S*/"111111", "1/26/2016", "2016-1-26T20:53:10Z", "126.14", " Test Case : 2.9.3"};
+       billableStringDataArray[84] = new String[]{"85", /*U*/"999999999", /*P*/"222222222", /*S*/"333333", "11/28/2016", "2016-11-28T08:30:54Z", "53.11", " Test Case : 2.9.4"};
+       billableStringDataArray[85] = new String[]{"86", /*U*/"555555555", /*P*/"222222222", /*S*/"111111", "6/3/2016", "2016-6-3T23:59:59Z", "44.16", " Test Case : 2.9.5"};
+       billableStringDataArray[86] = new String[]{"87", /*U*/"222222222", /*P*/"222222222", /*S*/"666666", "6/23/2016", "2016-6-23T20:58:22Z", "236.7", " Test Case : 2.9.6"};
+       billableStringDataArray[87] = new String[]{"88", /*U*/"888888888", /*P*/"222222222", /*S*/"555555", "6/19/2016", "2016-6-19T05:5:44Z", "207.3", " Test Case : 2.9.7"};
+       billableStringDataArray[88] = new String[]{"89", /*U*/"555555555", /*P*/"222222222", /*S*/"555555", "5/12/2016", "2016-5-12T17:52:17Z", "42.61", " Test Case : 2.9.8"};
+       billableStringDataArray[89] = new String[]{"90", /*U*/"666666666", /*P*/"222222222", /*S*/"111111", "9/25/2016", "2016-9-25T21:00:00Z", "34.52", " Test Case : 2.9.9"};
+
+
+// <--  END Test Data Set # 2
+
+
+// <--  Test Data Set # 3 START!
+
+       billableStringDataArray[90] = new String[]{"91", /*U*/"222222222", /*P*/"333333333", /*S*/"666666", "2/11/2016", "2016-2-11T21:00:01Z", "174.7", " Test Case : 3.1.1"};
+
+       billableStringDataArray[91] = new String[]{"92", /*U*/"444444444", /*P*/"333333333", /*S*/"888888", "6/3/2016", "2016-6-3T21:00:01Z", "222.59", " Test Case : 3.2.1"};
+       billableStringDataArray[92] = new String[]{"93", /*U*/"222222222", /*P*/"333333333", /*S*/"444444", "1/18/2016", "2016-1-18T21:00:00Z", "189.81", " Test Case : 3.2.2"};
+
+       billableStringDataArray[93] = new String[]{"94", /*U*/"111111111", /*P*/"333333333", /*S*/"222222", "3/22/2016", "2016-3-22T21:00:01Z", "164.80", " Test Case : 3.3.1"};
+       billableStringDataArray[94] = new String[]{"95", /*U*/"222222222", /*P*/"333333333", /*S*/"777777", "7/25/2016", "2016-7-25T14:51:10Z", "119.24", " Test Case : 3.3.2"};
+       billableStringDataArray[95] = new String[]{"96", /*U*/"111111111", /*P*/"333333333", /*S*/"999999", "9/3/2016", "2016-9-3T21:00:00Z", "98.7", " Test Case : 3.3.3"};
+
+       billableStringDataArray[96] = new String[]{"97", /*U*/"777777777", /*P*/"333333333", /*S*/"666666", "7/25/2016", "2016-7-25T21:00:01Z", "49.97", " Test Case : 3.4.1"};
+       billableStringDataArray[97] = new String[]{"98", /*U*/"999999999", /*P*/"333333333", /*S*/"777777", "5/12/2016", "2016-5-12T01:25:41Z", "136.58", " Test Case : 3.4.2"};
+       billableStringDataArray[98] = new String[]{"99", /*U*/"333333333", /*P*/"333333333", /*S*/"777777", "4/18/2016", "2016-4-18T23:46:30Z", "229.6", " Test Case : 3.4.3"};
+       billableStringDataArray[99] = new String[]{"100", /*U*/"111111111", /*P*/"333333333", /*S*/"888888", "8/24/2016", "2016-8-24T21:00:00Z", "160.91", " Test Case : 3.4.4"};
+
+       billableStringDataArray[100] = new String[]{"101", /*U*/"888888888", /*P*/"333333333", /*S*/"222222", "9/27/2016", "2016-9-27T21:00:01Z", "100.35", " Test Case : 3.5.1"};
+       billableStringDataArray[101] = new String[]{"102", /*U*/"111111111", /*P*/"333333333", /*S*/"333333", "6/5/2016", "2016-6-5T06:54:40Z", "7.8", " Test Case : 3.5.2"};
+       billableStringDataArray[102] = new String[]{"103", /*U*/"666666666", /*P*/"333333333", /*S*/"999999", "5/27/2016", "2016-5-27T09:41:17Z", "173.62", " Test Case : 3.5.3"};
+       billableStringDataArray[103] = new String[]{"104", /*U*/"666666666", /*P*/"333333333", /*S*/"666666", "9/13/2016", "2016-9-13T17:22:59Z", "26.91", " Test Case : 3.5.4"};
+       billableStringDataArray[104] = new String[]{"105", /*U*/"111111111", /*P*/"333333333", /*S*/"999999", "3/26/2016", "2016-3-26T21:00:00Z", "243.90", " Test Case : 3.5.5"};
+
+       billableStringDataArray[105] = new String[]{"106", /*U*/"666666666", /*P*/"333333333", /*S*/"333333", "7/10/2016", "2016-7-10T21:00:01Z", "95.69", " Test Case : 3.6.1"};
+       billableStringDataArray[106] = new String[]{"107", /*U*/"111111111", /*P*/"333333333", /*S*/"555555", "10/26/2016", "2016-10-26T04:33:59Z", "198.92", " Test Case : 3.6.2"};
+       billableStringDataArray[107] = new String[]{"108", /*U*/"666666666", /*P*/"333333333", /*S*/"888888", "8/8/2016", "2016-8-8T23:59:59Z", "23.9", " Test Case : 3.6.3"};
+       billableStringDataArray[108] = new String[]{"109", /*U*/"444444444", /*P*/"333333333", /*S*/"555555", "1/23/2016", "2016-1-23T22:14:21Z", "86.60", " Test Case : 3.6.4"};
+       billableStringDataArray[109] = new String[]{"110", /*U*/"444444444", /*P*/"333333333", /*S*/"666666", "4/19/2016", "2016-4-19T11:33:12Z", "55.56", " Test Case : 3.6.5"};
+       billableStringDataArray[110] = new String[]{"111", /*U*/"666666666", /*P*/"333333333", /*S*/"999999", "5/18/2016", "2016-5-18T21:00:00Z", "196.20", " Test Case : 3.6.6"};
+
+       billableStringDataArray[111] = new String[]{"112", /*U*/"777777777", /*P*/"333333333", /*S*/"222222", "11/12/2016", "2016-11-12T21:00:01Z", "64.41", " Test Case : 3.7.1"};
+       billableStringDataArray[112] = new String[]{"113", /*U*/"555555555", /*P*/"333333333", /*S*/"222222", "3/21/2016", "2016-3-21T08:49:13Z", "4.92", " Test Case : 3.7.2"};
+       billableStringDataArray[113] = new String[]{"114", /*U*/"111111111", /*P*/"333333333", /*S*/"222222", "1/22/2016", "2016-1-22T03:3:50Z", "79.93", " Test Case : 3.7.3"};
+       billableStringDataArray[114] = new String[]{"115", /*U*/"555555555", /*P*/"333333333", /*S*/"777777", "8/19/2016", "2016-8-19T03:20:25Z", "223.25", " Test Case : 3.7.4"};
+       billableStringDataArray[115] = new String[]{"116", /*U*/"888888888", /*P*/"333333333", /*S*/"222222", "8/4/2016", "2016-8-4T01:3:41Z", "166.66", " Test Case : 3.7.5"};
+       billableStringDataArray[116] = new String[]{"117", /*U*/"111111111", /*P*/"333333333", /*S*/"555555", "4/13/2016", "2016-4-13T13:53:39Z", "59.91", " Test Case : 3.7.6"};
+       billableStringDataArray[117] = new String[]{"118", /*U*/"777777777", /*P*/"333333333", /*S*/"555555", "9/6/2016", "2016-9-6T21:00:00Z", "77.8", " Test Case : 3.7.7"};
+
+       billableStringDataArray[118] = new String[]{"119", /*U*/"333333333", /*P*/"333333333", /*S*/"555555", "2/6/2016", "2016-2-6T21:00:01Z", "12.63", " Test Case : 3.8.1"};
+       billableStringDataArray[119] = new String[]{"120", /*U*/"555555555", /*P*/"333333333", /*S*/"111111", "10/11/2016", "2016-10-11T00:1:10Z", "15.65", " Test Case : 3.8.2"};
+       billableStringDataArray[120] = new String[]{"121", /*U*/"444444444", /*P*/"333333333", /*S*/"333333", "4/5/2016", "2016-4-5T17:15:56Z", "55.77", " Test Case : 3.8.3"};
+       billableStringDataArray[121] = new String[]{"122", /*U*/"333333333", /*P*/"333333333", /*S*/"666666", "4/24/2016", "2016-4-24T10:51:44Z", "52.23", " Test Case : 3.8.4"};
+       billableStringDataArray[122] = new String[]{"123", /*U*/"111111111", /*P*/"333333333", /*S*/"999999", "4/4/2016", "2016-4-4T21:7:58Z", "19.17", " Test Case : 3.8.5"};
+       billableStringDataArray[123] = new String[]{"124", /*U*/"444444444", /*P*/"333333333", /*S*/"222222", "10/25/2016", "2016-10-25T14:28:25Z", "26.52", " Test Case : 3.8.6"};
+       billableStringDataArray[124] = new String[]{"125", /*U*/"888888888", /*P*/"333333333", /*S*/"333333", "7/11/2016", "2016-7-11T02:18:18Z", "89.27", " Test Case : 3.8.7"};
+       billableStringDataArray[125] = new String[]{"126", /*U*/"555555555", /*P*/"333333333", /*S*/"333333", "6/24/2016", "2016-6-24T21:00:00Z", "150.38", " Test Case : 3.8.8"};
+
+       billableStringDataArray[126] = new String[]{"127", /*U*/"444444444", /*P*/"333333333", /*S*/"666666", "7/7/2016", "2016-7-7T21:00:01Z", "31.96", " Test Case : 3.9.1"};
+       billableStringDataArray[127] = new String[]{"128", /*U*/"777777777", /*P*/"333333333", /*S*/"555555", "9/17/2016", "2016-9-17T23:59:59Z", "105.62", " Test Case : 3.9.2"};
+       billableStringDataArray[128] = new String[]{"129", /*U*/"333333333", /*P*/"333333333", /*S*/"444444", "3/2/2016", "2016-3-2T21:6:54Z", "150.33", " Test Case : 3.9.3"};
+       billableStringDataArray[129] = new String[]{"130", /*U*/"333333333", /*P*/"333333333", /*S*/"888888", "1/20/2016", "2016-1-20T16:44:49Z", "250.54", " Test Case : 3.9.4"};
+       billableStringDataArray[130] = new String[]{"131", /*U*/"111111111", /*P*/"333333333", /*S*/"999999", "8/8/2016", "2016-8-8T09:34:34Z", "107.64", " Test Case : 3.9.5"};
+       billableStringDataArray[131] = new String[]{"132", /*U*/"222222222", /*P*/"333333333", /*S*/"777777", "10/14/2016", "2016-10-14T23:59:59Z", "101.28", " Test Case : 3.9.6"};
+       billableStringDataArray[132] = new String[]{"133", /*U*/"666666666", /*P*/"333333333", /*S*/"444444", "4/7/2016", "2016-4-7T08:30:55Z", "211.76", " Test Case : 3.9.7"};
+       billableStringDataArray[133] = new String[]{"134", /*U*/"666666666", /*P*/"333333333", /*S*/"222222", "3/18/2016", "2016-3-18T12:9:46Z", "32.21", " Test Case : 3.9.8"};
+       billableStringDataArray[134] = new String[]{"135", /*U*/"888888888", /*P*/"333333333", /*S*/"222222", "11/27/2016", "2016-11-27T21:00:00Z", "159.39", " Test Case : 3.9.9"};
+
+
+// <--  END Test Data Set # 3
+
+
+// <--  Test Data Set # 4 START!
+
+       billableStringDataArray[135] = new String[]{"136", /*U*/"777777777", /*P*/"444444444", /*S*/"111111", "11/12/2016", "2016-11-12T21:00:01Z", "99.35", " Test Case : 4.1.1"};
+
+       billableStringDataArray[136] = new String[]{"137", /*U*/"555555555", /*P*/"444444444", /*S*/"888888", "1/3/2016", "2016-1-3T21:00:01Z", "96.31", " Test Case : 4.2.1"};
+       billableStringDataArray[137] = new String[]{"138", /*U*/"999999999", /*P*/"444444444", /*S*/"111111", "4/3/2016", "2016-4-3T21:00:00Z", "100.59", " Test Case : 4.2.2"};
+
+       billableStringDataArray[138] = new String[]{"139", /*U*/"444444444", /*P*/"444444444", /*S*/"555555", "3/13/2016", "2016-3-13T21:00:01Z", "111.49", " Test Case : 4.3.1"};
+       billableStringDataArray[139] = new String[]{"140", /*U*/"555555555", /*P*/"444444444", /*S*/"444444", "4/8/2016", "2016-4-8T12:2:10Z", "246.72", " Test Case : 4.3.2"};
+       billableStringDataArray[140] = new String[]{"141", /*U*/"555555555", /*P*/"444444444", /*S*/"666666", "6/28/2016", "2016-6-28T21:00:00Z", "162.53", " Test Case : 4.3.3"};
+
+       billableStringDataArray[141] = new String[]{"142", /*U*/"666666666", /*P*/"444444444", /*S*/"444444", "3/26/2016", "2016-3-26T21:00:01Z", "137.94", " Test Case : 4.4.1"};
+       billableStringDataArray[142] = new String[]{"143", /*U*/"222222222", /*P*/"444444444", /*S*/"444444", "8/15/2016", "2016-8-15T23:59:59Z", "190.49", " Test Case : 4.4.2"};
+       billableStringDataArray[143] = new String[]{"144", /*U*/"111111111", /*P*/"444444444", /*S*/"999999", "1/4/2016", "2016-1-4T20:24:4Z", "79.69", " Test Case : 4.4.3"};
+       billableStringDataArray[144] = new String[]{"145", /*U*/"777777777", /*P*/"444444444", /*S*/"777777", "9/23/2016", "2016-9-23T21:00:00Z", "38.65", " Test Case : 4.4.4"};
+
+       billableStringDataArray[145] = new String[]{"146", /*U*/"999999999", /*P*/"444444444", /*S*/"222222", "5/13/2016", "2016-5-13T21:00:01Z", "208.53", " Test Case : 4.5.1"};
+       billableStringDataArray[146] = new String[]{"147", /*U*/"888888888", /*P*/"444444444", /*S*/"777777", "6/22/2016", "2016-6-22T17:34:4Z", "72.28", " Test Case : 4.5.2"};
+       billableStringDataArray[147] = new String[]{"148", /*U*/"555555555", /*P*/"444444444", /*S*/"222222", "7/4/2016", "2016-7-4T20:15:52Z", "96.92", " Test Case : 4.5.3"};
+       billableStringDataArray[148] = new String[]{"149", /*U*/"222222222", /*P*/"444444444", /*S*/"444444", "3/5/2016", "2016-3-5T09:31:34Z", "141.95", " Test Case : 4.5.4"};
+       billableStringDataArray[149] = new String[]{"150", /*U*/"777777777", /*P*/"444444444", /*S*/"555555", "10/13/2016", "2016-10-13T21:00:00Z", "33.14", " Test Case : 4.5.5"};
+
+       billableStringDataArray[150] = new String[]{"151", /*U*/"999999999", /*P*/"444444444", /*S*/"888888", "6/25/2016", "2016-6-25T21:00:01Z", "247.58", " Test Case : 4.6.1"};
+       billableStringDataArray[151] = new String[]{"152", /*U*/"111111111", /*P*/"444444444", /*S*/"222222", "5/8/2016", "2016-5-8T17:48:11Z", "186.33", " Test Case : 4.6.2"};
+       billableStringDataArray[152] = new String[]{"153", /*U*/"222222222", /*P*/"444444444", /*S*/"222222", "4/25/2016", "2016-4-25T14:11:16Z", "100.9", " Test Case : 4.6.3"};
+       billableStringDataArray[153] = new String[]{"154", /*U*/"333333333", /*P*/"444444444", /*S*/"111111", "2/22/2016", "2016-2-22T10:22:8Z", "194.95", " Test Case : 4.6.4"};
+       billableStringDataArray[154] = new String[]{"155", /*U*/"444444444", /*P*/"444444444", /*S*/"444444", "8/5/2016", "2016-8-5T12:31:34Z", "165.91", " Test Case : 4.6.5"};
+       billableStringDataArray[155] = new String[]{"156", /*U*/"777777777", /*P*/"444444444", /*S*/"333333", "5/11/2016", "2016-5-11T21:00:00Z", "132.71", " Test Case : 4.6.6"};
+
+       billableStringDataArray[156] = new String[]{"157", /*U*/"777777777", /*P*/"444444444", /*S*/"555555", "1/24/2016", "2016-1-24T21:00:01Z", "69.84", " Test Case : 4.7.1"};
+       billableStringDataArray[157] = new String[]{"158", /*U*/"555555555", /*P*/"444444444", /*S*/"777777", "3/6/2016", "2016-3-6T13:41:59Z", "85.95", " Test Case : 4.7.2"};
+       billableStringDataArray[158] = new String[]{"159", /*U*/"222222222", /*P*/"444444444", /*S*/"444444", "3/22/2016", "2016-3-22T00:38:47Z", "203.6", " Test Case : 4.7.3"};
+       billableStringDataArray[159] = new String[]{"160", /*U*/"999999999", /*P*/"444444444", /*S*/"999999", "10/9/2016", "2016-10-9T04:42:2Z", "32.30", " Test Case : 4.7.4"};
+       billableStringDataArray[160] = new String[]{"161", /*U*/"777777777", /*P*/"444444444", /*S*/"333333", "11/22/2016", "2016-11-22T23:59:59Z", "117.41", " Test Case : 4.7.5"};
+       billableStringDataArray[161] = new String[]{"162", /*U*/"555555555", /*P*/"444444444", /*S*/"555555", "1/22/2016", "2016-1-22T09:52:27Z", "209.48", " Test Case : 4.7.6"};
+       billableStringDataArray[162] = new String[]{"163", /*U*/"666666666", /*P*/"444444444", /*S*/"888888", "5/8/2016", "2016-5-8T21:00:00Z", "57.44", " Test Case : 4.7.7"};
+
+       billableStringDataArray[163] = new String[]{"164", /*U*/"888888888", /*P*/"444444444", /*S*/"888888", "6/3/2016", "2016-6-3T21:00:01Z", "114.89", " Test Case : 4.8.1"};
+       billableStringDataArray[164] = new String[]{"165", /*U*/"888888888", /*P*/"444444444", /*S*/"666666", "2/24/2016", "2016-2-24T21:43:51Z", "116.58", " Test Case : 4.8.2"};
+       billableStringDataArray[165] = new String[]{"166", /*U*/"555555555", /*P*/"444444444", /*S*/"777777", "7/25/2016", "2016-7-25T17:10:50Z", "89.61", " Test Case : 4.8.3"};
+       billableStringDataArray[166] = new String[]{"167", /*U*/"555555555", /*P*/"444444444", /*S*/"111111", "3/27/2016", "2016-3-27T11:18:19Z", "151.25", " Test Case : 4.8.4"};
+       billableStringDataArray[167] = new String[]{"168", /*U*/"555555555", /*P*/"444444444", /*S*/"666666", "3/6/2016", "2016-3-6T21:48:11Z", "21.26", " Test Case : 4.8.5"};
+       billableStringDataArray[168] = new String[]{"169", /*U*/"222222222", /*P*/"444444444", /*S*/"555555", "7/15/2016", "2016-7-15T23:59:59Z", "89.30", " Test Case : 4.8.6"};
+       billableStringDataArray[169] = new String[]{"170", /*U*/"555555555", /*P*/"444444444", /*S*/"333333", "9/9/2016", "2016-9-9T21:18:49Z", "24.58", " Test Case : 4.8.7"};
+       billableStringDataArray[170] = new String[]{"171", /*U*/"888888888", /*P*/"444444444", /*S*/"777777", "6/4/2016", "2016-6-4T21:00:00Z", "176.88", " Test Case : 4.8.8"};
+
+       billableStringDataArray[171] = new String[]{"172", /*U*/"222222222", /*P*/"444444444", /*S*/"666666", "5/26/2016", "2016-5-26T21:00:01Z", "158.80", " Test Case : 4.9.1"};
+       billableStringDataArray[172] = new String[]{"173", /*U*/"999999999", /*P*/"444444444", /*S*/"222222", "2/17/2016", "2016-2-17T14:4:14Z", "60.34", " Test Case : 4.9.2"};
+       billableStringDataArray[173] = new String[]{"174", /*U*/"999999999", /*P*/"444444444", /*S*/"555555", "10/14/2016", "2016-10-14T23:58:31Z", "176.42", " Test Case : 4.9.3"};
+       billableStringDataArray[174] = new String[]{"175", /*U*/"999999999", /*P*/"444444444", /*S*/"888888", "11/2/2016", "2016-11-2T14:48:28Z", "200.35", " Test Case : 4.9.4"};
+       billableStringDataArray[175] = new String[]{"176", /*U*/"222222222", /*P*/"444444444", /*S*/"777777", "2/4/2016", "2016-2-4T14:27:1Z", "174.19", " Test Case : 4.9.5"};
+       billableStringDataArray[176] = new String[]{"177", /*U*/"111111111", /*P*/"444444444", /*S*/"333333", "2/21/2016", "2016-2-21T20:5:56Z", "44.98", " Test Case : 4.9.6"};
+       billableStringDataArray[177] = new String[]{"178", /*U*/"888888888", /*P*/"444444444", /*S*/"222222", "3/13/2016", "2016-3-13T09:19:34Z", "54.47", " Test Case : 4.9.7"};
+       billableStringDataArray[178] = new String[]{"179", /*U*/"111111111", /*P*/"444444444", /*S*/"111111", "10/23/2016", "2016-10-23T20:33:57Z", "89.7", " Test Case : 4.9.8"};
+       billableStringDataArray[179] = new String[]{"180", /*U*/"777777777", /*P*/"444444444", /*S*/"333333", "3/25/2016", "2016-3-25T21:00:00Z", "140.82", " Test Case : 4.9.9"};
+
+
+// <--  END Test Data Set # 4
+
+
+// <--  Test Data Set # 5 START!
+
+       billableStringDataArray[180] = new String[]{"181", /*U*/"999999999", /*P*/"555555555", /*S*/"999999", "2/20/2016", "2016-2-20T21:00:01Z", "185.63", " Test Case : 5.1.1"};
+
+       billableStringDataArray[181] = new String[]{"182", /*U*/"333333333", /*P*/"555555555", /*S*/"555555", "7/25/2016", "2016-7-25T21:00:01Z", "20.17", " Test Case : 5.2.1"};
+       billableStringDataArray[182] = new String[]{"183", /*U*/"444444444", /*P*/"555555555", /*S*/"444444", "8/19/2016", "2016-8-19T21:00:00Z", "178.69", " Test Case : 5.2.2"};
+
+       billableStringDataArray[183] = new String[]{"184", /*U*/"777777777", /*P*/"555555555", /*S*/"222222", "4/21/2016", "2016-4-21T21:00:01Z", "5.27", " Test Case : 5.3.1"};
+       billableStringDataArray[184] = new String[]{"185", /*U*/"999999999", /*P*/"555555555", /*S*/"999999", "1/26/2016", "2016-1-26T09:52:27Z", "182.92", " Test Case : 5.3.2"};
+       billableStringDataArray[185] = new String[]{"186", /*U*/"333333333", /*P*/"555555555", /*S*/"999999", "7/19/2016", "2016-7-19T21:00:00Z", "99.9", " Test Case : 5.3.3"};
+
+       billableStringDataArray[186] = new String[]{"187", /*U*/"666666666", /*P*/"555555555", /*S*/"444444", "7/19/2016", "2016-7-19T21:00:01Z", "207.44", " Test Case : 5.4.1"};
+       billableStringDataArray[187] = new String[]{"188", /*U*/"111111111", /*P*/"555555555", /*S*/"888888", "3/4/2016", "2016-3-4T23:22:33Z", "206.69", " Test Case : 5.4.2"};
+       billableStringDataArray[188] = new String[]{"189", /*U*/"999999999", /*P*/"555555555", /*S*/"444444", "6/4/2016", "2016-6-4T21:38:38Z", "6.60", " Test Case : 5.4.3"};
+       billableStringDataArray[189] = new String[]{"190", /*U*/"555555555", /*P*/"555555555", /*S*/"888888", "10/10/2016", "2016-10-10T21:00:00Z", "102.58", " Test Case : 5.4.4"};
+
+       billableStringDataArray[190] = new String[]{"191", /*U*/"111111111", /*P*/"555555555", /*S*/"222222", "4/24/2016", "2016-4-24T21:00:01Z", "187.18", " Test Case : 5.5.1"};
+       billableStringDataArray[191] = new String[]{"192", /*U*/"333333333", /*P*/"555555555", /*S*/"555555", "1/21/2016", "2016-1-21T23:10:58Z", "97.14", " Test Case : 5.5.2"};
+       billableStringDataArray[192] = new String[]{"193", /*U*/"111111111", /*P*/"555555555", /*S*/"333333", "6/26/2016", "2016-6-26T17:27:53Z", "242.59", " Test Case : 5.5.3"};
+       billableStringDataArray[193] = new String[]{"194", /*U*/"222222222", /*P*/"555555555", /*S*/"444444", "9/10/2016", "2016-9-10T17:0:50Z", "197.53", " Test Case : 5.5.4"};
+       billableStringDataArray[194] = new String[]{"195", /*U*/"888888888", /*P*/"555555555", /*S*/"777777", "2/7/2016", "2016-2-7T21:00:00Z", "16.40", " Test Case : 5.5.5"};
+
+       billableStringDataArray[195] = new String[]{"196", /*U*/"555555555", /*P*/"555555555", /*S*/"555555", "4/19/2016", "2016-4-19T21:00:01Z", "34.14", " Test Case : 5.6.1"};
+       billableStringDataArray[196] = new String[]{"197", /*U*/"999999999", /*P*/"555555555", /*S*/"333333", "2/26/2016", "2016-2-26T16:3:18Z", "106.2", " Test Case : 5.6.2"};
+       billableStringDataArray[197] = new String[]{"198", /*U*/"222222222", /*P*/"555555555", /*S*/"777777", "9/11/2016", "2016-9-11T16:14:32Z", "170.43", " Test Case : 5.6.3"};
+       billableStringDataArray[198] = new String[]{"199", /*U*/"555555555", /*P*/"555555555", /*S*/"444444", "8/20/2016", "2016-8-20T23:59:59Z", "186.84", " Test Case : 5.6.4"};
+       billableStringDataArray[199] = new String[]{"200", /*U*/"666666666", /*P*/"555555555", /*S*/"999999", "9/19/2016", "2016-9-19T16:39:52Z", "63.97", " Test Case : 5.6.5"};
+       billableStringDataArray[200] = new String[]{"201", /*U*/"222222222", /*P*/"555555555", /*S*/"333333", "11/15/2016", "2016-11-15T21:00:00Z", "142.99", " Test Case : 5.6.6"};
+
+       billableStringDataArray[201] = new String[]{"202", /*U*/"111111111", /*P*/"555555555", /*S*/"444444", "11/26/2016", "2016-11-26T21:00:01Z", "123.95", " Test Case : 5.7.1"};
+       billableStringDataArray[202] = new String[]{"203", /*U*/"777777777", /*P*/"555555555", /*S*/"777777", "5/22/2016", "2016-5-22T00:40:28Z", "229.54", " Test Case : 5.7.2"};
+       billableStringDataArray[203] = new String[]{"204", /*U*/"222222222", /*P*/"555555555", /*S*/"777777", "2/9/2016", "2016-2-9T22:10:14Z", "205.99", " Test Case : 5.7.3"};
+       billableStringDataArray[204] = new String[]{"205", /*U*/"555555555", /*P*/"555555555", /*S*/"222222", "6/28/2016", "2016-6-28T05:49:9Z", "239.42", " Test Case : 5.7.4"};
+       billableStringDataArray[205] = new String[]{"206", /*U*/"777777777", /*P*/"555555555", /*S*/"333333", "9/26/2016", "2016-9-26T23:59:59Z", "54.35", " Test Case : 5.7.5"};
+       billableStringDataArray[206] = new String[]{"207", /*U*/"111111111", /*P*/"555555555", /*S*/"666666", "9/15/2016", "2016-9-15T23:59:59Z", "215.58", " Test Case : 5.7.6"};
+       billableStringDataArray[207] = new String[]{"208", /*U*/"999999999", /*P*/"555555555", /*S*/"777777", "1/6/2016", "2016-1-6T21:00:00Z", "37.31", " Test Case : 5.7.7"};
+
+       billableStringDataArray[208] = new String[]{"209", /*U*/"666666666", /*P*/"555555555", /*S*/"666666", "5/2/2016", "2016-5-2T21:00:01Z", "46.7", " Test Case : 5.8.1"};
+       billableStringDataArray[209] = new String[]{"210", /*U*/"777777777", /*P*/"555555555", /*S*/"333333", "5/7/2016", "2016-5-7T10:44:41Z", "210.93", " Test Case : 5.8.2"};
+       billableStringDataArray[210] = new String[]{"211", /*U*/"888888888", /*P*/"555555555", /*S*/"444444", "8/10/2016", "2016-8-10T16:27:8Z", "178.45", " Test Case : 5.8.3"};
+       billableStringDataArray[211] = new String[]{"212", /*U*/"999999999", /*P*/"555555555", /*S*/"333333", "9/10/2016", "2016-9-10T07:6:38Z", "60.78", " Test Case : 5.8.4"};
+       billableStringDataArray[212] = new String[]{"213", /*U*/"888888888", /*P*/"555555555", /*S*/"777777", "2/11/2016", "2016-2-11T23:59:59Z", "25.57", " Test Case : 5.8.5"};
+       billableStringDataArray[213] = new String[]{"214", /*U*/"222222222", /*P*/"555555555", /*S*/"999999", "2/18/2016", "2016-2-18T06:23:14Z", "4.55", " Test Case : 5.8.6"};
+       billableStringDataArray[214] = new String[]{"215", /*U*/"111111111", /*P*/"555555555", /*S*/"777777", "10/4/2016", "2016-10-4T00:48:21Z", "74.48", " Test Case : 5.8.7"};
+       billableStringDataArray[215] = new String[]{"216", /*U*/"777777777", /*P*/"555555555", /*S*/"888888", "1/3/2016", "2016-1-3T21:00:00Z", "76.90", " Test Case : 5.8.8"};
+
+       billableStringDataArray[216] = new String[]{"217", /*U*/"888888888", /*P*/"555555555", /*S*/"777777", "7/23/2016", "2016-7-23T21:00:01Z", "250.5", " Test Case : 5.9.1"};
+       billableStringDataArray[217] = new String[]{"218", /*U*/"111111111", /*P*/"555555555", /*S*/"777777", "2/19/2016", "2016-2-19T23:59:59Z", "208.57", " Test Case : 5.9.2"};
+       billableStringDataArray[218] = new String[]{"219", /*U*/"333333333", /*P*/"555555555", /*S*/"999999", "5/23/2016", "2016-5-23T05:29:40Z", "118.62", " Test Case : 5.9.3"};
+       billableStringDataArray[219] = new String[]{"220", /*U*/"888888888", /*P*/"555555555", /*S*/"111111", "6/28/2016", "2016-6-28T17:22:9Z", "76.56", " Test Case : 5.9.4"};
+       billableStringDataArray[220] = new String[]{"221", /*U*/"222222222", /*P*/"555555555", /*S*/"333333", "9/16/2016", "2016-9-16T16:13:56Z", "44.3", " Test Case : 5.9.5"};
+       billableStringDataArray[221] = new String[]{"222", /*U*/"111111111", /*P*/"555555555", /*S*/"666666", "9/14/2016", "2016-9-14T08:43:59Z", "220.38", " Test Case : 5.9.6"};
+       billableStringDataArray[222] = new String[]{"223", /*U*/"555555555", /*P*/"555555555", /*S*/"555555", "6/17/2016", "2016-6-17T07:24:38Z", "41.30", " Test Case : 5.9.7"};
+       billableStringDataArray[223] = new String[]{"224", /*U*/"333333333", /*P*/"555555555", /*S*/"999999", "4/10/2016", "2016-4-10T19:30:29Z", "220.86", " Test Case : 5.9.8"};
+       billableStringDataArray[224] = new String[]{"225", /*U*/"444444444", /*P*/"555555555", /*S*/"444444", "11/4/2016", "2016-11-4T21:00:00Z", "184.89", " Test Case : 5.9.9"};
+
+
+// <--  END Test Data Set # 5
+
+
+// <--  Test Data Set # 6 START!
+
+       billableStringDataArray[225] = new String[]{"226", /*U*/"333333333", /*P*/"666666666", /*S*/"666666", "9/20/2016", "2016-9-20T21:00:01Z", "196.92", " Test Case : 6.1.1"};
+
+       billableStringDataArray[226] = new String[]{"227", /*U*/"555555555", /*P*/"666666666", /*S*/"111111", "8/26/2016", "2016-8-26T21:00:01Z", "118.2", " Test Case : 6.2.1"};
+       billableStringDataArray[227] = new String[]{"228", /*U*/"777777777", /*P*/"666666666", /*S*/"999999", "8/17/2016", "2016-8-17T21:00:00Z", "28.36", " Test Case : 6.2.2"};
+
+       billableStringDataArray[228] = new String[]{"229", /*U*/"999999999", /*P*/"666666666", /*S*/"888888", "7/2/2016", "2016-7-2T21:00:01Z", "168.91", " Test Case : 6.3.1"};
+       billableStringDataArray[229] = new String[]{"230", /*U*/"999999999", /*P*/"666666666", /*S*/"333333", "9/14/2016", "2016-9-14T17:9:9Z", "74.60", " Test Case : 6.3.2"};
+       billableStringDataArray[230] = new String[]{"231", /*U*/"333333333", /*P*/"666666666", /*S*/"666666", "10/27/2016", "2016-10-27T21:00:00Z", "84.53", " Test Case : 6.3.3"};
+
+       billableStringDataArray[231] = new String[]{"232", /*U*/"444444444", /*P*/"666666666", /*S*/"777777", "2/2/2016", "2016-2-2T21:00:01Z", "223.85", " Test Case : 6.4.1"};
+       billableStringDataArray[232] = new String[]{"233", /*U*/"888888888", /*P*/"666666666", /*S*/"777777", "9/12/2016", "2016-9-12T08:30:30Z", "64.68", " Test Case : 6.4.2"};
+       billableStringDataArray[233] = new String[]{"234", /*U*/"888888888", /*P*/"666666666", /*S*/"222222", "6/19/2016", "2016-6-19T08:14:26Z", "247.74", " Test Case : 6.4.3"};
+       billableStringDataArray[234] = new String[]{"235", /*U*/"111111111", /*P*/"666666666", /*S*/"111111", "8/27/2016", "2016-8-27T21:00:00Z", "19.25", " Test Case : 6.4.4"};
+
+       billableStringDataArray[235] = new String[]{"236", /*U*/"333333333", /*P*/"666666666", /*S*/"444444", "2/17/2016", "2016-2-17T21:00:01Z", "155.81", " Test Case : 6.5.1"};
+       billableStringDataArray[236] = new String[]{"237", /*U*/"999999999", /*P*/"666666666", /*S*/"777777", "5/1/2016", "2016-5-1T02:43:26Z", "203.14", " Test Case : 6.5.2"};
+       billableStringDataArray[237] = new String[]{"238", /*U*/"555555555", /*P*/"666666666", /*S*/"444444", "8/21/2016", "2016-8-21T11:5:1Z", "54.12", " Test Case : 6.5.3"};
+       billableStringDataArray[238] = new String[]{"239", /*U*/"222222222", /*P*/"666666666", /*S*/"444444", "6/21/2016", "2016-6-21T04:37:36Z", "231.88", " Test Case : 6.5.4"};
+       billableStringDataArray[239] = new String[]{"240", /*U*/"222222222", /*P*/"666666666", /*S*/"111111", "8/11/2016", "2016-8-11T21:00:00Z", "8.90", " Test Case : 6.5.5"};
+
+       billableStringDataArray[240] = new String[]{"241", /*U*/"111111111", /*P*/"666666666", /*S*/"888888", "4/8/2016", "2016-4-8T21:00:01Z", "69.5", " Test Case : 6.6.1"};
+       billableStringDataArray[241] = new String[]{"242", /*U*/"555555555", /*P*/"666666666", /*S*/"666666", "11/28/2016", "2016-11-28T04:37:3Z", "217.38", " Test Case : 6.6.2"};
+       billableStringDataArray[242] = new String[]{"243", /*U*/"777777777", /*P*/"666666666", /*S*/"444444", "8/11/2016", "2016-8-11T19:10:23Z", "160.36", " Test Case : 6.6.3"};
+       billableStringDataArray[243] = new String[]{"244", /*U*/"777777777", /*P*/"666666666", /*S*/"888888", "7/10/2016", "2016-7-10T07:59:4Z", "31.90", " Test Case : 6.6.4"};
+       billableStringDataArray[244] = new String[]{"245", /*U*/"555555555", /*P*/"666666666", /*S*/"222222", "2/23/2016", "2016-2-23T22:32:3Z", "102.94", " Test Case : 6.6.5"};
+       billableStringDataArray[245] = new String[]{"246", /*U*/"666666666", /*P*/"666666666", /*S*/"111111", "9/28/2016", "2016-9-28T21:00:00Z", "120.77", " Test Case : 6.6.6"};
+
+       billableStringDataArray[246] = new String[]{"247", /*U*/"222222222", /*P*/"666666666", /*S*/"222222", "9/2/2016", "2016-9-2T21:00:01Z", "164.91", " Test Case : 6.7.1"};
+       billableStringDataArray[247] = new String[]{"248", /*U*/"888888888", /*P*/"666666666", /*S*/"111111", "5/26/2016", "2016-5-26T07:14:14Z", "151.80", " Test Case : 6.7.2"};
+       billableStringDataArray[248] = new String[]{"249", /*U*/"222222222", /*P*/"666666666", /*S*/"333333", "1/5/2016", "2016-1-5T11:27:50Z", "27.24", " Test Case : 6.7.3"};
+       billableStringDataArray[249] = new String[]{"250", /*U*/"222222222", /*P*/"666666666", /*S*/"222222", "2/21/2016", "2016-2-21T21:4:9Z", "3.29", " Test Case : 6.7.4"};
+       billableStringDataArray[250] = new String[]{"251", /*U*/"777777777", /*P*/"666666666", /*S*/"222222", "5/28/2016", "2016-5-28T22:23:37Z", "211.77", " Test Case : 6.7.5"};
+       billableStringDataArray[251] = new String[]{"252", /*U*/"666666666", /*P*/"666666666", /*S*/"666666", "1/4/2016", "2016-1-4T23:59:59Z", "65.1", " Test Case : 6.7.6"};
+       billableStringDataArray[252] = new String[]{"253", /*U*/"666666666", /*P*/"666666666", /*S*/"444444", "11/12/2016", "2016-11-12T21:00:00Z", "221.51", " Test Case : 6.7.7"};
+
+       billableStringDataArray[253] = new String[]{"254", /*U*/"333333333", /*P*/"666666666", /*S*/"777777", "8/4/2016", "2016-8-4T21:00:01Z", "80.7", " Test Case : 6.8.1"};
+       billableStringDataArray[254] = new String[]{"255", /*U*/"111111111", /*P*/"666666666", /*S*/"666666", "8/18/2016", "2016-8-18T15:36:48Z", "12.20", " Test Case : 6.8.2"};
+       billableStringDataArray[255] = new String[]{"256", /*U*/"555555555", /*P*/"666666666", /*S*/"222222", "9/6/2016", "2016-9-6T16:38:12Z", "11.47", " Test Case : 6.8.3"};
+       billableStringDataArray[256] = new String[]{"257", /*U*/"777777777", /*P*/"666666666", /*S*/"777777", "3/21/2016", "2016-3-21T07:31:48Z", "94.61", " Test Case : 6.8.4"};
+       billableStringDataArray[257] = new String[]{"258", /*U*/"444444444", /*P*/"666666666", /*S*/"444444", "9/25/2016", "2016-9-25T23:6:3Z", "51.35", " Test Case : 6.8.5"};
+       billableStringDataArray[258] = new String[]{"259", /*U*/"333333333", /*P*/"666666666", /*S*/"888888", "6/19/2016", "2016-6-19T13:6:13Z", "156.17", " Test Case : 6.8.6"};
+       billableStringDataArray[259] = new String[]{"260", /*U*/"777777777", /*P*/"666666666", /*S*/"444444", "8/28/2016", "2016-8-28T22:2:2Z", "183.47", " Test Case : 6.8.7"};
+       billableStringDataArray[260] = new String[]{"261", /*U*/"999999999", /*P*/"666666666", /*S*/"444444", "10/12/2016", "2016-10-12T21:00:00Z", "187.96", " Test Case : 6.8.8"};
+
+       billableStringDataArray[261] = new String[]{"262", /*U*/"222222222", /*P*/"666666666", /*S*/"111111", "3/4/2016", "2016-3-4T21:00:01Z", "33.95", " Test Case : 6.9.1"};
+       billableStringDataArray[262] = new String[]{"263", /*U*/"444444444", /*P*/"666666666", /*S*/"555555", "5/4/2016", "2016-5-4T11:37:38Z", "90.42", " Test Case : 6.9.2"};
+       billableStringDataArray[263] = new String[]{"264", /*U*/"999999999", /*P*/"666666666", /*S*/"333333", "2/18/2016", "2016-2-18T05:16:44Z", "92.8", " Test Case : 6.9.3"};
+       billableStringDataArray[264] = new String[]{"265", /*U*/"333333333", /*P*/"666666666", /*S*/"555555", "4/11/2016", "2016-4-11T17:4:5Z", "88.80", " Test Case : 6.9.4"};
+       billableStringDataArray[265] = new String[]{"266", /*U*/"888888888", /*P*/"666666666", /*S*/"222222", "8/27/2016", "2016-8-27T22:52:31Z", "175.61", " Test Case : 6.9.5"};
+       billableStringDataArray[266] = new String[]{"267", /*U*/"777777777", /*P*/"666666666", /*S*/"444444", "7/6/2016", "2016-7-6T10:26:21Z", "217.52", " Test Case : 6.9.6"};
+       billableStringDataArray[267] = new String[]{"268", /*U*/"444444444", /*P*/"666666666", /*S*/"111111", "11/27/2016", "2016-11-27T11:38:36Z", "184.66", " Test Case : 6.9.7"};
+       billableStringDataArray[268] = new String[]{"269", /*U*/"666666666", /*P*/"666666666", /*S*/"777777", "11/14/2016", "2016-11-14T19:3:3Z", "242.32", " Test Case : 6.9.8"};
+       billableStringDataArray[269] = new String[]{"270", /*U*/"111111111", /*P*/"666666666", /*S*/"111111", "10/13/2016", "2016-10-13T21:00:00Z", "22.90", " Test Case : 6.9.9"};
+
+
+// <--  END Test Data Set # 6
+
+
+// <--  Test Data Set # 7 START!
+
+       billableStringDataArray[270] = new String[]{"271", /*U*/"888888888", /*P*/"777777777", /*S*/"111111", "7/3/2016", "2016-7-3T21:00:01Z", "106.12", " Test Case : 7.1.1"};
+
+       billableStringDataArray[271] = new String[]{"272", /*U*/"999999999", /*P*/"777777777", /*S*/"555555", "3/22/2016", "2016-3-22T21:00:01Z", "158.58", " Test Case : 7.2.1"};
+       billableStringDataArray[272] = new String[]{"273", /*U*/"111111111", /*P*/"777777777", /*S*/"888888", "3/23/2016", "2016-3-23T21:00:00Z", "85.87", " Test Case : 7.2.2"};
+
+       billableStringDataArray[273] = new String[]{"274", /*U*/"222222222", /*P*/"777777777", /*S*/"444444", "8/3/2016", "2016-8-3T21:00:01Z", "212.48", " Test Case : 7.3.1"};
+       billableStringDataArray[274] = new String[]{"275", /*U*/"333333333", /*P*/"777777777", /*S*/"555555", "9/15/2016", "2016-9-15T14:14:10Z", "24.55", " Test Case : 7.3.2"};
+       billableStringDataArray[275] = new String[]{"276", /*U*/"333333333", /*P*/"777777777", /*S*/"333333", "4/1/2016", "2016-4-1T21:00:00Z", "24.81", " Test Case : 7.3.3"};
+
+       billableStringDataArray[276] = new String[]{"277", /*U*/"555555555", /*P*/"777777777", /*S*/"666666", "5/12/2016", "2016-5-12T21:00:01Z", "19.66", " Test Case : 7.4.1"};
+       billableStringDataArray[277] = new String[]{"278", /*U*/"777777777", /*P*/"777777777", /*S*/"444444", "6/21/2016", "2016-6-21T15:2:50Z", "12.59", " Test Case : 7.4.2"};
+       billableStringDataArray[278] = new String[]{"279", /*U*/"888888888", /*P*/"777777777", /*S*/"777777", "7/17/2016", "2016-7-17T13:44:24Z", "31.8", " Test Case : 7.4.3"};
+       billableStringDataArray[279] = new String[]{"280", /*U*/"999999999", /*P*/"777777777", /*S*/"444444", "5/14/2016", "2016-5-14T21:00:00Z", "242.16", " Test Case : 7.4.4"};
+
+       billableStringDataArray[280] = new String[]{"281", /*U*/"555555555", /*P*/"777777777", /*S*/"333333", "4/24/2016", "2016-4-24T21:00:01Z", "74.48", " Test Case : 7.5.1"};
+       billableStringDataArray[281] = new String[]{"282", /*U*/"888888888", /*P*/"777777777", /*S*/"111111", "2/16/2016", "2016-2-16T05:59:51Z", "142.44", " Test Case : 7.5.2"};
+       billableStringDataArray[282] = new String[]{"283", /*U*/"888888888", /*P*/"777777777", /*S*/"999999", "11/8/2016", "2016-11-8T09:39:44Z", "217.11", " Test Case : 7.5.3"};
+       billableStringDataArray[283] = new String[]{"284", /*U*/"222222222", /*P*/"777777777", /*S*/"999999", "4/1/2016", "2016-4-1T22:29:31Z", "93.60", " Test Case : 7.5.4"};
+       billableStringDataArray[284] = new String[]{"285", /*U*/"555555555", /*P*/"777777777", /*S*/"666666", "11/26/2016", "2016-11-26T21:00:00Z", "15.32", " Test Case : 7.5.5"};
+
+       billableStringDataArray[285] = new String[]{"286", /*U*/"777777777", /*P*/"777777777", /*S*/"444444", "5/15/2016", "2016-5-15T21:00:01Z", "229.37", " Test Case : 7.6.1"};
+       billableStringDataArray[286] = new String[]{"287", /*U*/"333333333", /*P*/"777777777", /*S*/"333333", "5/2/2016", "2016-5-2T21:12:59Z", "46.77", " Test Case : 7.6.2"};
+       billableStringDataArray[287] = new String[]{"288", /*U*/"666666666", /*P*/"777777777", /*S*/"111111", "10/19/2016", "2016-10-19T23:40:38Z", "31.69", " Test Case : 7.6.3"};
+       billableStringDataArray[288] = new String[]{"289", /*U*/"777777777", /*P*/"777777777", /*S*/"444444", "5/2/2016", "2016-5-2T21:1:59Z", "48.97", " Test Case : 7.6.4"};
+       billableStringDataArray[289] = new String[]{"290", /*U*/"888888888", /*P*/"777777777", /*S*/"222222", "11/20/2016", "2016-11-20T23:38:21Z", "115.79", " Test Case : 7.6.5"};
+       billableStringDataArray[290] = new String[]{"291", /*U*/"555555555", /*P*/"777777777", /*S*/"777777", "6/19/2016", "2016-6-19T21:00:00Z", "25.69", " Test Case : 7.6.6"};
+
+       billableStringDataArray[291] = new String[]{"292", /*U*/"333333333", /*P*/"777777777", /*S*/"333333", "8/1/2016", "2016-8-1T21:00:01Z", "200.33", " Test Case : 7.7.1"};
+       billableStringDataArray[292] = new String[]{"293", /*U*/"888888888", /*P*/"777777777", /*S*/"333333", "3/23/2016", "2016-3-23T00:45:49Z", "41.0", " Test Case : 7.7.2"};
+       billableStringDataArray[293] = new String[]{"294", /*U*/"888888888", /*P*/"777777777", /*S*/"111111", "10/20/2016", "2016-10-20T22:53:55Z", "220.84", " Test Case : 7.7.3"};
+       billableStringDataArray[294] = new String[]{"295", /*U*/"333333333", /*P*/"777777777", /*S*/"111111", "5/2/2016", "2016-5-2T10:28:57Z", "127.10", " Test Case : 7.7.4"};
+       billableStringDataArray[295] = new String[]{"296", /*U*/"444444444", /*P*/"777777777", /*S*/"666666", "9/8/2016", "2016-9-8T05:2:27Z", "69.63", " Test Case : 7.7.5"};
+       billableStringDataArray[296] = new String[]{"297", /*U*/"111111111", /*P*/"777777777", /*S*/"777777", "10/12/2016", "2016-10-12T16:40:52Z", "130.70", " Test Case : 7.7.6"};
+       billableStringDataArray[297] = new String[]{"298", /*U*/"444444444", /*P*/"777777777", /*S*/"888888", "8/11/2016", "2016-8-11T21:00:00Z", "13.59", " Test Case : 7.7.7"};
+
+       billableStringDataArray[298] = new String[]{"299", /*U*/"777777777", /*P*/"777777777", /*S*/"222222", "3/21/2016", "2016-3-21T21:00:01Z", "147.24", " Test Case : 7.8.1"};
+       billableStringDataArray[299] = new String[]{"300", /*U*/"999999999", /*P*/"777777777", /*S*/"111111", "8/21/2016", "2016-8-21T13:33:57Z", "10.52", " Test Case : 7.8.2"};
+       billableStringDataArray[300] = new String[]{"301", /*U*/"333333333", /*P*/"777777777", /*S*/"777777", "6/19/2016", "2016-6-19T10:35:6Z", "158.32", " Test Case : 7.8.3"};
+       billableStringDataArray[301] = new String[]{"302", /*U*/"333333333", /*P*/"777777777", /*S*/"444444", "8/16/2016", "2016-8-16T08:23:15Z", "194.47", " Test Case : 7.8.4"};
+       billableStringDataArray[302] = new String[]{"303", /*U*/"999999999", /*P*/"777777777", /*S*/"666666", "8/19/2016", "2016-8-19T02:45:53Z", "171.29", " Test Case : 7.8.5"};
+       billableStringDataArray[303] = new String[]{"304", /*U*/"111111111", /*P*/"777777777", /*S*/"111111", "11/8/2016", "2016-11-8T15:33:54Z", "88.1", " Test Case : 7.8.6"};
+       billableStringDataArray[304] = new String[]{"305", /*U*/"666666666", /*P*/"777777777", /*S*/"666666", "1/23/2016", "2016-1-23T13:37:19Z", "145.88", " Test Case : 7.8.7"};
+       billableStringDataArray[305] = new String[]{"306", /*U*/"444444444", /*P*/"777777777", /*S*/"888888", "7/9/2016", "2016-7-9T21:00:00Z", "152.10", " Test Case : 7.8.8"};
+
+       billableStringDataArray[306] = new String[]{"307", /*U*/"222222222", /*P*/"777777777", /*S*/"555555", "10/18/2016", "2016-10-18T21:00:01Z", "227.94", " Test Case : 7.9.1"};
+       billableStringDataArray[307] = new String[]{"308", /*U*/"888888888", /*P*/"777777777", /*S*/"888888", "6/16/2016", "2016-6-16T04:49:27Z", "99.99", " Test Case : 7.9.2"};
+       billableStringDataArray[308] = new String[]{"309", /*U*/"333333333", /*P*/"777777777", /*S*/"666666", "5/5/2016", "2016-5-5T09:25:5Z", "248.34", " Test Case : 7.9.3"};
+       billableStringDataArray[309] = new String[]{"310", /*U*/"222222222", /*P*/"777777777", /*S*/"444444", "9/8/2016", "2016-9-8T00:27:51Z", "130.19", " Test Case : 7.9.4"};
+       billableStringDataArray[310] = new String[]{"311", /*U*/"222222222", /*P*/"777777777", /*S*/"333333", "9/22/2016", "2016-9-22T21:39:55Z", "120.83", " Test Case : 7.9.5"};
+       billableStringDataArray[311] = new String[]{"312", /*U*/"333333333", /*P*/"777777777", /*S*/"444444", "7/21/2016", "2016-7-21T02:30:1Z", "133.87", " Test Case : 7.9.6"};
+       billableStringDataArray[312] = new String[]{"313", /*U*/"666666666", /*P*/"777777777", /*S*/"999999", "4/3/2016", "2016-4-3T00:15:43Z", "165.12", " Test Case : 7.9.7"};
+       billableStringDataArray[313] = new String[]{"314", /*U*/"777777777", /*P*/"777777777", /*S*/"777777", "6/7/2016", "2016-6-7T23:52:36Z", "28.53", " Test Case : 7.9.8"};
+       billableStringDataArray[314] = new String[]{"315", /*U*/"777777777", /*P*/"777777777", /*S*/"333333", "2/15/2016", "2016-2-15T21:00:00Z", "205.35", " Test Case : 7.9.9"};
+
+
+// <--  END Test Data Set # 7
+
+
+// <--  Test Data Set # 8 START!
+
+       billableStringDataArray[315] = new String[]{"316", /*U*/"666666666", /*P*/"888888888", /*S*/"999999", "9/8/2016", "2016-9-8T21:00:01Z", "128.36", " Test Case : 8.1.1"};
+
+       billableStringDataArray[316] = new String[]{"317", /*U*/"888888888", /*P*/"888888888", /*S*/"444444", "10/5/2016", "2016-10-5T21:00:01Z", "247.57", " Test Case : 8.2.1"};
+       billableStringDataArray[317] = new String[]{"318", /*U*/"555555555", /*P*/"888888888", /*S*/"333333", "4/6/2016", "2016-4-6T21:00:00Z", "194.97", " Test Case : 8.2.2"};
+
+       billableStringDataArray[318] = new String[]{"319", /*U*/"333333333", /*P*/"888888888", /*S*/"333333", "9/26/2016", "2016-9-26T21:00:01Z", "117.83", " Test Case : 8.3.1"};
+       billableStringDataArray[319] = new String[]{"320", /*U*/"777777777", /*P*/"888888888", /*S*/"999999", "3/15/2016", "2016-3-15T20:50:33Z", "34.99", " Test Case : 8.3.2"};
+       billableStringDataArray[320] = new String[]{"321", /*U*/"555555555", /*P*/"888888888", /*S*/"888888", "9/17/2016", "2016-9-17T21:00:00Z", "204.60", " Test Case : 8.3.3"};
+
+       billableStringDataArray[321] = new String[]{"322", /*U*/"555555555", /*P*/"888888888", /*S*/"222222", "3/23/2016", "2016-3-23T21:00:01Z", "33.34", " Test Case : 8.4.1"};
+       billableStringDataArray[322] = new String[]{"323", /*U*/"666666666", /*P*/"888888888", /*S*/"333333", "1/6/2016", "2016-1-6T11:36:0Z", "197.66", " Test Case : 8.4.2"};
+       billableStringDataArray[323] = new String[]{"324", /*U*/"111111111", /*P*/"888888888", /*S*/"666666", "11/8/2016", "2016-11-8T02:29:5Z", "32.98", " Test Case : 8.4.3"};
+       billableStringDataArray[324] = new String[]{"325", /*U*/"222222222", /*P*/"888888888", /*S*/"777777", "8/7/2016", "2016-8-7T21:00:00Z", "233.87", " Test Case : 8.4.4"};
+
+       billableStringDataArray[325] = new String[]{"326", /*U*/"555555555", /*P*/"888888888", /*S*/"555555", "6/25/2016", "2016-6-25T21:00:01Z", "146.91", " Test Case : 8.5.1"};
+       billableStringDataArray[326] = new String[]{"327", /*U*/"999999999", /*P*/"888888888", /*S*/"555555", "11/26/2016", "2016-11-26T02:1:19Z", "57.11", " Test Case : 8.5.2"};
+       billableStringDataArray[327] = new String[]{"328", /*U*/"666666666", /*P*/"888888888", /*S*/"777777", "1/2/2016", "2016-1-2T05:23:26Z", "250.72", " Test Case : 8.5.3"};
+       billableStringDataArray[328] = new String[]{"329", /*U*/"666666666", /*P*/"888888888", /*S*/"111111", "11/4/2016", "2016-11-4T19:45:43Z", "133.91", " Test Case : 8.5.4"};
+       billableStringDataArray[329] = new String[]{"330", /*U*/"555555555", /*P*/"888888888", /*S*/"666666", "1/26/2016", "2016-1-26T21:00:00Z", "132.37", " Test Case : 8.5.5"};
+
+       billableStringDataArray[330] = new String[]{"331", /*U*/"333333333", /*P*/"888888888", /*S*/"888888", "5/10/2016", "2016-5-10T21:00:01Z", "28.52", " Test Case : 8.6.1"};
+       billableStringDataArray[331] = new String[]{"332", /*U*/"333333333", /*P*/"888888888", /*S*/"555555", "3/6/2016", "2016-3-6T15:27:41Z", "117.83", " Test Case : 8.6.2"};
+       billableStringDataArray[332] = new String[]{"333", /*U*/"777777777", /*P*/"888888888", /*S*/"555555", "3/24/2016", "2016-3-24T16:12:57Z", "109.72", " Test Case : 8.6.3"};
+       billableStringDataArray[333] = new String[]{"334", /*U*/"333333333", /*P*/"888888888", /*S*/"999999", "8/1/2016", "2016-8-1T06:19:56Z", "234.82", " Test Case : 8.6.4"};
+       billableStringDataArray[334] = new String[]{"335", /*U*/"111111111", /*P*/"888888888", /*S*/"666666", "8/20/2016", "2016-8-20T23:57:15Z", "120.31", " Test Case : 8.6.5"};
+       billableStringDataArray[335] = new String[]{"336", /*U*/"666666666", /*P*/"888888888", /*S*/"333333", "4/25/2016", "2016-4-25T21:00:00Z", "213.0", " Test Case : 8.6.6"};
+
+       billableStringDataArray[336] = new String[]{"337", /*U*/"666666666", /*P*/"888888888", /*S*/"777777", "11/2/2016", "2016-11-2T21:00:01Z", "9.32", " Test Case : 8.7.1"};
+       billableStringDataArray[337] = new String[]{"338", /*U*/"111111111", /*P*/"888888888", /*S*/"111111", "8/15/2016", "2016-8-15T22:12:46Z", "143.22", " Test Case : 8.7.2"};
+       billableStringDataArray[338] = new String[]{"339", /*U*/"999999999", /*P*/"888888888", /*S*/"333333", "10/28/2016", "2016-10-28T23:59:59Z", "25.81", " Test Case : 8.7.3"};
+       billableStringDataArray[339] = new String[]{"340", /*U*/"222222222", /*P*/"888888888", /*S*/"999999", "3/8/2016", "2016-3-8T14:55:14Z", "210.49", " Test Case : 8.7.4"};
+       billableStringDataArray[340] = new String[]{"341", /*U*/"777777777", /*P*/"888888888", /*S*/"888888", "2/9/2016", "2016-2-9T10:55:28Z", "210.48", " Test Case : 8.7.5"};
+       billableStringDataArray[341] = new String[]{"342", /*U*/"999999999", /*P*/"888888888", /*S*/"888888", "11/10/2016", "2016-11-10T05:7:10Z", "64.38", " Test Case : 8.7.6"};
+       billableStringDataArray[342] = new String[]{"343", /*U*/"111111111", /*P*/"888888888", /*S*/"999999", "5/28/2016", "2016-5-28T21:00:00Z", "215.43", " Test Case : 8.7.7"};
+
+       billableStringDataArray[343] = new String[]{"344", /*U*/"222222222", /*P*/"888888888", /*S*/"333333", "9/21/2016", "2016-9-21T21:00:01Z", "77.29", " Test Case : 8.8.1"};
+       billableStringDataArray[344] = new String[]{"345", /*U*/"999999999", /*P*/"888888888", /*S*/"666666", "3/6/2016", "2016-3-6T09:23:32Z", "85.34", " Test Case : 8.8.2"};
+       billableStringDataArray[345] = new String[]{"346", /*U*/"444444444", /*P*/"888888888", /*S*/"555555", "2/21/2016", "2016-2-21T12:25:1Z", "137.24", " Test Case : 8.8.3"};
+       billableStringDataArray[346] = new String[]{"347", /*U*/"111111111", /*P*/"888888888", /*S*/"333333", "7/24/2016", "2016-7-24T14:46:42Z", "181.27", " Test Case : 8.8.4"};
+       billableStringDataArray[347] = new String[]{"348", /*U*/"222222222", /*P*/"888888888", /*S*/"555555", "11/15/2016", "2016-11-15T00:20:33Z", "119.2", " Test Case : 8.8.5"};
+       billableStringDataArray[348] = new String[]{"349", /*U*/"777777777", /*P*/"888888888", /*S*/"444444", "11/4/2016", "2016-11-4T15:53:10Z", "236.94", " Test Case : 8.8.6"};
+       billableStringDataArray[349] = new String[]{"350", /*U*/"111111111", /*P*/"888888888", /*S*/"222222", "10/18/2016", "2016-10-18T06:34:29Z", "180.28", " Test Case : 8.8.7"};
+       billableStringDataArray[350] = new String[]{"351", /*U*/"555555555", /*P*/"888888888", /*S*/"555555", "1/9/2016", "2016-1-9T21:00:00Z", "6.46", " Test Case : 8.8.8"};
+
+       billableStringDataArray[351] = new String[]{"352", /*U*/"888888888", /*P*/"888888888", /*S*/"555555", "4/16/2016", "2016-4-16T21:00:01Z", "91.74", " Test Case : 8.9.1"};
+       billableStringDataArray[352] = new String[]{"353", /*U*/"888888888", /*P*/"888888888", /*S*/"111111", "4/6/2016", "2016-4-6T00:7:55Z", "138.34", " Test Case : 8.9.2"};
+       billableStringDataArray[353] = new String[]{"354", /*U*/"444444444", /*P*/"888888888", /*S*/"222222", "1/3/2016", "2016-1-3T20:16:52Z", "183.86", " Test Case : 8.9.3"};
+       billableStringDataArray[354] = new String[]{"355", /*U*/"444444444", /*P*/"888888888", /*S*/"555555", "3/14/2016", "2016-3-14T01:17:35Z", "131.4", " Test Case : 8.9.4"};
+       billableStringDataArray[355] = new String[]{"356", /*U*/"777777777", /*P*/"888888888", /*S*/"666666", "8/23/2016", "2016-8-23T17:22:9Z", "13.64", " Test Case : 8.9.5"};
+       billableStringDataArray[356] = new String[]{"357", /*U*/"444444444", /*P*/"888888888", /*S*/"333333", "2/18/2016", "2016-2-18T18:7:1Z", "209.45", " Test Case : 8.9.6"};
+       billableStringDataArray[357] = new String[]{"358", /*U*/"222222222", /*P*/"888888888", /*S*/"888888", "2/5/2016", "2016-2-5T01:33:3Z", "139.87", " Test Case : 8.9.7"};
+       billableStringDataArray[358] = new String[]{"359", /*U*/"888888888", /*P*/"888888888", /*S*/"888888", "3/9/2016", "2016-3-9T17:38:35Z", "49.82", " Test Case : 8.9.8"};
+       billableStringDataArray[359] = new String[]{"360", /*U*/"111111111", /*P*/"888888888", /*S*/"666666", "4/27/2016", "2016-4-27T21:00:00Z", "77.15", " Test Case : 8.9.9"};
+
+
+// <--  END Test Data Set # 8
+
+
+// <--  Test Data Set # 9 START!
+
+       billableStringDataArray[360] = new String[]{"361", /*U*/"222222222", /*P*/"999999999", /*S*/"888888", "3/4/2016", "2016-3-4T21:00:01Z", "62.48", " Test Case : 9.1.1"};
+
+       billableStringDataArray[361] = new String[]{"362", /*U*/"777777777", /*P*/"999999999", /*S*/"777777", "4/9/2016", "2016-4-9T21:00:01Z", "163.5", " Test Case : 9.2.1"};
+       billableStringDataArray[362] = new String[]{"363", /*U*/"888888888", /*P*/"999999999", /*S*/"555555", "11/2/2016", "2016-11-2T21:00:00Z", "38.8", " Test Case : 9.2.2"};
+
+       billableStringDataArray[363] = new String[]{"364", /*U*/"888888888", /*P*/"999999999", /*S*/"555555", "5/16/2016", "2016-5-16T21:00:01Z", "140.89", " Test Case : 9.3.1"};
+       billableStringDataArray[364] = new String[]{"365", /*U*/"555555555", /*P*/"999999999", /*S*/"111111", "4/24/2016", "2016-4-24T00:11:52Z", "93.60", " Test Case : 9.3.2"};
+       billableStringDataArray[365] = new String[]{"366", /*U*/"999999999", /*P*/"999999999", /*S*/"333333", "6/16/2016", "2016-6-16T21:00:00Z", "221.79", " Test Case : 9.3.3"};
+
+       billableStringDataArray[366] = new String[]{"367", /*U*/"111111111", /*P*/"999999999", /*S*/"999999", "7/2/2016", "2016-7-2T21:00:01Z", "30.4", " Test Case : 9.4.1"};
+       billableStringDataArray[367] = new String[]{"368", /*U*/"333333333", /*P*/"999999999", /*S*/"888888", "1/21/2016", "2016-1-21T08:26:20Z", "235.96", " Test Case : 9.4.2"};
+       billableStringDataArray[368] = new String[]{"369", /*U*/"111111111", /*P*/"999999999", /*S*/"999999", "10/3/2016", "2016-10-3T22:36:2Z", "241.90", " Test Case : 9.4.3"};
+       billableStringDataArray[369] = new String[]{"370", /*U*/"888888888", /*P*/"999999999", /*S*/"777777", "5/24/2016", "2016-5-24T21:00:00Z", "231.66", " Test Case : 9.4.4"};
+
+       billableStringDataArray[370] = new String[]{"371", /*U*/"666666666", /*P*/"999999999", /*S*/"333333", "2/9/2016", "2016-2-9T21:00:01Z", "22.43", " Test Case : 9.5.1"};
+       billableStringDataArray[371] = new String[]{"372", /*U*/"999999999", /*P*/"999999999", /*S*/"666666", "4/23/2016", "2016-4-23T06:33:25Z", "85.2", " Test Case : 9.5.2"};
+       billableStringDataArray[372] = new String[]{"373", /*U*/"222222222", /*P*/"999999999", /*S*/"444444", "8/23/2016", "2016-8-23T12:42:31Z", "62.78", " Test Case : 9.5.3"};
+       billableStringDataArray[373] = new String[]{"374", /*U*/"111111111", /*P*/"999999999", /*S*/"888888", "9/22/2016", "2016-9-22T15:36:1Z", "215.79", " Test Case : 9.5.4"};
+       billableStringDataArray[374] = new String[]{"375", /*U*/"111111111", /*P*/"999999999", /*S*/"222222", "7/5/2016", "2016-7-5T21:00:00Z", "179.37", " Test Case : 9.5.5"};
+
+       billableStringDataArray[375] = new String[]{"376", /*U*/"444444444", /*P*/"999999999", /*S*/"666666", "7/12/2016", "2016-7-12T21:00:01Z", "155.49", " Test Case : 9.6.1"};
+       billableStringDataArray[376] = new String[]{"377", /*U*/"555555555", /*P*/"999999999", /*S*/"888888", "5/18/2016", "2016-5-18T02:45:22Z", "180.67", " Test Case : 9.6.2"};
+       billableStringDataArray[377] = new String[]{"378", /*U*/"555555555", /*P*/"999999999", /*S*/"111111", "3/11/2016", "2016-3-11T11:16:6Z", "226.75", " Test Case : 9.6.3"};
+       billableStringDataArray[378] = new String[]{"379", /*U*/"666666666", /*P*/"999999999", /*S*/"777777", "7/1/2016", "2016-7-1T20:9:6Z", "91.85", " Test Case : 9.6.4"};
+       billableStringDataArray[379] = new String[]{"380", /*U*/"888888888", /*P*/"999999999", /*S*/"222222", "2/10/2016", "2016-2-10T06:35:14Z", "221.76", " Test Case : 9.6.5"};
+       billableStringDataArray[380] = new String[]{"381", /*U*/"666666666", /*P*/"999999999", /*S*/"444444", "3/26/2016", "2016-3-26T21:00:00Z", "219.91", " Test Case : 9.6.6"};
+
+       billableStringDataArray[381] = new String[]{"382", /*U*/"777777777", /*P*/"999999999", /*S*/"666666", "6/22/2016", "2016-6-22T21:00:01Z", "28.28", " Test Case : 9.7.1"};
+       billableStringDataArray[382] = new String[]{"383", /*U*/"888888888", /*P*/"999999999", /*S*/"999999", "4/24/2016", "2016-4-24T04:2:52Z", "181.30", " Test Case : 9.7.2"};
+       billableStringDataArray[383] = new String[]{"384", /*U*/"333333333", /*P*/"999999999", /*S*/"555555", "1/2/2016", "2016-1-2T04:24:30Z", "201.25", " Test Case : 9.7.3"};
+       billableStringDataArray[384] = new String[]{"385", /*U*/"666666666", /*P*/"999999999", /*S*/"555555", "3/2/2016", "2016-3-2T12:52:30Z", "14.35", " Test Case : 9.7.4"};
+       billableStringDataArray[385] = new String[]{"386", /*U*/"555555555", /*P*/"999999999", /*S*/"333333", "6/4/2016", "2016-6-4T20:7:50Z", "200.14", " Test Case : 9.7.5"};
+       billableStringDataArray[386] = new String[]{"387", /*U*/"666666666", /*P*/"999999999", /*S*/"666666", "6/25/2016", "2016-6-25T23:59:59Z", "82.5", " Test Case : 9.7.6"};
+       billableStringDataArray[387] = new String[]{"388", /*U*/"555555555", /*P*/"999999999", /*S*/"888888", "1/4/2016", "2016-1-4T21:00:00Z", "77.48", " Test Case : 9.7.7"};
+
+       billableStringDataArray[388] = new String[]{"389", /*U*/"777777777", /*P*/"999999999", /*S*/"222222", "4/5/2016", "2016-4-5T21:00:01Z", "72.44", " Test Case : 9.8.1"};
+       billableStringDataArray[389] = new String[]{"390", /*U*/"999999999", /*P*/"999999999", /*S*/"888888", "3/28/2016", "2016-3-28T19:26:43Z", "5.27", " Test Case : 9.8.2"};
+       billableStringDataArray[390] = new String[]{"391", /*U*/"999999999", /*P*/"999999999", /*S*/"888888", "5/13/2016", "2016-5-13T08:58:24Z", "190.12", " Test Case : 9.8.3"};
+       billableStringDataArray[391] = new String[]{"392", /*U*/"555555555", /*P*/"999999999", /*S*/"111111", "5/12/2016", "2016-5-12T13:51:14Z", "35.63", " Test Case : 9.8.4"};
+       billableStringDataArray[392] = new String[]{"393", /*U*/"111111111", /*P*/"999999999", /*S*/"444444", "9/4/2016", "2016-9-4T22:13:34Z", "40.35", " Test Case : 9.8.5"};
+       billableStringDataArray[393] = new String[]{"394", /*U*/"111111111", /*P*/"999999999", /*S*/"444444", "6/17/2016", "2016-6-17T04:2:2Z", "188.18", " Test Case : 9.8.6"};
+       billableStringDataArray[394] = new String[]{"395", /*U*/"444444444", /*P*/"999999999", /*S*/"111111", "10/6/2016", "2016-10-6T23:59:59Z", "149.92", " Test Case : 9.8.7"};
+       billableStringDataArray[395] = new String[]{"396", /*U*/"666666666", /*P*/"999999999", /*S*/"333333", "9/9/2016", "2016-9-9T21:00:00Z", "29.22", " Test Case : 9.8.8"};
+
+       billableStringDataArray[396] = new String[]{"397", /*U*/"555555555", /*P*/"999999999", /*S*/"222222", "2/9/2016", "2016-2-9T21:00:01Z", "215.2", " Test Case : 9.9.1"};
+       billableStringDataArray[397] = new String[]{"398", /*U*/"444444444", /*P*/"999999999", /*S*/"444444", "1/26/2016", "2016-1-26T21:14:45Z", "193.81", " Test Case : 9.9.2"};
+       billableStringDataArray[398] = new String[]{"399", /*U*/"777777777", /*P*/"999999999", /*S*/"111111", "4/13/2016", "2016-4-13T05:18:15Z", "26.75", " Test Case : 9.9.3"};
+       billableStringDataArray[399] = new String[]{"400", /*U*/"111111111", /*P*/"999999999", /*S*/"777777", "10/17/2016", "2016-10-17T09:27:46Z", "39.81", " Test Case : 9.9.4"};
+       billableStringDataArray[400] = new String[]{"401", /*U*/"666666666", /*P*/"999999999", /*S*/"222222", "2/23/2016", "2016-2-23T23:59:59Z", "165.56", " Test Case : 9.9.5"};
+       billableStringDataArray[401] = new String[]{"402", /*U*/"444444444", /*P*/"999999999", /*S*/"999999", "11/28/2016", "2016-11-28T21:48:5Z", "111.79", " Test Case : 9.9.6"};
+       billableStringDataArray[402] = new String[]{"403", /*U*/"333333333", /*P*/"999999999", /*S*/"555555", "5/8/2016", "2016-5-8T09:36:22Z", "72.93", " Test Case : 9.9.7"};
+       billableStringDataArray[403] = new String[]{"404", /*U*/"777777777", /*P*/"999999999", /*S*/"222222", "4/24/2016", "2016-4-24T05:4:7Z", "121.83", " Test Case : 9.9.8"};
+       billableStringDataArray[404] = new String[]{"405", /*U*/"555555555", /*P*/"999999999", /*S*/"111111", "2/16/2016", "2016-2-16T21:00:00Z", "126.72", " Test Case : 9.9.9"};
+
+
+// <--  END Test Data Set # 9
+
 
 
         if (billableRepository.findAll().size() > 0){

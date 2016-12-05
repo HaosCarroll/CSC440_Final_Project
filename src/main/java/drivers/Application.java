@@ -11,6 +11,8 @@ import org.springframework.boot.CommandLineRunner;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
+import org.joda.time.*;
+
 // Imports for spark framework.
 
 import static spark.Spark.*;
@@ -49,7 +51,7 @@ public class Application implements CommandLineRunner{
 
         // For Testing and Debug.
         boolean dBug = true;
-        if (dBug) System.out.println("\n* * dBug true IN : Application.main\n");
+        if (dBug) System.out.println("\n* * dBug true IN : Application.main()\n");
 
 		SpringApplication.run(Application.class, args);
 
@@ -63,7 +65,7 @@ public class Application implements CommandLineRunner{
 
         // For Testing and Debug.
         boolean dBug = false;
-        if (dBug) System.out.println("\n* * dBug true IN : Application.run\n");
+        if (dBug) System.out.println("\n* * dBug true IN : Application.run()\n");
 
         runSparkServer();
 	}
@@ -89,7 +91,7 @@ public class Application implements CommandLineRunner{
 
             // For Testing and Debug.
             boolean dBug = false;
-            if (dBug) System.out.println("\n* * dBug true IN : Application.runSparkServer : get(/) route.\n");
+            if (dBug) System.out.println("\n* * dBug true IN : Application.runSparkServer : get(\"/\") route.\n");
 
            Map<String, Object> viewObjects = new HashMap<String, Object>();
            viewObjects.put("title", "Welcome to Team Five's Final Project!");
@@ -97,168 +99,40 @@ public class Application implements CommandLineRunner{
            return new ModelAndView(viewObjects, "aMain.ftl");
         }, new FreeMarkerEngine());
 
-/* _   _  _   _   _ ___    _   _     ___ _  __ 
- *|_) |_ |_) / \ |_) |    |_) / \ | | | |_ (_  
- *| \ |_ |   \_/ | \ |    | \ \_/ |_| | |_ __)
+/*     __  _  _     _   _     ___ _  __ 
+ *| | (_  |_ |_)   |_) / \ | | | |_ (_  
+ *|_| __) |_ | \   | \ \_/ |_| | |_ __)
  */
-
-        get("/userReport", (request, response) -> {
-
-            // For Testing and Debug.
-            boolean dBug = false;
-            if (dBug) System.out.println("\n* * dBug true IN : Application.runSparkServer : get(/userReport) route.\n");
-
+                                     
+        get("/createUser", (request, response) -> {
            Map<String, Object> viewObjects = new HashMap<String, Object>();
-           viewObjects.put("templateName", "report_pages/user_report.ftl");
-           viewObjects.put("title", "User Report being constructed!");
-           viewObjects.put("users", mongoController.getJSONListOfIdsFromRepo(userRepository));
-           return new ModelAndView(viewObjects, "aMain.ftl");
-        }, new FreeMarkerEngine());
-
-        get("userAddress/:id", (request, response) -> {
-
-            // For Testing and Debug.
-            boolean dBug = false;
-            if (dBug) System.out.println("\n* * dBug true IN : Application.runSparkServer : get(/userAddress/:id) route.\n");
-
-            String returnString;
-            String id =  request.params(":id");
-
-            returnString = reportController.getHtmlStringUserAddress(userRepository, id);
-
-            if (dBug) System.out.println("returnString:\n" + returnString);
-
-            return returnString;
-        });
-
-        get("userReport/:id", (request, response) -> {
-
-            // For Testing and Debug.
-            boolean dBug = false;
-            if (dBug) System.out.println("\n* * dBug true IN : Application.runSparkServer : get(/userReport/:id) route.\n");
-
-            String returnString = "";
-            String id =  request.params(":id");
-            
-            returnString = reportController.getBillablesReportForUserInJson(billableRepository, providerRepository, serviceRepository, id);
-            
-            if (dBug) System.out.println("returnString:\n" + returnString);
-
-            return returnString;
-        });
-
-        
-        get("/providerReport", (request, response) -> {
-           Map<String, Object> viewObjects = new HashMap<String, Object>();
-           viewObjects.put("templateName", "report_pages/provider_report.ftl");
-           viewObjects.put("title", "Provider Report being constructed!");
-           viewObjects.put("providers", mongoController.getJSONListOfIdsFromRepo(providerRepository));
-           return new ModelAndView(viewObjects, "aMain.ftl");
-        }, new FreeMarkerEngine());
-
-        get("providerReport/:id", (request, response) -> {
-
-            // For Testing and Debug.
-            boolean dBug = true;
-            if (dBug) System.out.println("\n* * dBug true IN : Application.runSparkServer : get(/providerReport/:id) route.\n");
-
-            String returnString = "";
-            String id =  request.params(":id");
-            
-            returnString = reportController.getBillablesReportForProviderInJson(billableRepository, providerRepository, serviceRepository, userRepository, id);
-            
-            if (dBug) System.out.println("returnString:\n" + returnString);
-
-            return returnString;
-        });
-
-        get("providerBillablesTabulations/:id", (request, response) -> {
-
-            // For Testing and Debug.
-            boolean dBug = false;
-            if (dBug) System.out.println("\n* * dBug true IN : Application.runSparkServer : get(/providerAddress/:id) route.\n");
-
-            String returnString;
-            String id =  request.params(":id");
-
-            returnString = reportController.getHtmlConsultsAndFeeTotalForLastReportInHtml();
-
-            if (dBug) System.out.println("returnString:\n" + returnString);
-
-            return returnString;
-        });
-
-        get("providerAddress/:id", (request, response) -> {
-
-            // For Testing and Debug.
-            boolean dBug = false;
-            if (dBug) System.out.println("\n* * dBug true IN : Application.runSparkServer : get(/providerAddress/:id) route.\n");
-
-            String returnString;
-            String id =  request.params(":id");
-
-            returnString = reportController.getHtmlStringProviderAddress(providerRepository, id);
-
-            if (dBug) System.out.println("returnString:\n" + returnString);
-
-            return returnString;
-        });
-
-        get("/managerReport", (request, response) -> {
-           Map<String, Object> viewObjects = new HashMap<String, Object>();
-           viewObjects.put("message", "Manager Report is currently under construction!");
-           viewObjects.put("templateName", "beingBuilt.ftl");
-           return new ModelAndView(viewObjects, "aMain.ftl");
-        }, new FreeMarkerEngine());
-
-        get("/billablesPerEachUserReport", (request, response) -> {
-           Map<String, Object> viewObjects = new HashMap<String, Object>();
-           viewObjects.put("message", "Billables Per Each User Report is currently under construction!");
-           viewObjects.put("templateName", "beingBuilt.ftl");
-           return new ModelAndView(viewObjects, "aMain.ftl");
-        }, new FreeMarkerEngine());
-
-        get("/billablesPerEachProviderReport", (request, response) -> {
-           Map<String, Object> viewObjects = new HashMap<String, Object>();
-           viewObjects.put("message", "Billables Per Each Provider Report is currently under construction!");
-           viewObjects.put("templateName", "beingBuilt.ftl");
-           return new ModelAndView(viewObjects, "aMain.ftl");
-        }, new FreeMarkerEngine());
-
-/*  _  ___             _      _    _   _     ___ _  __ 
- * |_)  |  |  |   /\  |_) |  |_   |_) / \ | | | |_ (_  
- * |_) _|_ |_ |_ /--\ |_) |_ |_   | \ \_/ |_| | |_ __) 
- */
-
-        get("/createBillable", (request, response) -> {
-           Map<String, Object> viewObjects = new HashMap<String, Object>();
-           viewObjects.put("templateName", "createBillableForm.ftl");
+           viewObjects.put("templateName", "createUserForm.ftl");
            return new ModelAndView(viewObjects, "aMain.ftl");
         }, new FreeMarkerEngine());
         
-        post("/createBillable", (request, response) -> {
+        post("/createUser", (request, response) -> {
 
             // For Testing and Debug.
             boolean dBug = false;
-            if (dBug) System.out.println("\n* * dBug true IN : Application.runSparkServer : post(/createBillable) route.\n");
+            if (dBug) System.out.println("\n* * dBug true IN : Application.runSparkServer : post(\"/createUser\") route.\n");
 
             ObjectMapper mapper = new ObjectMapper();
             try {
-                Billable u = mapper.readValue(request.body(), Billable.class);
-                u.setDateServicedRecorded();
-                if (!u.isValid(u)) {
+                User u = mapper.readValue(request.body(), User.class);
+                
+                if (!u.isValidEntity()) {
                     response.status(400);
                     return "Correct the fields";
                 }
                 
-                if(billableRepository.countByEntityBillableIdNumber(u.getEntityBillableIdNumber()) == 0) {
+                if(userRepository.countByEntityUserIdNumber(u.getEntityUserIdNumber()) == 0) {
                     
                     int id = 1;
 
                     if (dBug) System.out.println("request.body() = " + request.body());
                     if (dBug) System.out.println("u = " + convertObjectToJSON(u));
                     
-                    billableRepository.save(u);
+                    userRepository.save(u);
                     response.status(200);
                     response.type("application/json");
                     return id;
@@ -267,7 +141,7 @@ public class Application implements CommandLineRunner{
                     response.status(400);
                     response.type("application/json");
                     
-                    return "Billable ID Number Already Exists!!";
+                    return "User ID Number Already Exists!!";
                 }
                 } catch (JsonParseException jpe) {
                     response.status(404);
@@ -275,74 +149,85 @@ public class Application implements CommandLineRunner{
                 }
         });
         
-        get("/getAllBillables", (request, response) -> {
+        get("/getAllUsers", (request, response) -> {
+
+            // For Testing and Debug.
+            boolean dBug = false;
+            if (dBug) System.out.println("\n* * dBug true IN : Application.runSparkServer : get(\"/getAllUsers\") route.\n");
+
             response.status(200);
             Map<String, Object> viewObjects = new HashMap<String, Object>();
-            viewObjects.put("templateName", "showBillable.ftl");
+            viewObjects.put("templateName", "showUser.ftl");
             return new ModelAndView(viewObjects, "aMain.ftl");
         }, new FreeMarkerEngine());
 
-        get("/getJsonBillableList", (request, response) -> {
-            response.status(200);
-            String returnString = mongoController.getJSONListOfObjectsFromRepo(billableRepository);
-            System.out.println("/getJsonBillableList route:");
-            System.out.println("returnString:");
-            System.out.println(returnString);
+        get("/getJsonUserList", (request, response) -> {
+
+            // For Testing and Debug.
+            boolean dBug = false;
+            if (dBug) System.out.println("\n* * dBug true IN : Application.runSparkServer : get(\"/getJsonUserList\") route.\n");
             
+            String returnString = mongoController.getJSONListOfObjectsFromRepo(userRepository);
+            response.status(200);
+
+            if (dBug) System.out.println("\nreturnString : ");
+            if (dBug) System.out.println(returnString);
+            if (dBug) System.out.println("\nReturning above.");
+
             return returnString;
         });
 
-        get("/removeBillable", (request, response) -> {
+        get("/removeUser", (request, response) -> {
            Map<String, Object> viewObjects = new HashMap<String, Object>();
-           viewObjects.put("templateName", "removeBillableForm.ftl");
-           viewObjects.put("billables", mongoController.getJSONListOfIdsFromRepo(billableRepository));
+           viewObjects.put("templateName", "removeUserForm.ftl");
+           viewObjects.put("users", mongoController.getJSONListOfIdsFromRepo(userRepository));
            return new ModelAndView(viewObjects, "aMain.ftl");
         }, new FreeMarkerEngine());
 
-        put("/removeBillable/:id", (request, response) -> {
+        put("/removeUser/:id", (request, response) -> {
             String id = request.params(":id");
             
-            long numRemoved = billableRepository.deleteBillableByEntityBillableIdNumber(id);
+            long numRemoved = userRepository.deleteUserByEntityUserIdNumber(id);
             
             if (numRemoved == 1){
                 response.status(200);
-                return "One Billable Removed.";
+                return "One User Removed.";
             } else if (numRemoved > 1){
                 response.status(200);
-                String returnString = "" + numRemoved + " Billables REMOVED!!";
+                String returnString = "" + numRemoved + " Users REMOVED!!";
                 return returnString;
             }
             else {
                 response.status(400);
-                return "No Such Billable Found.";
+                return "No Such User Found.";
             }
         });
         
-        get("/updateBillable", (request, response) -> {
+        get("/updateUser", (request, response) -> {
            Map<String, Object> viewObjects = new HashMap<String, Object>();
-           viewObjects.put("templateName", "updateBillableForm.ftl");
+           viewObjects.put("templateName", "updateUserForm.ftl");
            return new ModelAndView(viewObjects, "aMain.ftl");
         }, new FreeMarkerEngine());
         
-        post("/updateBillable", (request, response) -> {
+        post("/updateUser", (request, response) -> {
             ObjectMapper mapper = new ObjectMapper();
             
             try {
-                Billable u = mapper.readValue(request.body(), Billable.class);
-                u.setDateServicedRecorded();
-                if (!u.isValid(u)) {
+                User u = mapper.readValue(request.body(), User.class);
+                
+                if (!u.isValidEntity()) {
                     response.status(400);
                     return "Correct The Fields.";
                 }
-                if(billableRepository.countByEntityBillableIdNumber(u.getEntityBillableIdNumber()) == 1) {
-                    billableRepository.deleteBillableByEntityBillableIdNumber(u.getEntityBillableIdNumber());
-                    billableRepository.save(u);
+                if(userRepository.countByEntityUserIdNumber(u.getEntityUserIdNumber()) == 1) {
+                    userRepository.deleteUserByEntityUserIdNumber(u.getEntityUserIdNumber());
+                    userRepository.save(u);
                     response.status(200);
                     response.type("application/json");
                     return 1;
                 } else {
                     response.status(404);
-                    return "Billable Does Not Exists or More Than One Exists.";
+                    return "User Does Not Exists or More Than One Exists.";
                 }
             } catch (JsonParseException jpe) {
                 response.status(404);
@@ -351,11 +236,11 @@ public class Application implements CommandLineRunner{
         });
 
         // Useful for testing and debuging.
-        get("/getJsonBillableIdsList", (request, response) -> {
+        get("/getJsonUserIdsList", (request, response) -> {
             response.status(200);
-            return mongoController.getJSONListOfIdsFromRepo(billableRepository);
+            return mongoController.getJSONListOfIdsFromRepo(userRepository);
         });
-        
+
 /* _   _   _      ___  _   _  _     _   _     ___ _  __ 
  *|_) |_) / \ \  / |  | \ |_ |_)   |_) / \ | | | |_ (_  
  *|   | \ \_/  \/ _|_ |_/ |_ | \   | \ \_/ |_| | |_ __) 
@@ -371,13 +256,13 @@ public class Application implements CommandLineRunner{
 
             // For Testing and Debug.
             boolean dBug = false;
-            if (dBug) System.out.println("\n* * dBug true IN : Application.runSparkServer : post(/createProvider) route.\n");
+            if (dBug) System.out.println("\n* * dBug true IN : Application.runSparkServer : post(\"/createProvider\") route.\n");
 
             ObjectMapper mapper = new ObjectMapper();
             try {
                 Provider u = mapper.readValue(request.body(), Provider.class);
                 
-                if (!u.isValid(u)) {
+                if (!u.isValidEntity()) {
                     response.status(400);
                     return "Correct the fields";
                 }
@@ -456,7 +341,7 @@ public class Application implements CommandLineRunner{
             try {
                 Provider u = mapper.readValue(request.body(), Provider.class);
                 
-                if (!u.isValid(u)) {
+                if (!u.isValidEntity()) {
                     response.status(400);
                     return "Correct The Fields.";
                 }
@@ -497,13 +382,13 @@ public class Application implements CommandLineRunner{
 
             // For Testing and Debug.
             boolean dBug = false;
-            if (dBug) System.out.println("\n* * dBug true IN : Application.runSparkServer : post(/createService) route.\n");
+            if (dBug) System.out.println("\n* * dBug true IN : Application.runSparkServer : post(\"/createService\") route.\n");
 
             ObjectMapper mapper = new ObjectMapper();
             try {
                 Service u = mapper.readValue(request.body(), Service.class);
                 
-                if (!u.isValid(u)) {
+                if (!u.isValidEntity()) {
                     response.status(400);
                     return "Correct the fields";
                 }
@@ -582,7 +467,7 @@ public class Application implements CommandLineRunner{
             try {
                 Service u = mapper.readValue(request.body(), Service.class);
                 
-                if (!u.isValid(u)) {
+                if (!u.isValidEntity()) {
                     response.status(400);
                     return "Correct The Fields.";
                 }
@@ -607,41 +492,41 @@ public class Application implements CommandLineRunner{
             response.status(200);
             return mongoController.getJSONListOfIdsFromRepo(serviceRepository);
         });
-        
-/*     __  _  _     _   _     ___ _  __ 
- *| | (_  |_ |_)   |_) / \ | | | |_ (_  
- *|_| __) |_ | \   | \ \_/ |_| | |_ __)
+
+/*  _  ___             _      _    _   _     ___ _  __ 
+ * |_)  |  |  |   /\  |_) |  |_   |_) / \ | | | |_ (_  
+ * |_) _|_ |_ |_ /--\ |_) |_ |_   | \ \_/ |_| | |_ __) 
  */
-                                     
-        get("/createUser", (request, response) -> {
+
+        get("/createBillable", (request, response) -> {
            Map<String, Object> viewObjects = new HashMap<String, Object>();
-           viewObjects.put("templateName", "createUserForm.ftl");
+           viewObjects.put("templateName", "createBillableForm.ftl");
            return new ModelAndView(viewObjects, "aMain.ftl");
         }, new FreeMarkerEngine());
         
-        post("/createUser", (request, response) -> {
+        post("/createBillable", (request, response) -> {
 
             // For Testing and Debug.
             boolean dBug = false;
-            if (dBug) System.out.println("\n* * dBug true IN : Application.runSparkServer : post(/createUser) route.\n");
+            if (dBug) System.out.println("\n* * dBug true IN : Application.runSparkServer : post(\"/createBillable\") route.\n");
 
             ObjectMapper mapper = new ObjectMapper();
             try {
-                User u = mapper.readValue(request.body(), User.class);
-                
-                if (!u.isValid(u)) {
+                Billable u = mapper.readValue(request.body(), Billable.class);
+                u.setDateServicedRecorded();
+                if (!u.isValidEntity()) {
                     response.status(400);
                     return "Correct the fields";
                 }
                 
-                if(userRepository.countByEntityUserIdNumber(u.getEntityUserIdNumber()) == 0) {
+                if(billableRepository.countByEntityBillableIdNumber(u.getEntityBillableIdNumber()) == 0) {
                     
                     int id = 1;
 
                     if (dBug) System.out.println("request.body() = " + request.body());
                     if (dBug) System.out.println("u = " + convertObjectToJSON(u));
                     
-                    userRepository.save(u);
+                    billableRepository.save(u);
                     response.status(200);
                     response.type("application/json");
                     return id;
@@ -650,7 +535,7 @@ public class Application implements CommandLineRunner{
                     response.status(400);
                     response.type("application/json");
                     
-                    return "User ID Number Already Exists!!";
+                    return "Billable ID Number Already Exists!!";
                 }
                 } catch (JsonParseException jpe) {
                     response.status(404);
@@ -658,69 +543,79 @@ public class Application implements CommandLineRunner{
                 }
         });
         
-        get("/getAllUsers", (request, response) -> {
+        get("/getAllBillables", (request, response) -> {
             response.status(200);
             Map<String, Object> viewObjects = new HashMap<String, Object>();
-            viewObjects.put("templateName", "showUser.ftl");
+            viewObjects.put("templateName", "showBillable.ftl");
             return new ModelAndView(viewObjects, "aMain.ftl");
         }, new FreeMarkerEngine());
 
-        get("/getJsonUserList", (request, response) -> {
+        get("/getJsonBillableList", (request, response) -> {
+
+            // For Testing and Debug.
+            boolean dBug = false;
+            if (dBug) System.out.println("\n* * dBug true IN : Application.runSparkServer : get(\"/getJsonBillableList\" route.\n");
+
             response.status(200);
-            return mongoController.getJSONListOfObjectsFromRepo(userRepository);
+            String returnString = mongoController.getJSONListOfObjectsFromRepo(billableRepository);
+            
+            if (dBug) System.out.println("returnString:");
+            if (dBug) System.out.println(returnString);
+            
+            return returnString;
         });
 
-        get("/removeUser", (request, response) -> {
+        get("/removeBillable", (request, response) -> {
            Map<String, Object> viewObjects = new HashMap<String, Object>();
-           viewObjects.put("templateName", "removeUserForm.ftl");
-           viewObjects.put("users", mongoController.getJSONListOfIdsFromRepo(userRepository));
+           viewObjects.put("templateName", "removeBillableForm.ftl");
+           viewObjects.put("billables", mongoController.getJSONListOfIdsFromRepo(billableRepository));
            return new ModelAndView(viewObjects, "aMain.ftl");
         }, new FreeMarkerEngine());
 
-        put("/removeUser/:id", (request, response) -> {
+        put("/removeBillable/:id", (request, response) -> {
             String id = request.params(":id");
             
-            long numRemoved = userRepository.deleteUserByEntityUserIdNumber(id);
+            long numRemoved = billableRepository.deleteBillableByEntityBillableIdNumber(id);
             
             if (numRemoved == 1){
                 response.status(200);
-                return "One User Removed.";
+                return "One Billable Removed.";
             } else if (numRemoved > 1){
                 response.status(200);
-                String returnString = "" + numRemoved + " Users REMOVED!!";
+                String returnString = "" + numRemoved + " Billables REMOVED!!";
                 return returnString;
             }
             else {
                 response.status(400);
-                return "No Such User Found.";
+                return "No Such Billable Found.";
             }
         });
         
-        get("/updateUser", (request, response) -> {
+        get("/updateBillable", (request, response) -> {
            Map<String, Object> viewObjects = new HashMap<String, Object>();
-           viewObjects.put("templateName", "updateUserForm.ftl");
+           viewObjects.put("templateName", "updateBillableForm.ftl");
            return new ModelAndView(viewObjects, "aMain.ftl");
         }, new FreeMarkerEngine());
         
-        post("/updateUser", (request, response) -> {
+        post("/updateBillable", (request, response) -> {
             ObjectMapper mapper = new ObjectMapper();
             
             try {
-                User u = mapper.readValue(request.body(), User.class);
-                
-                if (!u.isValid(u)) {
+                Billable u = mapper.readValue(request.body(), Billable.class);
+                u.setDateServicedRecorded();
+                if (!u.isValidEntity()) {
                     response.status(400);
                     return "Correct The Fields.";
                 }
-                if(userRepository.countByEntityUserIdNumber(u.getEntityUserIdNumber()) == 1) {
-                    userRepository.deleteUserByEntityUserIdNumber(u.getEntityUserIdNumber());
-                    userRepository.save(u);
+                if(billableRepository.countByEntityBillableIdNumber(u.getEntityBillableIdNumber()) == 1) {
+                    billableRepository.deleteBillableByEntityBillableIdNumber(u.getEntityBillableIdNumber());
+                    billableRepository.save(u);
                     response.status(200);
                     response.type("application/json");
                     return 1;
                 } else {
                     response.status(404);
-                    return "User Does Not Exists or More Than One Exists.";
+                    return "Billable Does Not Exists or More Than One Exists.";
                 }
             } catch (JsonParseException jpe) {
                 response.status(404);
@@ -729,10 +624,151 @@ public class Application implements CommandLineRunner{
         });
 
         // Useful for testing and debuging.
-        get("/getJsonUserIdsList", (request, response) -> {
+        get("/getJsonBillableIdsList", (request, response) -> {
             response.status(200);
-            return mongoController.getJSONListOfIdsFromRepo(userRepository);
+            return mongoController.getJSONListOfIdsFromRepo(billableRepository);
         });
+
+/* _   _  _   _   _ ___    _   _     ___ _  __ 
+ *|_) |_ |_) / \ |_) |    |_) / \ | | | |_ (_  
+ *| \ |_ |   \_/ | \ |    | \ \_/ |_| | |_ __)
+ */
+
+        get("/userReport", (request, response) -> {
+
+            // For Testing and Debug.
+            boolean dBug = false;
+            if (dBug) System.out.println("\n* * dBug true IN : Application.runSparkServer : get(\"/userReport\") route.\n");
+
+           Map<String, Object> viewObjects = new HashMap<String, Object>();
+           viewObjects.put("templateName", "report_pages/user_report.ftl");
+           viewObjects.put("title", "User Report being constructed!");
+           viewObjects.put("users", mongoController.getJSONListOfIdsFromRepo(userRepository));
+           return new ModelAndView(viewObjects, "aMain.ftl");
+        }, new FreeMarkerEngine());
+
+        get("userAddress/:id", (request, response) -> {
+
+            // For Testing and Debug.
+            boolean dBug = false;
+            if (dBug) System.out.println("\n* * dBug true IN : Application.runSparkServer : get(\"/userAddress/:id\") route.\n");
+
+            String returnString;
+            String id =  request.params(":id");
+
+            returnString = reportController.getHtmlStringUserAddress(userRepository, id);
+
+            if (dBug) System.out.println("returnString:\n" + returnString);
+
+            return returnString;
+        });
+
+        get("userReport/:id", (request, response) -> {
+
+            // For Testing and Debug.
+            boolean dBug = false;
+            if (dBug) System.out.println("\n* * dBug true IN : Application.runSparkServer : get(\"/userReport/:id\") route.\n");
+
+            String returnString = "";
+            String id =  request.params(":id");
+            
+            returnString = reportController.getBillablesReportForUserInJson(billableRepository, providerRepository, serviceRepository, id);
+            
+            if (dBug) System.out.println("returnString:\n" + returnString);
+
+            return returnString;
+        });
+
+        get("/providerReport", (request, response) -> {
+           Map<String, Object> viewObjects = new HashMap<String, Object>();
+           viewObjects.put("templateName", "report_pages/provider_report.ftl");
+           viewObjects.put("title", "Provider Report being constructed!");
+           viewObjects.put("providers", mongoController.getJSONListOfIdsFromRepo(providerRepository));
+           return new ModelAndView(viewObjects, "aMain.ftl");
+        }, new FreeMarkerEngine());
+
+        get("providerReport/:id", (request, response) -> {
+            // For Testing and Debug.
+            boolean dBug = false;
+            if (dBug) System.out.println("\n* * dBug true IN : Application.runSparkServer : get(\"/providerReport/:id\") route.\n");
+
+            String returnString = reportController.getJsonListOfDatesThatHaveBillablesForProvider(billableRepository, request.params(":id"));
+            
+            if (dBug) System.out.println("returnString:\n" + returnString);
+            return returnString;
+        });
+
+        get("providerReport/:id/:startDate", (request, response) -> {
+            // For Testing and Debug.
+            boolean dBug = false;
+            if (dBug) System.out.println("\n* * dBug true IN : Application.runSparkServer : get(\"/providerReport/:id/:startDate\") route.\n");
+
+            String returnString = "";
+
+            String id =  request.params(":id");
+            String startDate =  request.params(":startDate");
+
+            DateTime startDateTime = new DateTime(startDate).withTime(21, 0, 0, 1);
+            DateTime endDateTime = new DateTime(startDate).plusWeeks(1).withTime(21, 0, 0, 0);
+            
+            returnString = reportController.getBillablesReportForProviderByDateRangeInJson(billableRepository, providerRepository, serviceRepository, userRepository, id, startDateTime, endDateTime);
+
+            if (dBug) System.out.println("returnString:\n" + returnString);
+            return returnString;
+        });
+
+        get("providerBillablesTabulations/:id", (request, response) -> {
+
+            // For Testing and Debug.
+            boolean dBug = false;
+            if (dBug) System.out.println("\n* * dBug true IN : Application.runSparkServer : get(\"/providerBillablesTabulations/:id\") route.\n");
+
+            String returnString;
+            String id =  request.params(":id");
+
+            returnString = reportController.getHtmlConsultsAndFeeTotalForLastReportInHtml();
+
+            if (dBug) System.out.println("returnString:\n" + returnString);
+
+            return returnString;
+        });
+
+        get("providerAddress/:id", (request, response) -> {
+
+            // For Testing and Debug.
+            boolean dBug = false;
+            if (dBug) System.out.println("\n* * dBug true IN : Application.runSparkServer : get(\"/providerAddress/:id\") route.\n");
+
+            String returnString;
+            String id =  request.params(":id");
+
+            returnString = reportController.getHtmlStringProviderAddress(providerRepository, id);
+
+            if (dBug) System.out.println("returnString:\n" + returnString);
+
+            return returnString;
+        });
+
+        get("/managerReport", (request, response) -> {
+           Map<String, Object> viewObjects = new HashMap<String, Object>();
+           viewObjects.put("message", "Manager Report is currently under construction!");
+           viewObjects.put("templateName", "beingBuilt.ftl");
+           return new ModelAndView(viewObjects, "aMain.ftl");
+        }, new FreeMarkerEngine());
+
+        get("/billablesPerEachUserReport", (request, response) -> {
+           Map<String, Object> viewObjects = new HashMap<String, Object>();
+           viewObjects.put("message", "Billables Per Each User Report is currently under construction!");
+           viewObjects.put("templateName", "beingBuilt.ftl");
+           return new ModelAndView(viewObjects, "aMain.ftl");
+        }, new FreeMarkerEngine());
+
+        get("/billablesPerEachProviderReport", (request, response) -> {
+           Map<String, Object> viewObjects = new HashMap<String, Object>();
+           viewObjects.put("message", "Billables Per Each Provider Report is currently under construction!");
+           viewObjects.put("templateName", "beingBuilt.ftl");
+           return new ModelAndView(viewObjects, "aMain.ftl");
+        }, new FreeMarkerEngine());
 
 /*     _     _     _   _     ___ _  __
  *|_| |_ |  |_)   |_) / \ | | | |_ (_ 
@@ -781,7 +817,6 @@ public class Application implements CommandLineRunner{
 
         get("/addTestData", (request, response) -> {
            Map<String, Object> viewObjects = new HashMap<String, Object>();
-           //viewObjects.put("message", "Insert Test Data is currently under construction!");
            viewObjects.put("templateName", "testing_pages/addTestData.ftl");
            return new ModelAndView(viewObjects, "aMain.ftl");
         }, new FreeMarkerEngine());
@@ -791,18 +826,49 @@ public class Application implements CommandLineRunner{
             String returnString = "";
 
             if (testDataController.addTestDataTo(billableRepository)){
-                returnString += "BILLABLE TEST DATA SUCCESSFULLY ADDED.";
+                returnString += "BILLABLE TEST DATA SUCCESSFULLY ADDED.<br>";
             } else {
-                returnString += "ERROR : BILLABLE TEST DATA * * * * *";
+                returnString += "ERROR : BILLABLE TEST DATA * * * * *<br>";
+            }
+
+            if (testDataController.addTestDataTo(providerRepository)){
+                returnString += "PROVIDER TEST DATA SUCCESSFULLY ADDED.<br>";
+            } else {
+                returnString += "ERROR : PROVIDER TEST DATA * * * * *<br>";
+            }
+
+            if (testDataController.addTestDataTo(serviceRepository)){
+                returnString += "SERVICE TEST DATA SUCCESSFULLY ADDED.<br>";
+            } else {
+                returnString += "ERROR : SERVICE TEST DATA * * * * *<br>";
+            }
+            
+
+            if (testDataController.addTestDataTo(userRepository)){
+                returnString += "USER TEST DATA SUCCESSFULLY ADDED.<br>";
+            } else {
+                returnString += "ERROR : USER TEST DATA * * * * *<br>";
             }
 
             response.status(200);
             return returnString;
         });
         
+        put("/removeAllDataFromMongoDB", (request, response) -> {
+            
+            billableRepository.deleteAll();
+            userRepository.deleteAll();
+            serviceRepository.deleteAll();
+            providerRepository.deleteAll();
+            
+            response.status(200);
+            
+            String returnString = "GONE!";
+            return returnString;
+        });        
+
         get("/clearMongoDB", (request, response) -> {
            Map<String, Object> viewObjects = new HashMap<String, Object>();
-           //viewObjects.put("message", "Clear Mongo Database is currently under construction!");
            viewObjects.put("templateName", "testing_pages/clearMongoDB.ftl");
            return new ModelAndView(viewObjects, "aMain.ftl");
         }, new FreeMarkerEngine());

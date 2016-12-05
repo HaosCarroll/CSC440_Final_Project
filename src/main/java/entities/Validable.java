@@ -174,7 +174,7 @@ public class Validable {
         if(service.getProvidableServiceDescription() == null || service.getProvidableServiceDescription().length() > entityServiceDescriptionStringMaxLength)
             returnBoolean = false;
         if(!service.getIsProvidableByDietitian() && !service.getIsProvidableByExerciseExpert() && !service.getIsProvidableByInternist())
-            returnBoolean false;
+            returnBoolean = false;
 
         return returnBoolean;
     }

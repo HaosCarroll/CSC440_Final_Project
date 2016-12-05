@@ -230,8 +230,11 @@ public class Validable {
         }
         if(billable.getServiceCost() <= 0 || billable.getServiceCost() > 999.99)
             returnBoolean = false;
-        if(billable.getServiceComment().length() > entityBillableCommentStringMaxLength)
-            returnBoolean = false;
+        if(billable.getServiceComment() != null){
+            if(billable.getServiceComment().length() > entityBillableCommentStringMaxLength)
+                returnBoolean = false;
+        }
+        
 /*
 
 TODO : Validate dates!

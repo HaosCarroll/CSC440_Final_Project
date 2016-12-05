@@ -11,6 +11,8 @@ import org.springframework.boot.CommandLineRunner;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
+import org.joda.time.*;
+
 // Imports for spark framework.
 
 import static spark.Spark.*;
@@ -686,38 +688,32 @@ public class Application implements CommandLineRunner{
         }, new FreeMarkerEngine());
 
         get("providerReport/:id", (request, response) -> {
-
             // For Testing and Debug.
             boolean dBug = false;
             if (dBug) System.out.println("\n* * dBug true IN : Application.runSparkServer : get(\"/providerReport/:id\") route.\n");
 
-            String returnString = "";
-            String jsonList;
-            
-            String id =  request.params(":id");
-            
-            //returnString = reportController.getAllBillablesReportForProviderInJson(billableRepository, providerRepository, serviceRepository, userRepository, id);
-            returnString = reportController.getJsonListOfDatesThatHaveBillablesForProvider(billableRepository, id);
+            String returnString = reportController.getJsonListOfDatesThatHaveBillablesForProvider(billableRepository, request.params(":id"));
             
             if (dBug) System.out.println("returnString:\n" + returnString);
-
             return returnString;
         });
 
         get("providerReport/:id/:startDate", (request, response) -> {
-
             // For Testing and Debug.
-            boolean dBug = true;
+            boolean dBug = false;
             if (dBug) System.out.println("\n* * dBug true IN : Application.runSparkServer : get(\"/providerReport/:id/:startDate\") route.\n");
 
             String returnString = "";
 
             String id =  request.params(":id");
+            String startDate =  request.params(":startDate");
+
+            DateTime startDateTime = new DateTime(startDate).withTime(21, 0, 0, 1);
+            DateTime endDateTime = new DateTime(startDate).plusWeeks(1).withTime(21, 0, 0, 0);
             
-            returnString = reportController.getAllBillablesReportForProviderInJson(billableRepository, providerRepository, serviceRepository, userRepository, id);
+            returnString = reportController.getBillablesReportForProviderByDateRangeInJson(billableRepository, providerRepository, serviceRepository, userRepository, id, startDateTime, endDateTime);
 
             if (dBug) System.out.println("returnString:\n" + returnString);
-
             return returnString;
         });
 

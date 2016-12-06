@@ -669,13 +669,36 @@ public class Application implements CommandLineRunner{
             boolean dBug = false;
             if (dBug) System.out.println("\n* * dBug true IN : Application.runSparkServer : get(\"/userReport/:id\") route.\n");
 
-            String returnString = "";
-            String id =  request.params(":id");
+            //String returnString = "";
+            //String id =  request.params(":id");
             
-            returnString = reportController.getBillablesReportForUserInJson(billableRepository, providerRepository, serviceRepository, id);
+            String returnString = reportController.getJsonListOfDatesThatHaveBillablesForUser(billableRepository, request.params(":id"));
             
             if (dBug) System.out.println("returnString:\n" + returnString);
 
+            return returnString;
+        });
+
+        get("userReport/:id/:endQueryDate", (request, response) -> {
+            // For Testing and Debug.
+            boolean dBug = false;
+            if (dBug) System.out.println("\n* * dBug true IN : Application.runSparkServer : get(\"/userReport/:id/:endQueryDate\") route.\n");
+
+            String returnString = "";
+
+            String id =  request.params(":id");
+            String endDate =  request.params(":endQueryDate");
+
+            DateTime endDateTime = new DateTime(endDate).plusWeeks(1).withTime(21, 0, 1, 0);
+            DateTime startDateTime = new DateTime(endDate).withTime(21, 0, 0, 0);
+            
+            if (dBug) System.out.println("\nendDate :" + endDate);
+            if (dBug) System.out.println("endDateTime :" + endDateTime);
+            if (dBug) System.out.println("startDateTime :" + startDateTime);
+            
+            returnString = reportController.getBillablesReportForUserByDateRangeInJson(billableRepository, providerRepository, serviceRepository, id, startDateTime, endDateTime);
+
+            //if (dBug) System.out.println("returnString:\n" + returnString);
             return returnString;
         });
 

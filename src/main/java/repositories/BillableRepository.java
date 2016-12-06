@@ -28,6 +28,9 @@ public interface BillableRepository extends MongoRepository<Billable, String> {
 
 	// And then we try this...
 	List<Billable> findByProviderNumberServicingAndDateServicedRecordedBetween(@Param("providerNumberServicing") String providerNumberServicing, @Param("dateServicedRecorded") DateTime first, @Param("dateServicedRecorded") DateTime last);
+
+	// And then we try this...
+	List<Billable> findByMemberNumberServiceAndDateServicedRecordedBetween(@Param("memberNumberService") String memberNumberService, @Param("dateServicedRecorded") DateTime first, @Param("dateServicedRecorded") DateTime last);
 	
 	// We need the earliest billable, so starting here:
 	// Sauce : http://docs.spring.io/spring-data/mongodb/docs/current/reference/html/#repositories.limit-query-result
@@ -37,4 +40,9 @@ public interface BillableRepository extends MongoRepository<Billable, String> {
 	Billable findByProviderNumberServicingOrderByDateServicedRecordedAsc(@Param("providerNumberServicing") String providerNumberServicing);
 	// This function gets the last billable record for the provider ID passed to it.
 	Billable findByProviderNumberServicingOrderByDateServicedRecordedDesc(@Param("providerNumberServicing") String providerNumberServicing);
+
+	// This function gets the first billable record for the provider ID passed to it.
+	Billable findByMemberNumberServiceOrderByDateServicedRecordedAsc(@Param("memberNumberService") String memberNumberService);
+	// This function gets the last billable record for the provider ID passed to it.
+	Billable findByMemberNumberServiceOrderByDateServicedRecordedDesc(@Param("memberNumberService") String memberNumberService);
 }  

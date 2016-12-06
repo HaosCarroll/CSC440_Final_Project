@@ -7,9 +7,6 @@
 <div class="provider_report-template">
 
     <h2>${title}</h2>
-    <!-- 
-    <p id="status"></p>
-    -->
     <div class="form-group">
         <label id="selector">Select Provider for Report.</label>
         <select id="choices" name="providerEntityProviderIdNumber"></select>
@@ -25,7 +22,6 @@
     <div class="paginationContainer"></div>
 
     <div id="provider_billables_footer"></div>
-
 </div>
 
 <script src="js/awesomeTable.js" type="text/javascript"></script>
@@ -40,7 +36,6 @@
 
         $("button").on("click", function(e) {
             e.preventDefault();
-            //var this_ = $(this);
             var prov_arr = $("#choices").val();
 
             var isnum = /^\d+$/.test(prov_arr);
@@ -132,55 +127,4 @@
             }
         });
     });
-
-
-
-
-    /*
-    var url_string_for_report = '/providerReport/' + arr
-    $(document).ready(function() {
-        
-        
-        $.getJSON(url_string_for_report, function(json) {
-            if (json.length == 0) {
-                console.log("NO DATA for REPORT (provider_report.ftl!)");
-                $(".providerBillableTable").text("No Billables Found for provider : " + arr);
-            }
-            else {
-
-                // Clear table.
-                $(".providerBillableTable").text("");
-                // Make a new table.
-                var tbl = new awesomeTableJs({
-                    data: json,
-                    tableWrapper: ".providerBillableTable",
-                    paginationWrapper: ".paginationContainer",
-                    buildPageSize: false,
-                    buildSearch: false,
-                });
-                // Put the table on the page.
-                tbl.createTable();
-            }
-            
-            // Put the tabulations on the page.
-            var url_string_for_tabulations = '/providerBillablesTabulations/' + arr
-            
-            $(document).ready(function() {
-                $.get(url_string_for_tabulations, function(element) {
-                    if (element.length == 0) {
-                        console.log("PROVIDER NOT FOUND (provider_report.ftl!)");
-                        $('#provider_billables_footer').text("No Billables Found");
-                    }
-                    else {
-                        // Clear Footer.
-                        $('#provider_billables_footer').text("");
-                        $('#provider_billables_footer').append(element);
-                    }
-                });
-            });
-            
-        });
-    });
-    */
-    //return false;
 </script>

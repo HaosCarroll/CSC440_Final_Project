@@ -56,13 +56,13 @@ public class ChocoReportController {
     public String getBillablesReportForUserByDateRangeInJson(BillableRepository billableRepository, ProviderRepository providerRepository, ServiceRepository serviceRepository, String idOfUser, DateTime startDateTime, DateTime endDateTime){
 
         // For Testing and Debug.
-        boolean dBug = false;
+        boolean dBug = true;
         if (dBug) System.out.println("\n* * dBug true IN : ChocoReportController.gettBillablesForUser()\n");
 
         String returnString = "";
         
         // Create a list of billables for the user being queried.
-        List<Billable> usersBillables = billableRepository.findByMemberNumberService(idOfUser);
+        List<Billable> usersBillables = billableRepository.findByMemberNumberServiceAndDateServicedRecordedBetween(idOfUser, startDateTime, endDateTime);
 
         // Start of returned a JSON string.
         returnString += "[\n";
@@ -82,12 +82,26 @@ public class ChocoReportController {
             String serviceProvidedId = usersBillables.get(i).getServiceNumberServiced();
             Service providedService =serviceRepository.findOneByEntityServiceIdNumber(serviceProvidedId);
             String serviceProvidedName = providedService.getProvidableServiceDescription();
+            
+            // NON-Required spec #4 for user report.
+            String serviceProvidedDateRecorded = usersBillables.get(i).getDateServicedRecorded();
+            //Service providedService =serviceRepository.findOneByEntityServiceIdNumber(serviceProvidedId);
+            //String serviceProvidedName = providedService.getProvidableServiceDescription();
+            
+            // NON-Required spec #5 for user report.
+            String serviceProvidedComment = usersBillables.get(i).getServiceComment();
+            //Service providedService =serviceRepository.findOneByEntityServiceIdNumber(serviceProvidedId);
+            //String serviceProvidedName = providedService.getProvidableServiceDescription();
 
             // Turn specs into JSON.
             String temp = "{\n";
             temp += "\"Servicing Provided Date\" : \"" + serviceProvidedDate + "\",\n";
             temp += "\"Provider Servicing\" : \"" + providerProvidingServiceNameString + "\",\n";
-            temp += "\"Provided Service Name\" : \"" + serviceProvidedName + "\"\n";
+            temp += "\"Provided Service Name\" : \"" + serviceProvidedName + "\",\n";
+
+            // NON REQUIRED!!
+            temp += "\"Service Provided Date Recorded\" : \"" + serviceProvidedDateRecorded + "\",\n";
+            temp += "\"Service Provided Comment\" : \"" + serviceProvidedName + "\"\n";
 
             // Add JSON element end depending on if is or is not last element.
             if (i < (usersBillables.size()-1)){
@@ -103,8 +117,66 @@ public class ChocoReportController {
         
         if (dBug) System.out.printf ("\nQuerried id = %s\n", idOfUser);
         if (dBug) System.out.printf ("\n# Billables for id = %s\n", usersBillables.size());
+        //if (dBug) System.out.printf ("\nreturnString\n");
+        //if (dBug) System.out.printf ("\n%s\n", returnString);
 
         return returnString;
+    }
+
+    private List<String> getListOfDatesThatHaveBillablesForUser(BillableRepository billableRepository, String idOfUser){
+        
+        // For Testing and Debug.
+        boolean dBug = true;
+        if (dBug) System.out.println("\n* * dBug true IN : ChocoReportController.getListOfDatesThatHaveBillablesForUser(...)\n");
+
+        List<String> returnStringList = new ArrayList<String>();
+
+        DateTime earliestDateTime = getDateTimeOfFirstBillableInRepositoryForUserId(billableRepository, idOfUser);
+        DateTime latestDateTime = getDateTimeOfLastBillableInRepositoryForUserId(billableRepository, idOfUser);
+        
+        DateTime todaysDateTime = new DateTime();
+        DateTime endDateTime;
+        DateTime startDateTime;
+
+        if (latestDateTime.isAfter(previousFridayFromDate(todaysDateTime))){
+            if (dBug) System.out.println("\nUnreported Records Exist for this week!\n");
+            endDateTime = followingFridayFromDate(todaysDateTime);
+            startDateTime = previousFridayFromDate(todaysDateTime);
+            returnStringList.add(startDateTime.toString());
+        } else {
+            if (dBug) System.out.println("\nNo records for this week.\n");
+            startDateTime = previousFridayFromDate(latestDateTime);
+            endDateTime = followingFridayFromDate(latestDateTime);
+        }
+        
+        if (dBug) System.out.println("todaysDateTime.toString() = " + todaysDateTime.toString("MM-dd-yyyy"));
+        if (dBug) System.out.println("\nearliestDateTime.toString() = " + earliestDateTime.toString("MM-dd-yyyy"));
+        if (dBug) System.out.println("\nlatestDateTime.toString() = " + latestDateTime.toString("MM-dd-yyyy"));
+        if (dBug) System.out.println("\nstartDateTime.toString() = " + startDateTime.toString("MM-dd-yyyy"));
+        if (dBug) System.out.println("endDateTime.toString() = " + endDateTime.toString("MM-dd-yyyy") + "\n");
+
+        while (startDateTime.isAfter(earliestDateTime)){
+            startDateTime = startDateTime.minusWeeks(1);
+            endDateTime = endDateTime.minusWeeks(1);
+            
+            int numBillablesInWeek = billableRepository.findByMemberNumberServiceAndDateServicedRecordedBetween(idOfUser, startDateTime, endDateTime).size();
+            
+            if ( numBillablesInWeek > 0){
+                if (dBug) System.out.printf("(%s - %s) * FOUND %s RECORD(S).\n", startDateTime.toString("MM-dd-yyyy"), endDateTime.toString("MM-dd-yyyy"), numBillablesInWeek);
+                returnStringList.add(startDateTime.toString());
+            } else {
+                if (dBug) System.out.printf("(%s - %s) * NONE.\n", startDateTime.toString(), endDateTime.toString());
+            }
+        }
+        
+        if (dBug){
+            System.out.printf("\n%s DATE RANGE(S) WITH RECORDS FOUND.\n\n", returnStringList.size());
+            for (int i = 0; i < returnStringList.size(); i++){
+                System.out.printf("%s (list item %d)\n", returnStringList.get(i), i);
+            }
+            System.out.printf("-end-\n");
+        }
+        return returnStringList;
     }
 
 
@@ -244,61 +316,6 @@ public class ChocoReportController {
         return returnString;
     }
 
-    private List<String> getListOfDatesThatHaveBillablesForUser(BillableRepository billableRepository, String idOfUser){
-        
-        // For Testing and Debug.
-        boolean dBug = false;
-        if (dBug) System.out.println("\n* * dBug true IN : ChocoReportController.getListOfDatesThatHaveBillablesForUser(...)\n");
-
-        List<String> returnStringList = new ArrayList<String>();
-
-        DateTime earliestDateTime = getDateTimeOfFirstBillableInRepositoryForUserId(billableRepository, idOfUser);
-        DateTime latestDateTime = getDateTimeOfLastBillableInRepositoryForUserId(billableRepository, idOfUser);
-        
-        DateTime todaysDateTime = new DateTime();
-        DateTime endDateTime;
-        DateTime startDateTime;
-
-        if (latestDateTime.isAfter(previousFridayFromDate(todaysDateTime))){
-            if (dBug) System.out.println("\nUnreported Records Exist for this week!\n");
-            endDateTime = followingFridayFromDate(todaysDateTime);
-            startDateTime = previousFridayFromDate(todaysDateTime);
-            returnStringList.add(startDateTime.toString());
-        } else {
-            if (dBug) System.out.println("\nNo records for this week.\n");
-            startDateTime = previousFridayFromDate(latestDateTime);
-            endDateTime = followingFridayFromDate(latestDateTime);
-        }
-        
-        if (dBug) System.out.println("todaysDateTime.toString() = " + todaysDateTime.toString());
-        if (dBug) System.out.println("\nearliestDateTime.toString() = " + earliestDateTime.toString());
-        if (dBug) System.out.println("\nlatestDateTime.toString() = " + latestDateTime.toString());
-        if (dBug) System.out.println("\nstartDateTime.toString() = " + startDateTime.toString());
-        if (dBug) System.out.println("endDateTime.toString() = " + endDateTime.toString() + "\n");
-
-        while (startDateTime.isAfter(earliestDateTime)){
-            startDateTime = startDateTime.minusWeeks(1);
-            endDateTime = endDateTime.minusWeeks(1);
-            
-            int numBillablesInWeek = billableRepository.findByMemberNumberServiceAndDateServicedRecordedBetween(idOfUser, startDateTime, endDateTime).size();
-            
-            if ( numBillablesInWeek > 0){
-                if (dBug) System.out.printf("(%s - %s) * FOUND %s RECORD(S).\n", startDateTime.toString(), endDateTime.toString(), numBillablesInWeek);
-                returnStringList.add(startDateTime.toString());
-            } else {
-                if (dBug) System.out.printf("(%s - %s) * NONE.\n", startDateTime.toString(), endDateTime.toString());
-            }
-        }
-        
-        if (dBug){
-            System.out.printf("\n%s DATE RANGE(S) WITH RECORDS FOUND.\n\n", returnStringList.size());
-            for (int i = 0; i < returnStringList.size(); i++){
-                System.out.printf("%s (list item %d)\n", returnStringList.get(i), i);
-            }
-            System.out.printf("-end-\n");
-        }
-        return returnStringList;
-    }
 
     public String getJsonListOfDatesThatHaveBillablesForProvider(BillableRepository billableRepository, String idOfProvider){
         String returnString = "";
@@ -331,7 +348,6 @@ public class ChocoReportController {
     }
 
     private List<String> getListOfDatesThatHaveBillablesForProvider(BillableRepository billableRepository, String idOfProvider){
-        
         // For Testing and Debug.
         boolean dBug = false;
         if (dBug) System.out.println("\n* * dBug true IN : ChocoReportController.getListOfDatesThatHaveBillablesForProvider(...)\n");
@@ -387,7 +403,13 @@ public class ChocoReportController {
     }
     
     private DateTime followingFridayFromDate(DateTime dateTimeIn) {
+        // For Testing and Debug.
+        boolean dBug = true;
+        if (dBug) System.out.println("\n* * dBug true IN : ChocoReportController.followingFridayFromDate(...)\n");
+        if (dBug) System.out.println("dateTimeIn.toString(\"MM-dd-yyyy\")" + dateTimeIn.toString("MM-dd-yyyy"));
+        
         DateTime returnDateTime = dateTimeIn.plusWeeks(1).withDayOfWeek(DateTimeConstants.FRIDAY).withTime(21, 0, 1, 0);
+        if (dBug) System.out.println("returnDateTime.toString(\"MM-dd-yyyy\")" + returnDateTime.toString("MM-dd-yyyy"));
         return returnDateTime;
     }
     

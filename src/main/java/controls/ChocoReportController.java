@@ -11,6 +11,8 @@ import org.joda.time.*;
 
 import java.util.List;
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
 import entities.*;
 import drivers.*;
@@ -595,6 +597,87 @@ public class ChocoReportController {
         
         setTabulators(numConsults, feesToPayProvider);
         getHtmlConsultsAndFeeTotalForLastReportInHtml();
+        return returnString;
+    }
+    
+    public String getManagerReportInJSON(BillableRepository billableRepository, ProviderRepository providerRepository, DateTime beginDate, DateTime endDate){
+       
+        int totalCount = 0;
+        double totalCost = 0;
+        
+        // For Testing and Debug.
+        boolean dBug = true;
+        if (dBug) System.out.println("\n* * dBug true IN : ChocoReportController.getManagerReportInJSON()\n");
+
+        String returnString = "";
+        
+        // Create a list of billables for the provider being queried.
+        List<Billable> providerBillables = billableRepository.findByDateServicedRecordedBetween(beginDate,endDate);
+        Map<String,Integer> providerBillablesQuantity = new HashMap<String, Integer>();
+        Map<String,Double> providerBillablesTotal = new HashMap<String, Double>();
+        
+        for (int j = 0; j < providerBillables.size(); j++){
+            String curProvider = providerBillables.get(j).getProviderNumberServicing();
+            if(providerBillablesQuantity.putIfAbsent(curProvider, 1 ) != null){
+                providerBillablesQuantity.put(curProvider, providerBillablesQuantity.get(curProvider) + 1);
+            }
+            if(providerBillablesTotal.putIfAbsent(curProvider,providerBillables.get(j).getServiceCost())!=null){
+                providerBillablesTotal.put(curProvider,  providerBillablesTotal.get(curProvider) + providerBillables.get(j).getServiceCost());
+            }
+        }
+        
+        // Start of returned a JSON string.
+        returnString += "[\n";
+        
+        int i = 0;
+        // Iterate through the list of billables for the provider.
+        for (Map.Entry<String,Integer> entry: providerBillablesQuantity.entrySet()){
+            
+            //need provider number, provider name, number of consultations, total fee
+            // Required spec #1 for manager report - Provider Number.
+            String providerNumber = entry.getKey();
+            
+            // Required spec #2 for manager report - Provider Name.
+            String providerName = providerRepository.findOneByEntityProviderIdNumber(providerNumber).getProviderName();
+            
+            // Required spec #3 for manager report - Number of Consultations.
+            int providerQty = entry.getValue();
+            
+            // Required spec #4 for manager report - Total Fee.
+            double providerTotal = providerBillablesTotal.get(providerNumber);
+            String providerTotalS = String.format("$%.2f", providerTotal);
+            
+            // For totals
+            totalCount += providerQty;
+            totalCost += providerTotal;
+            
+            String not_yet_string = "Coming SOON!";
+            // Turn specs into JSON.
+            String temp = "{\n";
+            temp += "\"Provider ID\" : \"" + providerNumber + "\",\n";
+            temp += "\"Provider Name\" : \"" + providerName + "\",\n";
+            temp += "\"Number of Consultations\" : \"" + providerQty + "\",\n";
+            temp += "\"Total Fee\" : \"" + providerTotalS + "\",\n";
+
+            // Add JSON element end depending on if is or is not last element.
+            if ( i < providerBillablesQuantity.entrySet().size() - 1 ){
+                temp += "\n},\n";
+            } else {
+                temp += "\n}\n";
+            }
+            returnString += temp;
+            i++;
+        }
+        
+        // End  of returned a JSON string.
+        returnString += "]";
+        
+        if (dBug) System.out.printf("\nQueried dates from %s to %s\n", beginDate, endDate);
+        if (dBug) System.out.printf("\nreturnString :\n %s\n", returnString);
+        
+        
+        //setTabulators(numConsults, feesToPayProvider);
+        //getHtmlConsultsAndFeeTotalForLastReportInHtml();
         return returnString;
     }
 

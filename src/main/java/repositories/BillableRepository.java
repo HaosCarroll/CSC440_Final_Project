@@ -23,8 +23,8 @@ public interface BillableRepository extends MongoRepository<Billable, String> {
 	List<Billable> findByProviderNumberServicing(@Param("providerNumberServicing") String providerNumberServicing);
 	// AND THEY WORK!! WOOT WOOT!!
 	
-	// Bryant adds a call to return billable entities between a date range:
-	List<Billable> findByDateServicedRecordedBetween(DateTime first, DateTime last);
+	// Bryant adds a call to return billable entities between a date range:bash mongodb_run.bash
+	List<Billable> findByDateServicedRecordedBetween(@Param("dateServicedRecorded")DateTime first, @Param("dateServicedRecorded")DateTime last);
 
 	// And then we try this...
 	List<Billable> findByProviderNumberServicingAndDateServicedRecordedBetween(@Param("providerNumberServicing") String providerNumberServicing, @Param("dateServicedRecorded") DateTime first, @Param("dateServicedRecorded") DateTime last);

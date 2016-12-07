@@ -38,8 +38,8 @@
     </div>
 
     <div class="form-group" id="dateInput">
-		<label for="memberValidThrough">Valid Through</label><br>
-        <input  type="text" class="form-control" id="memberValidThrough" name="memberValidThrough" data-provide="datepicker">
+      <label for="memberValidThrough">Valid Through</label><br>
+      <input  type="text" class="form-control" id="memberValidThrough" name="memberValidThrough" data-provide="datepicker">
     </div>
 
     <button type="submit" class="btn btn-default">Submit</button>
@@ -88,5 +88,4 @@ $(function() {
         return false;
     });
 });
-
 </script>

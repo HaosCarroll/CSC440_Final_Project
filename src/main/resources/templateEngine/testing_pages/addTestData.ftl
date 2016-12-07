@@ -1,9 +1,7 @@
-<div class="add_test_data-template">
-
+<div class="test_data-template">
     <h2>Add Test Data.</h2>
-    <button type="submit" class="btn btn-default">ADD TEST DATA!</button>
+    <button type="submit" autofocus class="btn btn-default">ADD TEST DATA!</button>
     <p id="status"></p>
-
 </div>
 
 <script>

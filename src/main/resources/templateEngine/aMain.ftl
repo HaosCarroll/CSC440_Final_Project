@@ -1,8 +1,6 @@
 <html>
-
 <head>
    <title>Spark Project</title>
-
    <link rel="apple-touch-icon" sizes="57x57" href="img/favicon/apple-icon-57x57.png">
    <link rel="apple-touch-icon" sizes="60x60" href="img/favicon/apple-icon-60x60.png">
    <link rel="apple-touch-icon" sizes="72x72" href="img/favicon/apple-icon-72x72.png">
@@ -25,7 +23,6 @@
    <link rel="stylesheet" href="css/bootstrap-theme.min.css">
    <link rel="stylesheet" href="css/bootstrap-datepicker3.standalone.css">
    <link rel="stylesheet" href="css/choco-application-template.css">
-   
 </head>
 
 <body>
@@ -136,13 +133,12 @@
                   <ul class="dropdown-menu">
                      <li><a href="addTestData">Insert Test Data</a></li>
                      <li><a href="clearMongoDB">Remove All MongoDB Data</a></li>
+                     <li><a href="clearMongoDBAndAddTestData"><strong style="color: red;">!&iexcl;Auto Remove + Auto Add&iexcl;!</strong></a></li>
                   </ul>
                </li>
 
-            </ul>
-            <!-- End of Dropdown menus -->
+            </ul> <!-- End of Dropdown menus -->
          </div>
-         <!--/.nav-collapse -->
       </div>
    </div>
 

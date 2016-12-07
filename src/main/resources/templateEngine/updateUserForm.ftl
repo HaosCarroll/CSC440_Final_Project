@@ -45,7 +45,6 @@
     <button type="submit" class="btn btn-default">Submit</button>
   </form>
 
-
 <!-- Simple JS function to for datepicker -->
 <script>
 $('#dateInput input').datepicker({
@@ -87,5 +86,4 @@ $(function() {
         return false;
     });
 });
-
 </script>

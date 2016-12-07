@@ -1,12 +1,12 @@
 <div class="starter-template">
-	<h2> Remove Billable </h2>
-    	<p id="status"></p>
-  	<div class="form-group">
-      		<label for="id">Select Billable.entityBillableIdNumber to Remove</label>
-      		<select id="billables" name="billableEntityBillableIdNumber"></select>
-    	</div>
-      <button type="submit" class="btn btn-default">Submit</button>
-      <p id="status"></p>
+  <h2> Remove Billable </h2>
+  <p id="status"></p>
+  <div class="form-group">
+    <label for="id">Select Billable.entityBillableIdNumber to Remove</label>
+    <select id="billables" name="billableEntityBillableIdNumber"></select>
+	</div>
+  <button type="submit" class="btn btn-default">Submit</button>
+  <p id="status"></p>
 </div>	
 
 <script>
@@ -35,5 +35,4 @@ $( document ).ready(function() {
         return false;
     });
 });
-	
 </script>

@@ -65,8 +65,8 @@ $(document).ready(function() {
 
             var url_string_for_date_choices = '/userReport/' + user_arr;
             $.getJSON(url_string_for_date_choices, function(date) {
-                console.log("date:");
-                console.log(date);
+                //console.log("date:");
+                //console.log(date);
                 var sel = $('#choices');
                 $.each(date, function(key, val) {
                     sel.append('<option value="' + val + '">' + val + '</option>');
@@ -76,8 +76,8 @@ $(document).ready(function() {
             $("button").on("click", function(e) {
                 e.preventDefault();
                 var date_arr = $("#choices").val();
-                console.log("user_arr = " + user_arr);
-                console.log("date_arr = " + date_arr);
+                //console.log("user_arr = " + user_arr);
+                //console.log("date_arr = " + date_arr);
                 var url_string_for_report = '/userReport/' + user_arr + '/' + date_arr;
 
                 var stringDateToParse = date_arr.replace(/-/g, '\/');
@@ -91,7 +91,7 @@ $(document).ready(function() {
                 $.getJSON(url_string_for_report, function(json) {
                     
                     if (json.length == 0) {
-                        console.log("NO DATA for REPORT (user_report.ftl!)");
+                        //console.log("NO DATA for REPORT (user_report.ftl!)");
                         $(".userBillableTable").text("No Billables Found for provider : " + user_arr);
                     }
                     else {

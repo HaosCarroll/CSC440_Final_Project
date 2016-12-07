@@ -14,7 +14,6 @@
 	$(document).ready(function() {
 		$.getJSON('/getJsonUserList', function(json) {
 			if (json.length == 0) {
-				console.log("NO DATA!");
 				$(".userTable").text("No Users Found");
 			}
 			else {
@@ -31,4 +30,3 @@
 
 	});
 </script>
- 

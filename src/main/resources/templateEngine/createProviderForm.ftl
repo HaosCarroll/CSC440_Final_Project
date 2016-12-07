@@ -38,21 +38,21 @@
     </div>
 
     <div class="form-group">
-		<label for="isDietitian">Provider is a Dietitian</label><br>
-		<input type="radio" name="isDietitian" value="True"> True
-		<input type="radio" name="isDietitian" value="False" checked> False
+  		<label for="isDietitian">Provider is a Dietitian</label><br>
+  		<input type="radio" name="isDietitian" value="True"> True
+  		<input type="radio" name="isDietitian" value="False" checked> False
     </div>
 
     <div class="form-group">
-		<label for="isExerciseExpert">Provider is an Exercise Expert</label><br>
-		<input type="radio" name="isExerciseExpert" value="True"> True
-		<input type="radio" name="isExerciseExpert" value="False" checked> False
+  		<label for="isExerciseExpert">Provider is an Exercise Expert</label><br>
+  		<input type="radio" name="isExerciseExpert" value="True"> True
+  		<input type="radio" name="isExerciseExpert" value="False" checked> False
     </div>
 
     <div class="form-group">
-		<label for="isInternist">Provider is an Internist</label><br>
-		<input type="radio" name="isInternist" value="True"> True
-		<input type="radio" name="isInternist" value="False" checked> False
+  		<label for="isInternist">Provider is an Internist</label><br>
+  		<input type="radio" name="isInternist" value="True"> True
+  		<input type="radio" name="isInternist" value="False" checked> False
     </div>
 
     <button type="submit" class="btn btn-default">Submit</button>
@@ -91,5 +91,4 @@ $(function() {
         return false;
     });
 });
-
 </script>

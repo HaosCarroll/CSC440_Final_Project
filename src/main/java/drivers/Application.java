@@ -1,32 +1,28 @@
 package drivers;
 
-// TODO : REMOVE UN-NEEDED IMPORTS! 
-// TODO : Finish Commenting the imports.
-
 // Imports for spring framework.
-
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.CommandLineRunner;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
-import org.joda.time.*;
-
 // Imports for spark framework.
-
 import static spark.Spark.*;
 import spark.ModelAndView;
 import templateEngine.FreeMarkerEngine;
 import com.fasterxml.jackson.core.JsonParseException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.SerializationFeature;
-import java.io.StringWriter;
+
 import java.util.HashMap;
 import java.util.Map;
 import java.util.List;
 
+import java.io.StringWriter;
 import java.io.IOException;
+
+import org.joda.time.*;
 
 import entities.*;
 import controls.*;
@@ -681,7 +677,7 @@ public class Application implements CommandLineRunner{
 
         get("userReport/:id/:endQueryDate", (request, response) -> {
             // For Testing and Debug.
-            boolean dBug = true;
+            boolean dBug = false;
             if (dBug) System.out.println("\n* * dBug true IN : Application.runSparkServer : get(\"/userReport/:id/:endQueryDate\") route.\n");
 
             String returnString = "";
@@ -854,27 +850,27 @@ public class Application implements CommandLineRunner{
             String returnString = "";
 
             if (testDataController.addTestDataTo(billableRepository)){
-                returnString += "BILLABLE TEST DATA SUCCESSFULLY ADDED.<br>";
+                returnString += "<h4><strong style=\"color: green;\">BILLABLE TEST DATA SUCCESSFULLY ADDED.<br></strong></h4>";
             } else {
-                returnString += "WARNING : BILLABLE DATA PRESENT (No data added!)<br>";
+                returnString += "<h4><strong style=\"color: red;\">WARNING : BILLABLE DATA PRESENT (No Data Was Added!)<br></strong></h4>";
             }
 
             if (testDataController.addTestDataTo(providerRepository)){
-                returnString += "PROVIDER TEST DATA SUCCESSFULLY ADDED.<br>";
+                returnString += "<h4><strong style=\"color: green;\">PROVIDER TEST DATA SUCCESSFULLY ADDED.<br></strong></h4>";
             } else {
-                returnString += "WARNING : PROVIDER DATA PRESENT (No data added!)<br>";
+                returnString += "<h4><strong style=\"color: red;\">WARNING : PROVIDER DATA PRESENT (No Data Was Added!)<br></strong></h4>";
             }
 
             if (testDataController.addTestDataTo(serviceRepository)){
-                returnString += "SERVICE TEST DATA SUCCESSFULLY ADDED.<br>";
+                returnString += "<h4><strong style=\"color: green;\">SERVICE TEST DATA SUCCESSFULLY ADDED.<br></strong></h4>";
             } else {
-                returnString += "WARNING : SERVICE DATA PRESENT (No data added!)<br>";
+                returnString += "<h4><strong style=\"color: red;\">WARNING : SERVICE DATA PRESENT (No Data Was Added!)<br></strong></h4>";
             }
             
             if (testDataController.addTestDataTo(userRepository)){
-                returnString += "USER TEST DATA SUCCESSFULLY ADDED.<br>";
+                returnString += "<h4><strong style=\"color: green;\">USER TEST DATA SUCCESSFULLY ADDED.<br></strong></h4>";
             } else {
-                returnString += "WARNING : USER DATA PRESENT (No data added!)<br>";
+                returnString += "<h4><strong style=\"color: red;\">WARNING : USER DATA PRESENT (No Data Was Added!)<br></strong></h4>";
             }
 
             response.status(200);
@@ -890,7 +886,7 @@ public class Application implements CommandLineRunner{
             
             response.status(200);
             
-            String returnString = "GONE!";
+            String returnString = "<br><h1><h4><strong style=\"color: red;\">GONE IS MONGO DATABASE DATA!</strong></h1><br>";
             return returnString;
         });        
 
@@ -899,7 +895,51 @@ public class Application implements CommandLineRunner{
            viewObjects.put("templateName", "testing_pages/clearMongoDB.ftl");
            return new ModelAndView(viewObjects, "aMain.ftl");
         }, new FreeMarkerEngine());
-        
+
+        get("/clearMongoDBAndAddTestData", (request, response) -> {
+           Map<String, Object> viewObjects = new HashMap<String, Object>();
+           viewObjects.put("templateName", "testing_pages/clearMongoDBAndAddTestData.ftl");
+           return new ModelAndView(viewObjects, "aMain.ftl");
+        }, new FreeMarkerEngine());
+
+        put("/clearMongoDBAndAddTestData", (request, response) -> {
+            
+            String returnString = "";
+
+            billableRepository.deleteAll();
+            userRepository.deleteAll();
+            serviceRepository.deleteAll();
+            providerRepository.deleteAll();
+            
+            returnString += "<h4><strong style=\"color: red;\">BILLABLE TEST DATA SUCCESSFULLY ADDED.</strong></h4><br>";
+
+            if (testDataController.addTestDataTo(billableRepository)){
+                returnString += "<h4><strong style=\"color: green;\">BILLABLE TEST DATA SUCCESSFULLY ADDED.<br></strong></h4>";
+            } else {
+                returnString += "<h4><strong style=\"color: red;\">WARNING : BILLABLE DATA PRESENT (No Data Was Added!)<br></strong></h4>";
+            }
+
+            if (testDataController.addTestDataTo(providerRepository)){
+                returnString += "<h4><strong style=\"color: green;\">PROVIDER TEST DATA SUCCESSFULLY ADDED.<br></strong></h4>";
+            } else {
+                returnString += "<h4><strong style=\"color: red;\">WARNING : PROVIDER DATA PRESENT (No Data Was Added!)<br></strong></h4>";
+            }
+
+            if (testDataController.addTestDataTo(serviceRepository)){
+                returnString += "<h4><strong style=\"color: green;\">SERVICE TEST DATA SUCCESSFULLY ADDED.<br></strong></h4>";
+            } else {
+                returnString += "<h4><strong style=\"color: red;\">WARNING : SERVICE DATA PRESENT (No Data Was Added!)<br></strong></h4>";
+            }
+            
+            if (testDataController.addTestDataTo(userRepository)){
+                returnString += "<h4><strong style=\"color: green;\">USER TEST DATA SUCCESSFULLY ADDED.<br></strong></h4>";
+            } else {
+                returnString += "<h4><strong style=\"color: red;\">WARNING : USER DATA PRESENT (No Data Was Added!)<br></strong></h4>";
+            }
+
+            response.status(200);
+            return returnString;
+        });
     }  // END OF SPRING SERVER
     
     private String convertObjectToJSON(Object obj) {
@@ -942,7 +982,6 @@ public class Application implements CommandLineRunner{
         
     }
 }
-
 /*
  * ASCII COMMENTS : http://patorjk.com/software/taag/#p=display&f=Mini&t=
  */

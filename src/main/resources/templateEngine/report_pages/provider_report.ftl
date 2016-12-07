@@ -63,8 +63,6 @@
 
                 var url_string_for_date_choices = '/providerReport/' + prov_arr;
                 $.getJSON(url_string_for_date_choices, function(date) {
-                    console.log("date:");
-                    console.log(date);
                     var sel = $('#choices');
                     $.each(date, function(key, val) {
                         sel.append('<option value="' + val + '">' + val + '</option>');
@@ -73,8 +71,6 @@
                 $("button").on("click", function(e) {
                     e.preventDefault();
                     var date_arr = $("#choices").val();
-                    console.log("prov_arr = " + prov_arr);
-                    console.log("date_arr = " + date_arr);
                     var url_string_for_report = '/providerReport/' + prov_arr + '/' + date_arr
 
                     var stringDateToParse = date_arr.replace(/-/g, '\/');

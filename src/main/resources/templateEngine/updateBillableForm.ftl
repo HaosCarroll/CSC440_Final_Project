@@ -23,20 +23,10 @@
       <input type="text" class="form-control" pattern="[0-9]{6}" title="Six Digit Service." id="serviceNumberServiced" name="serviceNumberServiced" placeholder="Enter Code for Service Provided.">
     </div>
 
-
     <div class="form-group" id="dateInput">
 		<label for="dateServiced">Date Serviced</label><br>
         <input  type="text" class="form-control" id="dateServiced" name="dateServiced" data-provide="datepicker">
     </div>
-
-
-<!-- 
-
-    <div class="form-group" id="dateInput">
-		<label for="dateServicedRecorded">Date Recorded</label><br>
-        <input  type="text" class="form-control" id="dateServicedRecorded" name="dateServicedRecorded" data-provide="datepicker">
-    </div>
--->
 
     <div class="form-group">
       <label for="serviceCost">Cost</label>
@@ -50,7 +40,6 @@
     <button type="submit" class="btn btn-default">Submit</button>
   </form>
 
-
 <!-- Simple JS function to for datepicker -->
 <script>
 $('#dateInput input').datepicker({
@@ -63,7 +52,6 @@ $('#dateInput input').datepicker({
 
 <!-- Sauce : http://stackoverflow.com/questions/14650932/set-value-to-currency-in-input-type-number -->
 <script>
-
 (function($) {
   $.fn.currencyInput = function() {
     this.each(function() {
@@ -88,7 +76,6 @@ $(document).ready(function() {
   $('input.currency').currencyInput();
 });
 </script>
-
 
 <!-- Simple JS Function to convert the data into JSON and Pass it as ajax Call -->
 <script>
@@ -121,5 +108,4 @@ $(function() {
         return false;
     });
 });
-
 </script>

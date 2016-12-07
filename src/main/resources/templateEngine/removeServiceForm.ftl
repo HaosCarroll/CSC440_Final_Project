@@ -1,12 +1,12 @@
 <div class="starter-template">
-	<h2> Remove Service </h2>
-    	<p id="status"></p>
-  	<div class="form-group">
-      		<label for="id">Select Service.entityServiceIdNumber to Remove</label>
-      		<select id="services" name="serviceEntityServiceIdNumber"></select>
-    	</div>
-      <button type="submit" class="btn btn-default">Submit</button>
-      <p id="status"></p>
+  <h2> Remove Service </h2>
+  <p id="status"></p>
+  <div class="form-group">
+    <label for="id">Select Service.entityServiceIdNumber to Remove</label>
+    <select id="services" name="serviceEntityServiceIdNumber"></select>
+  </div>
+  <button type="submit" class="btn btn-default">Submit</button>
+  <p id="status"></p>
 </div>	
 
 <script>
@@ -35,5 +35,4 @@ $( document ).ready(function() {
         return false;
     });
 });
-	
 </script>

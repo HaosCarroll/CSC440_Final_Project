@@ -14,13 +14,9 @@
 	$(document).ready(function() {
 		$.getJSON('/getJsonBillableList', function(json) {
 			if (json.length == 0) {
-				console.log("NO DATA!");
 				$(".billableTable").text("No Billables Found");
 			}
 			else {
-				console.log("JSON : ");
-				console.log(json);
-
 				var tbl = new awesomeTableJs({
 					data: json,
 					tableWrapper: ".billableTable",
@@ -33,4 +29,3 @@
 		});
 	});
 </script>
- 

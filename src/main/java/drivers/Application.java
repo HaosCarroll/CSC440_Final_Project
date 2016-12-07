@@ -870,7 +870,6 @@ public class Application implements CommandLineRunner{
                 returnString += "WARNING : SERVICE DATA PRESENT (No data added!)<br>";
             }
             
-
             if (testDataController.addTestDataTo(userRepository)){
                 returnString += "USER TEST DATA SUCCESSFULLY ADDED.<br>";
             } else {

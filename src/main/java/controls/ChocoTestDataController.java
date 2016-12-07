@@ -101,8 +101,8 @@ public class ChocoTestDataController {
        billableStringDataArray[59] = new String[]{"60", /*U*/"888888888", /*P*/"444444444", /*S*/"666666", "10/21/2016", "2016-10-21T21:00:00Z", "110.20", " Test Case : 2.5.5"};
 
        billableStringDataArray[60] = new String[]{"61", /*U*/"888888888", /*P*/"222222222", /*S*/"444444", "9/30/2016", "2016-9-30T21:00:01Z", "30.57", " Test Case : 2.6.1"};
-       billableStringDataArray[61] = new String[]{"62", /*U*/"888888888", /*P*/"555555555", /*S*/"999999", "9/30/2016", "2016-9-30T13:46:41Z", "249.52", " Test Case : 2.6.2"};
-       billableStringDataArray[62] = new String[]{"63", /*U*/"888888888", /*P*/"777777777", /*S*/"666666", "10/8/2016", "2016-10-8T12:47:39Z", "71.39", " Test Case : 2.6.3"};
+       billableStringDataArray[61] = new String[]{"62", /*U*/"888888888", /*P*/"555555555", /*S*/"999999", "9/30/2016", "2016-9-30T23:46:41Z", "249.52", " Test Case : 2.6.2"};
+       billableStringDataArray[62] = new String[]{"63", /*U*/"888888888", /*P*/"777777777", /*S*/"666666", "10/2/2016", "2016-10-2T12:47:39Z", "71.39", " Test Case : 2.6.3"};
        billableStringDataArray[63] = new String[]{"64", /*U*/"888888888", /*P*/"444444444", /*S*/"666666", "10/3/2016", "2016-10-4T22:51:5Z", "170.16", " Test Case : 2.6.4"};
        billableStringDataArray[64] = new String[]{"65", /*U*/"888888888", /*P*/"222222222", /*S*/"999999", "10/5/2016", "2016-10-5T10:13:44Z", "27.41", " Test Case : 2.6.5"};
        billableStringDataArray[65] = new String[]{"66", /*U*/"888888888", /*P*/"222222222", /*S*/"999999", "10/7/2016", "2016-10-7T21:00:00Z", "234.70", " Test Case : 2.6.6"};

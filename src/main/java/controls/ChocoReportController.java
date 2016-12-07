@@ -15,6 +15,8 @@ import java.util.ArrayList;
 import entities.*;
 import drivers.*;
 
+import utilities.*;
+
 public class ChocoReportController {
     
     // This is hacky but it works for now.
@@ -52,11 +54,10 @@ public class ChocoReportController {
         return returnString;        
     }
 
-
     public String getBillablesReportForUserByDateRangeInJson(BillableRepository billableRepository, ProviderRepository providerRepository, ServiceRepository serviceRepository, String idOfUser, DateTime startDateTime, DateTime endDateTime){
 
         // For Testing and Debug.
-        boolean dBug = true;
+        boolean dBug = false;
         if (dBug) System.out.println("\n* * dBug true IN : ChocoReportController.gettBillablesForUser()\n");
 
         String returnString = "";
@@ -83,25 +84,11 @@ public class ChocoReportController {
             Service providedService =serviceRepository.findOneByEntityServiceIdNumber(serviceProvidedId);
             String serviceProvidedName = providedService.getProvidableServiceDescription();
             
-            // NON-Required spec #4 for user report.
-            String serviceProvidedDateRecorded = usersBillables.get(i).getDateServicedRecorded();
-            //Service providedService =serviceRepository.findOneByEntityServiceIdNumber(serviceProvidedId);
-            //String serviceProvidedName = providedService.getProvidableServiceDescription();
-            
-            // NON-Required spec #5 for user report.
-            String serviceProvidedComment = usersBillables.get(i).getServiceComment();
-            //Service providedService =serviceRepository.findOneByEntityServiceIdNumber(serviceProvidedId);
-            //String serviceProvidedName = providedService.getProvidableServiceDescription();
-
             // Turn specs into JSON.
             String temp = "{\n";
             temp += "\"Servicing Provided Date\" : \"" + serviceProvidedDate + "\",\n";
             temp += "\"Provider Servicing\" : \"" + providerProvidingServiceNameString + "\",\n";
             temp += "\"Provided Service Name\" : \"" + serviceProvidedName + "\",\n";
-
-            // NON REQUIRED!!
-            temp += "\"Service Provided Date Recorded\" : \"" + serviceProvidedDateRecorded + "\",\n";
-            temp += "\"Service Provided Comment\" : \"" + serviceProvidedName + "\"\n";
 
             // Add JSON element end depending on if is or is not last element.
             if (i < (usersBillables.size()-1)){
@@ -111,22 +98,17 @@ public class ChocoReportController {
             }
             returnString += temp;
         }
-        
-        // End  of returned a JSON string.
-        returnString += "]";
+        returnString += "]"; // End  of returned a JSON string.
         
         if (dBug) System.out.printf ("\nQuerried id = %s\n", idOfUser);
         if (dBug) System.out.printf ("\n# Billables for id = %s\n", usersBillables.size());
-        //if (dBug) System.out.printf ("\nreturnString\n");
-        //if (dBug) System.out.printf ("\n%s\n", returnString);
 
         return returnString;
     }
 
     private List<String> getListOfDatesThatHaveBillablesForUser(BillableRepository billableRepository, String idOfUser){
-        
         // For Testing and Debug.
-        boolean dBug = true;
+        boolean dBug = false;
         if (dBug) System.out.println("\n* * dBug true IN : ChocoReportController.getListOfDatesThatHaveBillablesForUser(...)\n");
 
         List<String> returnStringList = new ArrayList<String>();
@@ -137,17 +119,27 @@ public class ChocoReportController {
         DateTime todaysDateTime = new DateTime();
         DateTime endDateTime;
         DateTime startDateTime;
-
+        
+        PairDateTime dateTimePair = null;
+        JodaTimeUtil jodaTimeUtil = new JodaTimeUtil();
+        
         if (latestDateTime.isAfter(previousFridayFromDate(todaysDateTime))){
             if (dBug) System.out.println("\nUnreported Records Exist for this week!\n");
-            endDateTime = followingFridayFromDate(todaysDateTime);
-            startDateTime = previousFridayFromDate(todaysDateTime);
-            returnStringList.add(startDateTime.toString());
+
+            dateTimePair = jodaTimeUtil.getPreviousAndFollowingDateTimeCutoffsOfDateTime(todaysDateTime);
+            
+            startDateTime = dateTimePair.getFirst();
+            endDateTime = dateTimePair.getFinal();
         } else {
             if (dBug) System.out.println("\nNo records for this week.\n");
-            startDateTime = previousFridayFromDate(latestDateTime);
-            endDateTime = followingFridayFromDate(latestDateTime);
+
+            dateTimePair = jodaTimeUtil.getPreviousAndFollowingDateTimeCutoffsOfDateTime(latestDateTime);
+
+            startDateTime = dateTimePair.getFirst();
+            endDateTime = dateTimePair.getFinal();
         }
+        
+        returnStringList.add(startDateTime.toString());
         
         if (dBug) System.out.println("todaysDateTime.toString() = " + todaysDateTime.toString("MM-dd-yyyy"));
         if (dBug) System.out.println("\nearliestDateTime.toString() = " + earliestDateTime.toString("MM-dd-yyyy"));
@@ -178,7 +170,6 @@ public class ChocoReportController {
         }
         return returnStringList;
     }
-
 
     public String getBillablesReportForUserInJson(BillableRepository billableRepository, ProviderRepository providerRepository, ServiceRepository serviceRepository, String idOfUser){
 
@@ -316,7 +307,6 @@ public class ChocoReportController {
         return returnString;
     }
 
-
     public String getJsonListOfDatesThatHaveBillablesForProvider(BillableRepository billableRepository, String idOfProvider){
         String returnString = "";
         
@@ -404,7 +394,7 @@ public class ChocoReportController {
     
     private DateTime followingFridayFromDate(DateTime dateTimeIn) {
         // For Testing and Debug.
-        boolean dBug = true;
+        boolean dBug = false;
         if (dBug) System.out.println("\n* * dBug true IN : ChocoReportController.followingFridayFromDate(...)\n");
         if (dBug) System.out.println("dateTimeIn.toString(\"MM-dd-yyyy\")" + dateTimeIn.toString("MM-dd-yyyy"));
         
@@ -469,7 +459,6 @@ public class ChocoReportController {
         
         return returnDateTime;
     }
-
 
     public String getBillablesReportForProviderByDateRangeInJson(BillableRepository billableRepository, ProviderRepository providerRepository, ServiceRepository serviceRepository, UserRepository userRepository, String idOfProvider, DateTime startDateTime, DateTime endDateTime){
         // For Testing and Debug.
@@ -660,7 +649,6 @@ public class ChocoReportController {
         return null;
     }
 }
-
 
 /*
 Sauce List:

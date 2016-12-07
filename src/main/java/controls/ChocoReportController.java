@@ -602,8 +602,8 @@ public class ChocoReportController {
     
     public String getManagerReportInJSON(BillableRepository billableRepository, ProviderRepository providerRepository, DateTime beginDate, DateTime endDate){
        
-        int totalCount = 0;
-        double totalCost = 0;
+     
+        double summaryCost = 0;
         
         // For Testing and Debug.
         boolean dBug = true;
@@ -648,8 +648,7 @@ public class ChocoReportController {
             String providerTotalS = String.format("$%.2f", providerTotal);
             
             // For totals
-            totalCount += providerQty;
-            totalCost += providerTotal;
+            summaryCost += providerTotal;
             
             String not_yet_string = "Coming SOON!";
             // Turn specs into JSON.
@@ -657,10 +656,10 @@ public class ChocoReportController {
             temp += "\"Provider ID\" : \"" + providerNumber + "\",\n";
             temp += "\"Provider Name\" : \"" + providerName + "\",\n";
             temp += "\"Number of Consultations\" : \"" + providerQty + "\",\n";
-            temp += "\"Total Fee\" : \"" + providerTotalS + "\",\n";
+            temp += "\"Total Fee\" : \"" + providerTotalS + "\"\n";
 
             // Add JSON element end depending on if is or is not last element.
-            if ( i < providerBillablesQuantity.entrySet().size() - 1 ){
+            if ( i < providerBillablesQuantity.entrySet().size()-1){
                 temp += "\n},\n";
             } else {
                 temp += "\n}\n";
@@ -675,9 +674,8 @@ public class ChocoReportController {
         if (dBug) System.out.printf("\nQueried dates from %s to %s\n", beginDate, endDate);
         if (dBug) System.out.printf("\nreturnString :\n %s\n", returnString);
         
-        
-        //setTabulators(numConsults, feesToPayProvider);
-        //getHtmlConsultsAndFeeTotalForLastReportInHtml();
+        getHtmlManagerSummary(providerBillablesQuantity.entrySet().size(), providerBillables.size(), summaryCost);
+
         return returnString;
     }
 
@@ -693,6 +691,24 @@ public class ChocoReportController {
         
         returnString += String.format("Total Consults : %d<br>", numConsultsForLastReport);
         returnString += String.format("Total Fees to Pay : $%.2f<br>", totalFeesForLastReport);
+        
+        return returnString;
+    }
+    
+    public String getHtmlManagerSummary(int count, int consultations, double total){
+        // For Testing and Debug.
+        boolean dBug = false;
+        if (dBug) System.out.println("\n* * dBug true IN : ChocoReportController.getHtmlTotalSummary()\n");
+        
+        String returnString = "";
+        
+        if (dBug) System.out.printf("Providers : %d\n", count);
+        if (dBug) System.out.printf("Consultations : %d\n", consultations);
+        if (dBug) System.out.printf("Total Fees : $%.2f\n", total);
+        
+        returnString += String.format("Providers : %d<br>", count);
+        returnString += String.format("Consultations : %d<br>", consultations);
+        returnString += String.format("Total Fees : $%.2f<br>", total);
         
         return returnString;
     }

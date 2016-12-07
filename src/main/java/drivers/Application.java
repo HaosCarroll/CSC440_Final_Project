@@ -94,7 +94,7 @@ public class Application implements CommandLineRunner{
             if (dBug) System.out.println("\n* * dBug true IN : Application.runSparkServer : get(\"/\") route.\n");
 
            Map<String, Object> viewObjects = new HashMap<String, Object>();
-           viewObjects.put("title", "Welcome to Team Five's Final Project!");
+           //viewObjects.put("title", "Welcome to Team Five's Final Project!");
            viewObjects.put("templateName", "aHome.ftl");
            return new ModelAndView(viewObjects, "aMain.ftl");
         }, new FreeMarkerEngine());
@@ -681,7 +681,7 @@ public class Application implements CommandLineRunner{
 
         get("userReport/:id/:endQueryDate", (request, response) -> {
             // For Testing and Debug.
-            boolean dBug = false;
+            boolean dBug = true;
             if (dBug) System.out.println("\n* * dBug true IN : Application.runSparkServer : get(\"/userReport/:id/:endQueryDate\") route.\n");
 
             String returnString = "";
@@ -698,7 +698,7 @@ public class Application implements CommandLineRunner{
             
             returnString = reportController.getBillablesReportForUserByDateRangeInJson(billableRepository, providerRepository, serviceRepository, id, startDateTime, endDateTime);
 
-            //if (dBug) System.out.println("returnString:\n" + returnString);
+            if (dBug) System.out.println("returnString:\n" + returnString);
             return returnString;
         });
 
@@ -740,7 +740,7 @@ public class Application implements CommandLineRunner{
             
             returnString = reportController.getBillablesReportForProviderByDateRangeInJson(billableRepository, providerRepository, serviceRepository, userRepository, id, startDateTime, endDateTime);
 
-            //if (dBug) System.out.println("returnString:\n" + returnString);
+            if (dBug) System.out.println("returnString:\n" + returnString);
             return returnString;
         });
 

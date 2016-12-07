@@ -87,16 +87,16 @@ public class ChocoReportController {
             String serviceProvidedName = providedService.getProvidableServiceDescription();
             
             // Turn specs into JSON.
-            String temp = "{\n";
-            temp += "\"Servicing Provided Date\" : \"" + serviceProvidedDate + "\",\n";
-            temp += "\"Provider Servicing\" : \"" + providerProvidingServiceNameString + "\",\n";
-            temp += "\"Provided Service Name\" : \"" + serviceProvidedName + "\",\n";
+            String temp = "   {\n";
+            temp += "      \"Servicing Provided Date\" : \"" + serviceProvidedDate + "\",\n";
+            temp += "      \"Provider Servicing\" : \"" + providerProvidingServiceNameString + "\",\n";
+            temp += "      \"Provided Service Name\" : \"" + serviceProvidedName + "\"\n";
 
             // Add JSON element end depending on if is or is not last element.
             if (i < (usersBillables.size()-1)){
-                temp += "\n},\n";
+                temp += "   },\n";
             } else {
-                temp += "\n}\n";
+                temp += "   }\n";
             }
             returnString += temp;
         }

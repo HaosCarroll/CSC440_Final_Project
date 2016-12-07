@@ -24,9 +24,7 @@
    <link rel="stylesheet" href="css/bootstrap.min.css">
    <link rel="stylesheet" href="css/bootstrap-theme.min.css">
    <link rel="stylesheet" href="css/bootstrap-datepicker3.standalone.css">
-
    <link rel="stylesheet" href="css/choco-application-template.css">
-   
    
 </head>
 

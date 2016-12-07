@@ -780,6 +780,7 @@ public class Application implements CommandLineRunner{
            Map<String, Object> viewObjects = new HashMap<String, Object>();
            viewObjects.put("message", "Manager Report is currently under construction!");
            viewObjects.put("templateName", "beingBuilt.ftl");
+           System.out.print(reportController.getManagerReportInJSON(billableRepository, providerRepository, new DateTime(2016,1,1,1,0), new DateTime(2016,12,30,23,0)));
            return new ModelAndView(viewObjects, "aMain.ftl");
         }, new FreeMarkerEngine());
 

@@ -35,6 +35,7 @@ public interface BillableRepository extends MongoRepository<Billable, String> {
 	// We need the earliest billable, so starting here:
 	// Sauce : http://docs.spring.io/spring-data/mongodb/docs/current/reference/html/#repositories.limit-query-result
 	Billable findFirstByOrderByDateServicedRecordedAsc();
+	Billable findLastByOrderByDateServicedRecordedDesc();
 
 	// This function gets the first billable record for the provider ID passed to it.
 	Billable findByProviderNumberServicingOrderByDateServicedRecordedAsc(@Param("providerNumberServicing") String providerNumberServicing);

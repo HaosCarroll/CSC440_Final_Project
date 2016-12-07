@@ -774,11 +774,35 @@ public class Application implements CommandLineRunner{
 
         get("/managerReport", (request, response) -> {
            Map<String, Object> viewObjects = new HashMap<String, Object>();
-           viewObjects.put("message", "Manager Report is currently under construction!");
-           viewObjects.put("templateName", "beingBuilt.ftl");
-           System.out.print(reportController.getManagerReportInJSON(billableRepository, providerRepository, new DateTime(2016,1,1,1,0), new DateTime(2016,12,30,23,0)));
+           viewObjects.put("templateName", "report_pages/manager_report.ftl");
+           viewObjects.put("title", "Manager Report :Under Construction!");
+           
+           String dateChoices = reportController.getJsonListOfDatesThatHaveBillables(billableRepository);
+           viewObjects.put("date", dateChoices);
            return new ModelAndView(viewObjects, "aMain.ftl");
         }, new FreeMarkerEngine());
+
+        get("/managerReport/:startQueryDate", (request, response) -> {
+            // For Testing and Debug.
+            boolean dBug = false;
+            if (dBug) System.out.println("\n* * dBug true IN : Application.runSparkServer : get(\"/managerReport/:startQueryDate\") route.\n");
+
+            String returnString = "";
+
+            String startDateString =  request.params(":startQueryDate");
+
+            DateTime endDateTime = new DateTime(startDateString).plusWeeks(1).withTime(21, 0, 1, 0);
+            DateTime startDateTime = new DateTime(startDateString).withTime(21, 0, 0, 0);
+            
+            if (dBug) System.out.println("\nstartDateString :" + startDateString);
+            if (dBug) System.out.println("endDateTime       :" + endDateTime);
+            if (dBug) System.out.println("startDateTime     :" + startDateTime);
+            
+            returnString = reportController.getManagerReportInJSON(billableRepository, providerRepository, startDateTime, endDateTime);
+
+            if (dBug) System.out.println("returnString:\n" + returnString);
+            return returnString;
+        });
 
         get("/billablesPerEachUserReport", (request, response) -> {
            Map<String, Object> viewObjects = new HashMap<String, Object>();

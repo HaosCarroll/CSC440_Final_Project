@@ -144,8 +144,6 @@ public class Validable {
         
         if (thereAreNonDigitCharsInString(String.valueOf(provider.getProviderZip())))
             returnBoolean = false;
-        if(!provider.getIsDietitian() && !provider.getIsExerciseExpert() && !provider.getIsInternist())
-            returnBoolean = false;
 
         return returnBoolean;
     }
@@ -172,8 +170,6 @@ public class Validable {
         }
 
         if(service.getProvidableServiceDescription() == null || service.getProvidableServiceDescription().length() > entityServiceDescriptionStringMaxLength)
-            returnBoolean = false;
-        if(!service.getIsProvidableByDietitian() && !service.getIsProvidableByExerciseExpert() && !service.getIsProvidableByInternist())
             returnBoolean = false;
 
         return returnBoolean;
@@ -228,13 +224,9 @@ public class Validable {
             if (thereAreNonDigitCharsInString(billable.getServiceNumberServiced()))
                 returnBoolean = false;
         }
-        if(billable.getServiceCost() <= 0 || billable.getServiceCost() > 999.99)
-            returnBoolean = false;
-        if(billable.getServiceComment() != null){
-            if(billable.getServiceComment().length() > entityBillableCommentStringMaxLength)
-                returnBoolean = false;
-        }
         
+        if(billable.getServiceComment().length() > entityBillableCommentStringMaxLength)
+            returnBoolean = false;
 /*
 
 TODO : Validate dates!

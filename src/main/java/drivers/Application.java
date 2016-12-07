@@ -855,26 +855,26 @@ public class Application implements CommandLineRunner{
             if (testDataController.addTestDataTo(billableRepository)){
                 returnString += "BILLABLE TEST DATA SUCCESSFULLY ADDED.<br>";
             } else {
-                returnString += "ERROR : BILLABLE TEST DATA * * * * *<br>";
+                returnString += "WARNING : BILLABLE DATA PRESENT (No data added!)<br>";
             }
 
             if (testDataController.addTestDataTo(providerRepository)){
                 returnString += "PROVIDER TEST DATA SUCCESSFULLY ADDED.<br>";
             } else {
-                returnString += "ERROR : PROVIDER TEST DATA * * * * *<br>";
+                returnString += "WARNING : PROVIDER DATA PRESENT (No data added!)<br>";
             }
 
             if (testDataController.addTestDataTo(serviceRepository)){
                 returnString += "SERVICE TEST DATA SUCCESSFULLY ADDED.<br>";
             } else {
-                returnString += "ERROR : SERVICE TEST DATA * * * * *<br>";
+                returnString += "WARNING : SERVICE DATA PRESENT (No data added!)<br>";
             }
             
 
             if (testDataController.addTestDataTo(userRepository)){
                 returnString += "USER TEST DATA SUCCESSFULLY ADDED.<br>";
             } else {
-                returnString += "ERROR : USER TEST DATA * * * * *<br>";
+                returnString += "WARNING : USER DATA PRESENT (No data added!)<br>";
             }
 
             response.status(200);

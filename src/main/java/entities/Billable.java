@@ -2,8 +2,6 @@ package entities;
 
 import org.joda.time.*;
 
-import org.springframework.data.annotation.Id;
-
 public class Billable extends Validable{    
 
     private String entityBillableIdNumber;

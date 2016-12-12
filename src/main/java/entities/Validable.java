@@ -1,5 +1,8 @@
 package entities;
 
+import org.joda.time.*;
+import java.util.Date;
+
 public class Validable {
 
     private int nameMaxLength = 25;
@@ -234,19 +237,22 @@ public class Validable {
             if(billable.getServiceComment().length() > entityBillableCommentStringMaxLength)
                 returnBoolean = false;
         }
-        
-/*
-
-TODO : Validate dates!
-
-        if(billable.getDateServiced() == null || !billable.getDateServiced().matches("^\\d{2}\\-\\d{2}\\-\\d{4}"))
-            return false;
-        if(billable.getDateServicedRecorded() == null || !billable.getDateServicedRecorded().matches("^\\d{2}\\-\\d{2}\\-\\d{4}\\s{1}\\d{2}\\:\\d{2}\\:\\d{2}"))
-            return false;
-        if(billable.getServiceComment().length() > 100)
-            return false;
-*/
-
+        if(billable.getDateServiced() != null){
+            String serviceDate = (String) billable.getDateServiced();
+            System.out.println(serviceDate);
+            if(!serviceDate.matches("^\\d{2}\\/\\d{2}\\/\\d{4}"))
+                returnBoolean = false;
+        }
+        else
+            returnBoolean = false;
+        if(billable.getDateServicedRecorded() != null){
+            String recordedServiceDate = (String) billable.getDateServicedRecorded();
+            System.out.println(recordedServiceDate);
+            if(!recordedServiceDate.matches("^\\d{2}\\/\\d{2}\\/\\d{4}\\s{1}\\d{2}\\:\\d{2}\\:\\d{2}"))
+                returnBoolean = false;
+        }
+        else
+            returnBoolean = false;
         return returnBoolean;
     }
 

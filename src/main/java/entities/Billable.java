@@ -48,6 +48,8 @@ public class Billable extends Validable{
     }
     
     public String getDateServiced() {
+        if(dateServiced == null)
+            return null;
         return dateServiced.toString("MM/dd/yyyy");
     }
     
@@ -63,6 +65,8 @@ public class Billable extends Validable{
     }
     
     public String getDateServicedRecorded() {
+        if(dateServicedRecorded == null)
+            return null;
         return dateServicedRecorded.toString("MM/dd/yyyy HH:mm:ss");
     }
 

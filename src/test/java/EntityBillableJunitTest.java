@@ -1,6 +1,6 @@
 import org.junit.Test;
 import static org.junit.Assert.*;
-
+import org.joda.time.*;
 import entities.Billable;
 
 public class EntityBillableJunitTest {
@@ -23,8 +23,8 @@ public class EntityBillableJunitTest {
         testBillable.setMemberNumberService("987654321");
         testBillable.setProviderNumberServicing("123456789");
         testBillable.setServiceNumberServiced("123456");
-        //testBillable.setDateServiced("");  Not sure how to do this yet
-        //testBillable.setDateServicedRecorded();
+        testBillable.setDateServiced("12/21/2012");
+        testBillable.setDateServicedRecorded();
         testBillable.setServiceCost(100.00);
         testBillable.setServiceComment("Words Words Words");
 
@@ -40,8 +40,8 @@ public class EntityBillableJunitTest {
         //testBillable.setMemberNumberService("987654321");
         testBillable.setProviderNumberServicing("123456789");
         testBillable.setServiceNumberServiced("123456");
-        //testBillable.setDateServiced("");  Not sure how to do this yet
-        //testBillable.setDateServicedRecorded();
+        testBillable.setDateServiced("12/21/2012");
+        testBillable.setDateServicedRecorded();
         testBillable.setServiceCost(100.00);
         testBillable.setServiceComment("Words Words Words");
 
@@ -57,8 +57,8 @@ public class EntityBillableJunitTest {
         testBillable.setMemberNumberService("987654321");
         //testBillable.setProviderNumberServicing("123456789");
         testBillable.setServiceNumberServiced("123456");
-        //testBillable.setDateServiced("");  Not sure how to do this yet
-        //testBillable.setDateServicedRecorded();
+        testBillable.setDateServiced("12/21/2012");
+        testBillable.setDateServicedRecorded();
         testBillable.setServiceCost(100.00);
         testBillable.setServiceComment("Words Words Words");
 
@@ -74,14 +74,14 @@ public class EntityBillableJunitTest {
         testBillable.setMemberNumberService("987654321");
         testBillable.setProviderNumberServicing("123456789");
         //testBillable.setServiceNumberServiced("123456");
-        //testBillable.setDateServiced("");  Not sure how to do this yet
-        //testBillable.setDateServicedRecorded();
+        testBillable.setDateServiced("12/21/2012");
+        testBillable.setDateServicedRecorded();
         testBillable.setServiceCost(100.00);
         testBillable.setServiceComment("Words Words Words");
 
         assertFalse(testBillable.isValidEntity());
     }
-    /*
+    
     @Test
     public void aBillableWithNullDateServicedIsNotValid() {
         
@@ -91,15 +91,15 @@ public class EntityBillableJunitTest {
         testBillable.setMemberNumberService("987654321");
         testBillable.setProviderNumberServicing("123456789");
         testBillable.setServiceNumberServiced("123456");
-        //testBillable.setDateServiced("");  Not sure how to do this yet
-        //testBillable.setDateServicedRecorded();
+        //testBillable.setDateServiced("12/21/2012");
+        testBillable.setDateServicedRecorded();
         testBillable.setServiceCost(100.00);
         testBillable.setServiceComment("Words Words Words");
 
         assertFalse(testBillable.isValidEntity());
     }
-    */
-    /*
+    
+    
     @Test
     public void aBillableWithNullDateServicedRecordedIsNotValid() {
         
@@ -109,14 +109,14 @@ public class EntityBillableJunitTest {
         testBillable.setMemberNumberService("987654321");
         testBillable.setProviderNumberServicing("123456789");
         testBillable.setServiceNumberServiced("123456");
-        //testBillable.setDateServiced("");  Not sure how to do this yet
+        testBillable.setDateServiced("12/21/2012");
         //testBillable.setDateServicedRecorded();
         testBillable.setServiceCost(100.00);
         testBillable.setServiceComment("Words Words Words");
 
         assertFalse(testBillable.isValidEntity());
     }
-    */
+    
     @Test
     public void aBillableWithNullServiceCostIsNotValid() {
         
@@ -126,8 +126,8 @@ public class EntityBillableJunitTest {
         testBillable.setMemberNumberService("987654321");
         testBillable.setProviderNumberServicing("123456789");
         testBillable.setServiceNumberServiced("123456");
-        //testBillable.setDateServiced("");  Not sure how to do this yet
-        //testBillable.setDateServicedRecorded();
+        testBillable.setDateServiced("12/21/2012"); 
+        testBillable.setDateServicedRecorded();
         //testBillable.setServiceCost(100.00);
         testBillable.setServiceComment("Words Words Words");
 
@@ -143,8 +143,8 @@ public class EntityBillableJunitTest {
         testBillable.setMemberNumberService("987654321");
         testBillable.setProviderNumberServicing("123456789");
         testBillable.setServiceNumberServiced("123456");
-        //testBillable.setDateServiced("");  Not sure how to do this yet
-        //testBillable.setDateServicedRecorded();
+        testBillable.setDateServiced("12/21/2012");
+        testBillable.setDateServicedRecorded();
         testBillable.setServiceCost(100.00);
         //testBillable.setServiceComment("Words Words Words");
 
@@ -362,8 +362,8 @@ public class EntityBillableJunitTest {
         returnBillable.setMemberNumberService("987654321");
         returnBillable.setProviderNumberServicing("123456789");
         returnBillable.setServiceNumberServiced("123456");
-        //returnBillable.setDateServiced(""); not sure how this works yet
-        //returnBillable.setDateServicedRecorded();
+        returnBillable.setDateServiced("12/21/2012");
+        returnBillable.setDateServicedRecorded();
         returnBillable.setServiceCost(100.00);
         returnBillable.setServiceComment("Words Words Words");
         
